@@ -47,5 +47,6 @@ public struct EventParam
 {
     public Vector2 vectorParam;
     public bool boolParam;
+    public int intParam;
 }
 
