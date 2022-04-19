@@ -12,7 +12,7 @@ public class InputHandler : MonoBehaviour
     private float moveX;
     private float moveY;
 
-    PlayerControls inputActions;
+    //PlayerControls inputActions;
 
     Vector2 movementInput;
     Vector2 cameraInput;
@@ -23,6 +23,7 @@ public class InputHandler : MonoBehaviour
     // 캐릭터가 커져있을때(처음 Setting)
     public void OnEnable()
     {
+        /*
         if(inputActions == null)
         {
             // 새로운 PlayerControls 생성 후 넣기
@@ -36,6 +37,7 @@ public class InputHandler : MonoBehaviour
 
         // inputActions 사용
         inputActions.Enable();
+        */
     }
 
     /// <summary>
@@ -43,7 +45,7 @@ public class InputHandler : MonoBehaviour
     /// </summary>
     private void OnDisable()
     {
-        inputActions.Disable();
+        //inputActions.Disable();
     }
 
     private void Update()
