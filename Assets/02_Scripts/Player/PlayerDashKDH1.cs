@@ -7,6 +7,10 @@ public class PlayerDashKDH1 : PlayerKDH
     [SerializeField]
     private float DashWaitSpeed;
 
+    [Header("대쉬 스무스 시간")]
+    [SerializeField]
+    private float smoothTime = 0.2f;
+
     [Header("대쉬 속도")]
     [SerializeField]
     private float DashSpeed;
@@ -19,18 +23,22 @@ public class PlayerDashKDH1 : PlayerKDH
     [SerializeField]
     private GameObject DashObjet;
 
+
+    private Vector3 lastMoveSpd;
     private bool firstbool = false;
     private bool dashbool = false;
-
-    private float time = 0;
+    private void Start()
+    {
+        EventManager.StartListening("ISDASH", isDash);
+    }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && dashbool == false)
+        if (Input.GetKeyDown(KeyCode.Space) && dashbool == false)
         {
             StartCoroutine("DashBool");
         }
 
-        if(dashbool)
+        if (dashbool)
         {
             Dash();
         }
@@ -44,11 +52,23 @@ public class PlayerDashKDH1 : PlayerKDH
     }
     private void Dash()
     {
-        if(firstbool)
+        if (firstbool)
         {
             firstbool = false;
             DashObjet.transform.position = new Vector3(Input.GetAxisRaw("Horizontal") * DashObjectDistance, 0, Input.GetAxisRaw("Vertical") * DashObjectDistance);
         }
-        transform.position = Vector3.Lerp(transform.position, DashObjet.transform.position, Time.deltaTime*DashSpeed);
+        Vector3 smoothPosition = Vector3.SmoothDamp(
+            transform.position,
+            DashObjet.transform.position,
+            ref lastMoveSpd,
+            smoothTime
+            );
+
+        transform.position = smoothPosition;
+    }
+
+    private void isDash(EventParam eventParam)
+    {
+        eventParam.boolParam = dashbool;
     }
 }

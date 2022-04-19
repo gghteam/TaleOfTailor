@@ -10,6 +10,8 @@ public class PlayerMoveKDH : PlayerKDH
 
     private float Horizontal;
     private float Vertical;
+
+    private EventParam eventParam = new EventParam();
     private void Update()
     {
         Move();
@@ -20,7 +22,8 @@ public class PlayerMoveKDH : PlayerKDH
         Horizontal = Input.GetAxisRaw("Horizontal");
         Vertical = Input.GetAxisRaw("Vertical");
 
-        rigid.velocity = new Vector3(Horizontal * PlayerSpeed, rigid.velocity.y, Vertical * PlayerSpeed);
-
+        EventManager.TriggerEvent("ISDASH", eventParam);
+        if (!eventParam.boolParam)
+            rigid.velocity = new Vector3(Horizontal * PlayerSpeed, rigid.velocity.y, Vertical * PlayerSpeed);
     }
 }

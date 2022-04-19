@@ -459,7 +459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406dd6a864f999d459f5a9da93c2dff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpeed: 9
+  PlayerSpeed: 30
 --- !u!114 &1005429752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,10 +472,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f075570f80935f49a5e7a56a81533f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DashWaitSpeed: 1
+  DashWaitSpeed: 0.7
   DashSpeed: 3
   DashObjectDistance: 5
   DashObjet: {fileID: 480591175}
+  smoothTime: 0.2
 --- !u!1 &1909059220
 GameObject:
   m_ObjectHideFlags: 0
