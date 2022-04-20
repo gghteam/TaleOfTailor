@@ -415,6 +415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myTransform: {fileID: 0}
   movementSpeed: 5
+  runMovementSpeed: 10
   rotationSpeed: 10
 --- !u!114 &1074784644
 MonoBehaviour:

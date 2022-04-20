@@ -22,6 +22,8 @@ public class PlayerMovement : Character
     [SerializeField]
     private float movementSpeed = 5;
     [SerializeField]
+    private float runMovementSpeed = 7;
+    [SerializeField]
     private float rotationSpeed = 10;
 
     private void Start()
@@ -42,8 +44,12 @@ public class PlayerMovement : Character
         //vector를 정규화함(길이를 1로 만들어 방향만 남김)
         moveDirection.Normalize();
 
-        //방향에 Speed를 곱함
-        moveDirection *= movementSpeed;
+        if (Input.GetKey(KeyCode.LeftShift))
+            //방향에 Run_Speed를 곱함
+            moveDirection *= runMovementSpeed;
+        else
+            //방향에 Speed를 곱함
+            moveDirection *= movementSpeed;
 
         //normalVector의 법선 평면으로부터 플레이어가 움직이려는 방향벡터로 투영
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
