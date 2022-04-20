@@ -20,33 +20,6 @@ public class InputHandler : MonoBehaviour
     // X, Z의 움직임을 전달해주기 위한 구조체
     EventParam eventParam = new EventParam();
 
-    // 캐릭터가 커져있을때(처음 Setting)
-    public void OnEnable()
-    {
-        /*
-        if(inputActions == null)
-        {
-            // 새로운 PlayerControls 생성 후 넣기
-            inputActions = new PlayerControls();
-
-            // 각 입력한 키로 값을 읽을 수 있도록함
-            inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
-
-            //inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
-        }
-
-        // inputActions 사용
-        inputActions.Enable();
-        */
-    }
-
-    /// <summary>
-    /// 추후 오브젝트가 사라질때 inputActions도 더 이상 사용하지 않도록 변경
-    /// </summary>
-    private void OnDisable()
-    {
-        //inputActions.Disable();
-    }
 
     private void Update()
     {
@@ -58,6 +31,7 @@ public class InputHandler : MonoBehaviour
     /// </summary>
     private void MoveInput()
     {
+        movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         // X, Z 입력
         horizontal = movementInput.x;
         vertical = movementInput.y;
