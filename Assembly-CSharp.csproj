@@ -54,17 +54,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\02_Scripts\PlayerStamina\SteminaManager.cs" />
+    <Compile Include="Assets\02_Scripts\Inventory\UIManager.cs" />
+    <Compile Include="Assets\02_Scripts\Inventory\HP.cs" />
     <Compile Include="Assets\02_Scripts\Character.cs" />
     <Compile Include="Assets\02_Scripts\Player\PlayerMoveKDH.cs" />
     <Compile Include="Assets\02_Scripts\Player\PlayerDash2.cs" />
     <Compile Include="Assets\02_Scripts\Tool\EventManager.cs" />
     <Compile Include="Assets\02_Scripts\InputHandler.cs" />
+    <Compile Include="Assets\02_Scripts\Inventory\Inventory.cs" />
     <Compile Include="Assets\02_Scripts\Player\PlayerDashKDH1.cs" />
     <Compile Include="Assets\02_Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\02_Scripts\Player\PlayerKDH.cs" />
-    <Compile Include="Assets\02_Scripts\Inventory\HP.cs" />
-    <Compile Include="Assets\02_Scripts\Inventory\Inventory.cs" />
-    <Compile Include="Assets\02_Scripts\Inventory\UIManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -289,11 +289,11 @@
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\Users\USER\Desktop\Unity\2020.3.25f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:\Users\USER\Desktop\Unity\2020.3.25f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
