@@ -1399,7 +1399,16 @@ MonoBehaviour:
   text: {fileID: 1506855497}
   intImage: {fileID: 1210964791}
   floatImage: {fileID: 1179040439}
+  steminaBar: {fileID: 829959194}
+  duration: 1
+  strength: 1
+  randomness: 90
+  vibrato: 10
   steminaRecoveringDelay: 5
+  plusSteminaValue: 2
+  minusSteminaValue: 1
+  plusKeyCode: 102
+  minusKeyCode: 100
 --- !u!1 &1798293110
 GameObject:
   m_ObjectHideFlags: 0

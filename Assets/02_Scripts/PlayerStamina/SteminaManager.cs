@@ -1,14 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class SteminaManager : MonoBehaviour
 {
+    // 간이 싱글톤
+    public static SteminaManager Instance = null;
+
     // 디버깅용. 삭제 예정
     public Text text = null;
     public Image intImage = null;
     public Image floatImage = null;
+
+    public GameObject steminaBar = null;
+    [Header("Shake관련 변수 : 시간, 강도, 떨림의 랜덤성")]
+    [SerializeField] private float duration = 1f, strength = 1f,randomness = 90f;
+    [SerializeField, Header("진동 정도")] int vibrato = 10;
 
     private float stemina = 5f;
     private const float MAX_STEMINA = 5f;
@@ -16,10 +26,31 @@ public class SteminaManager : MonoBehaviour
     {
         get { return stemina; }
     }
+
+    [Header("스테미나 재생 속도 조절 값, 높을 수록 느려짐")]
     public float steminaRecoveringDelay = 3f;
+
+    [Header("스테미나 더하는 값")]
+    public float plusSteminaValue = 2f;
+    [Header("스테미나 빼는 값")]
+    public float minusSteminaValue = 1f;
+
+    [Header("더하는 키")]
+    public KeyCode plusKeyCode = KeyCode.F;
+    [Header("빼는 키")]
+    public KeyCode minusKeyCode = KeyCode.D;
 
     // 있을 필요가 있나?
     private bool recovering = true;
+
+    void Awake()
+    {
+        if(Instance != null)
+        {
+            Debug.LogError("Multiple SteminaManager is running!");
+        }
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -35,11 +66,26 @@ public class SteminaManager : MonoBehaviour
         intImage.fillAmount = (int)stemina / MAX_STEMINA;
         floatImage.fillAmount = (float)stemina / MAX_STEMINA;
 
-        if (Input.GetKeyDown(KeyCode.D) && CheckStemina(1f))
-            MinusStemina(1f);
+        if (Input.GetKeyDown(minusKeyCode))
+        {
+            if (CheckStemina(minusSteminaValue))
+            {
+                MinusStemina(1f);
+            }
+            else
+            {
+                MinusStemianFailedEffect();
+            }
+        }
 
-        if (Input.GetKeyDown(KeyCode.F))
-            PlusStemina(2f);
+        if (Input.GetKeyDown(plusKeyCode))
+            PlusStemina(plusSteminaValue);
+    }
+
+    private void MinusStemianFailedEffect()
+    {
+        // TODO : 스테미나바 흔들기
+        steminaBar.transform.DOShakePosition(duration, strength, vibrato, randomness);
     }
 
     /// <summary>
