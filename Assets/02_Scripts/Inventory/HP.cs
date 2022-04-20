@@ -10,14 +10,17 @@ public class HP : MonoBehaviour
     Slider hpSlider;
     [SerializeField]
     Slider whiteSlider;
+
     [SerializeField]
-    Image[] danchu;
+    Image[] clothesButton;
+    [SerializeField]
+    int danchuIndex = 4;
 
     float maxHP = 100;
     float playerHP = 100;
-    int danchuIndex = 4;
     float sliderSpeed = 3f;
     float fadeTime = 1f;
+
     bool isDead = false;
 
     // 단추 페이드 효과
@@ -30,13 +33,18 @@ public class HP : MonoBehaviour
         {
             currentTime += Time.deltaTime;
             percent = currentTime / fadeTime;
-            Color color = danchu[i].color;
+            Color color = clothesButton[i].color;
             color.a = Mathf.Lerp(start, end, percent);
-            danchu[i].color = color;
+            clothesButton[i].color = color;
             yield return null;
         }
     }
+    //다트윈으로
 
+    private void OnGUI()
+    {
+        
+    }
     private void Start()
     {
         hpSlider.value = whiteSlider.value = playerHP / maxHP;
@@ -91,7 +99,7 @@ public class HP : MonoBehaviour
         //단추가 할당된게 다 떨어졌을 떄
         if (danchuIndex < 1)
         {
-            for (int i = 0; i < danchu.Length; i++)
+            for (int i = 0; i < clothesButton.Length; i++)
             {
                 StartCoroutine(Fade(0, 1, i));
                 danchuIndex = 4;
@@ -100,5 +108,6 @@ public class HP : MonoBehaviour
         }
     }
 
+    //reset으로 함수
 
 }

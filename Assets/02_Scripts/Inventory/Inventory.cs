@@ -11,6 +11,10 @@ public class Inventory : MonoBehaviour
     // 세부적인 인벤토리 내에 나뉜 창
     [SerializeField]
     GameObject[] invenTab;
+   
+    
+    //[SerializeField]
+    //GameObject selectImage;
 
     bool isOpen = false;
     
@@ -34,13 +38,12 @@ public class Inventory : MonoBehaviour
             if (isOpen)
             {
                 UIManager.Instance.UiClose(inventoryPanel);
-                isOpen = false;
             }
             else
             {
                 UIManager.Instance.UiOpen(inventoryPanel);
-                isOpen = true;
             }
+            isOpen = !isOpen;
         }
     }
 
@@ -48,5 +51,10 @@ public class Inventory : MonoBehaviour
     {
         //계속 확인
         SettingTabOnOff();
+    }
+
+    void SelectTabEffect()
+    {
+
     }
 }
