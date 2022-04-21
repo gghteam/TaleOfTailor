@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
+    [Header("인벤토리 창")]
     // 전체적인 인벤토리 창
     [SerializeField]
     GameObject inventoryPanel;
@@ -12,7 +13,6 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     GameObject[] invenTab;
    
-    
     //[SerializeField]
     //GameObject selectImage;
 

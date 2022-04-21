@@ -6,45 +6,48 @@ using UnityEngine.UI;
 
 public class HP : MonoBehaviour
 {
+    [Header("HP 슬라이더")]
     [SerializeField]
     Slider hpSlider;
     [SerializeField]
     Slider whiteSlider;
+    [SerializeField]
+    float sliderSpeed = 3f;
 
+    [Header("HP")]
+    [SerializeField]
+    float maxHP = 100;
+    [SerializeField]
+    float playerHP = 100;
+
+    [Header("단추")]
     [SerializeField]
     Image[] clothesButton;
     [SerializeField]
     int danchuIndex = 4;
 
-    float maxHP = 100;
-    float playerHP = 100;
-    float sliderSpeed = 3f;
-    float fadeTime = 1f;
-
+    //float fadeTime = 1f;
     bool isDead = false;
 
     // 단추 페이드 효과
-    IEnumerator Fade(float start, int end, int i)
-    {
-        float currentTime = 0f;
-        float percent = 0f;
+    //IEnumerator Fade(float start, int end, int i)
+    //{
+    //    float currentTime = 0f;
+    //    float percent = 0f;
 
-        while(percent<1)
-        {
-            currentTime += Time.deltaTime;
-            percent = currentTime / fadeTime;
-            Color color = clothesButton[i].color;
-            color.a = Mathf.Lerp(start, end, percent);
-            clothesButton[i].color = color;
-            yield return null;
-        }
-    }
+    //    while (percent < 1)
+    //    {
+    //        currentTime += Time.deltaTime;
+    //        percent = currentTime / fadeTime;
+    //        Color color = clothesButton[i].color;
+    //        color.a = Mathf.Lerp(start, end, percent);
+    //        clothesButton[i].color = color;
+    //        yield return null;
+    //    }
+    //}
+
     //다트윈으로
 
-    private void OnGUI()
-    {
-        
-    }
     private void Start()
     {
         hpSlider.value = whiteSlider.value = playerHP / maxHP;
@@ -52,20 +55,12 @@ public class HP : MonoBehaviour
 
     void Update()
     {
-        // 죽었는지 확인
-        if (playerHP <= 0)
-        {
-            Dead();
-        }
-
         // 데미지 입히기
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Damage(20);
         }
-
-        // 죽지 않았다면 계속 슬라이더 확인
-        if(!isDead) UpdateSlider();
+        UpdateSlider();
     }
 
     // 플레이어가 데미지 입었을 때 피 마이너스
@@ -75,39 +70,48 @@ public class HP : MonoBehaviour
         {
             playerHP -= minusHP;
         }
+        else
+        {
+            isDead = true;
+            Dead();
+        }
     }
 
     // HP 게이지 UI Update
     void UpdateSlider()
     {
         hpSlider.value = playerHP / maxHP;
-        whiteSlider.value = Mathf.Lerp(whiteSlider.value, playerHP/maxHP, Time.deltaTime * sliderSpeed);
+        whiteSlider.value = Mathf.Lerp(whiteSlider.value, playerHP / maxHP, Time.deltaTime * sliderSpeed);
     }
 
     // 죽었을 때 실행
     void Dead()
     {
-        isDead = true;
-        whiteSlider.value = playerHP / maxHP; // 흰색 슬라이더 다시 채우기
-        StartCoroutine(Fade(1, 0, danchuIndex - 1)); // 단추 하나 사라지기
-        hpSlider.value = Mathf.Lerp(hpSlider.value, 1, Time.deltaTime * sliderSpeed); //서서히 참
-        sliderSpeed = 3f; // 슬라이더 스피드 원래대로
-        playerHP = 100; // HP도 초기화
+        playerHP = 0;
         danchuIndex--; //가진 단추 수 -1
+        Invoke("ResetHP", 2f);
         isDead = false;
+    }
 
+    //reset으로 함수
+    void ResetHP()
+    {
+        sliderSpeed = 3f; // 슬라이더 스피드 원래대로
+        whiteSlider.value = playerHP / maxHP; // 흰색 슬라이더 다시 채우기
+        hpSlider.value = Mathf.Lerp(hpSlider.value, 1, Time.deltaTime * sliderSpeed); //서서히 참
+        playerHP = 100; // HP도 초기화
+    }
+
+    void ClothesButtonReset()
+    {
         //단추가 할당된게 다 떨어졌을 떄
         if (danchuIndex < 1)
         {
             for (int i = 0; i < clothesButton.Length; i++)
             {
-                StartCoroutine(Fade(0, 1, i));
                 danchuIndex = 4;
             }
             return;
         }
     }
-
-    //reset으로 함수
-
 }
