@@ -49,6 +49,7 @@ public class InputHandler : MonoBehaviour
         eventParam.intParam = (int)moveAmount;
 
         //움직임을 위한 신호 전송
+        EventManager.TriggerEvent("INPUT", eventParam);
         EventManager.TriggerEvent("PLAYER_MOVEMENT", eventParam);
     }
 }

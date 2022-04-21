@@ -26,10 +26,13 @@ public class PlayerMovement : Character
     [SerializeField]
     private float rotationSpeed = 10;
 
+    private bool isDash = false;
+
     private void Start()
     {
         //Player 움직임을 위해 들음
         EventManager.StartListening("PLAYER_MOVEMENT", SetMovement);
+        EventManager.StartListening("ISDASH", IsDash);
         //계속 호출 하는 것을 방지(최적화)
         cameraObject = Camera.main.transform;
         myTransform = transform;
@@ -37,6 +40,8 @@ public class PlayerMovement : Character
 
     public void Update()
     {
+        if (isDash)
+            return;
         //캐릭터 앞(inputZ = 1) 또는 뒤(inputZ = -1)를 vector에 저장
         moveDirection = cameraObject.forward * inputZ;
         //캐릭터 오른쪽(inputZ = 1) 또는 왼쪽(inputZ = -1)를 vector에 더함
@@ -101,4 +106,9 @@ public class PlayerMovement : Character
     }
     #endregion
 
+
+    private void IsDash(EventParam eventParam)
+    {
+        isDash = eventParam.boolParam;
+    }
 }
