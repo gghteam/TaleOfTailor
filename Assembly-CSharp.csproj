@@ -65,6 +65,8 @@
     <Compile Include="Assets\02_Scripts\Player\PlayerDashKDH1.cs" />
     <Compile Include="Assets\02_Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\02_Scripts\Player\PlayerKDH.cs" />
+    <Compile Include="Assets\02_Scripts\Inventory\ClothesButton.cs" />
+    <Compile Include="Assets\02_Scripts\Inventory\PlayerMoveNsj.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

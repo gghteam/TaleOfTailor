@@ -22,14 +22,16 @@ public class HP : MonoBehaviour
 
     [Header("단추")]
     [SerializeField]
-    Image[] clothesButton;
+    Image[] clothesButtonImage;
     [SerializeField]
     int danchuIndex = 4;
 
-    //float fadeTime = 1f;
     bool isDead = false;
 
+    //float fadeTime = 1f;
+
     // 단추 페이드 효과
+
     //IEnumerator Fade(float start, int end, int i)
     //{
     //    float currentTime = 0f;
@@ -58,13 +60,13 @@ public class HP : MonoBehaviour
         // 데미지 입히기
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Damage(20);
+            DamageSlider(20);
         }
         UpdateSlider();
     }
 
     // 플레이어가 데미지 입었을 때 피 마이너스
-    void Damage(int minusHP)
+    void DamageSlider(int minusHP)
     {
         if (playerHP > 0f)
         {
@@ -102,12 +104,12 @@ public class HP : MonoBehaviour
         playerHP = 100; // HP도 초기화
     }
 
-    void ClothesButtonReset()
+    void ClothesButtonImageReset()
     {
         //단추가 할당된게 다 떨어졌을 떄
         if (danchuIndex < 1)
         {
-            for (int i = 0; i < clothesButton.Length; i++)
+            for (int i = 0; i < clothesButtonImage.Length; i++)
             {
                 danchuIndex = 4;
             }
