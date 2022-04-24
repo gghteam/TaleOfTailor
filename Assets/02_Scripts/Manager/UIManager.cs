@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class UIManager : MonoBehaviour
+public class UIManager : MonoSingleton<UIManager>
 {
-    public static UIManager Instance { get; private set; }
     private void Awake()
     {
-        Instance = this;
     }
 
     public void UiOpen(GameObject ui)

@@ -54,8 +54,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\02_Scripts\PlayerStamina\SteminaManager.cs" />
+    <Compile Include="Assets\02_Scripts\Inventory\PlayerMoveNsj.cs" />
     <Compile Include="Assets\02_Scripts\Manager\UIManager.cs" />
     <Compile Include="Assets\02_Scripts\Inventory\HP.cs" />
+    <Compile Include="Assets\02_Scripts\Inventory\ClothesButton.cs" />
     <Compile Include="Assets\02_Scripts\Character.cs" />
     <Compile Include="Assets\02_Scripts\Player\PlayerMoveKDH.cs" />
     <Compile Include="Assets\02_Scripts\Player\PlayerDash2.cs" />
@@ -65,8 +67,7 @@
     <Compile Include="Assets\02_Scripts\Player\PlayerDashKDH1.cs" />
     <Compile Include="Assets\02_Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\02_Scripts\Player\PlayerKDH.cs" />
-    <Compile Include="Assets\02_Scripts\Inventory\ClothesButton.cs" />
-    <Compile Include="Assets\02_Scripts\Inventory\PlayerMoveNsj.cs" />
+    <Compile Include="Assets\02_Scripts\Manager\MonoSingleton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

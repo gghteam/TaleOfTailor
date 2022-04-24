@@ -25,7 +25,7 @@ public class PlayerMoveNsj : MonoBehaviour
     //단추 떨어뜨리기 실행
     void DropClothesButton()
     {
-        clothesButton.transform.position = transform.position;
+        clothesButton.transform.localPosition = new Vector3(0, 0.5f, 0);
         //단추 생성
         clothesButton.SetActive(true);
         //방향 구해주기
