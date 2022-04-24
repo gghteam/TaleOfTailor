@@ -46,6 +46,7 @@ public class EventManager : MonoBehaviour
 public struct EventParam
 {
     public Vector2 vectorParam;
+    public Vector3 vectorThreeParam;
     public bool boolParam;
     public int intParam;
 }

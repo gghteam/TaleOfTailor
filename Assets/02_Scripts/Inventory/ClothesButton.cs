@@ -45,7 +45,7 @@ public class ClothesButton : MonoBehaviour
     //단추 세팅
     void SetDirectionButton(EventParam eventParam)
     {
-        dropDirection = eventParam.vectorParam;
+        dropDirection = eventParam.vectorThreeParam;
     }
 
     //단추 떨어지는 이동
