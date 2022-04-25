@@ -12,19 +12,29 @@ public class Inventory : MonoBehaviour
     // 세부적인 인벤토리 내에 나뉜 창
     [SerializeField]
     GameObject[] invenTab;
-   
-    //[SerializeField]
-    //GameObject selectImage;
+    // 선택 창 버튼 위에 표시
+    [SerializeField]
+    Image selectImage;
 
     bool isOpen = false;
-    
-    // 인벤토리 내에 창 끄고 키기
-   public void InvenOpen(int tab)
+
+    private void Update()
     {
-        for(int i=0;i < 4; i++)
+        SettingTabOnOff();
+    }
+
+    // 인벤토리 내에 창 끄고 키기
+    public void InvenOpen(int tab)
+    {
+        for (int i = 0; i < 4; i++)
         {
-            if(i == tab)
+            if (i == tab)
+            {
+                //선택창 표시
+                selectImage.rectTransform.anchoredPosition = new Vector3(355 * (i+1), -59f, 0f);
                 UIManager.Instance.UiOpen(invenTab[i]);
+
+            }
             else
                 UIManager.Instance.UiClose(invenTab[i]);
         }
@@ -47,14 +57,4 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        //계속 확인
-        SettingTabOnOff();
-    }
-
-    void SelectTabEffect()
-    {
-
-    }
 }
