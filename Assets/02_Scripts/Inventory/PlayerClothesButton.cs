@@ -17,8 +17,13 @@ public class PlayerClothesButton : MonoBehaviour
         //ºÎµúÇûÀ» ¶§
         if (collision.collider.CompareTag("ENEMY"))
         {
-            enemyVector = collision.transform.position;
-            DropClothesButton();
+            HP.Instance.DamageSlider(20);
+            if (HP.Instance.playerHP <= 0)
+            {
+                enemyVector = collision.transform.position;
+                DropClothesButton();
+            }
+
         }
     }
 

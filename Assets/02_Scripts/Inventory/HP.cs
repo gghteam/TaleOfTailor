@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 
-public class HP : MonoBehaviour
+public class HP : MonoSingleton<HP>
 {
     [Header("HP 슬라이더")]
     [SerializeField]
@@ -18,7 +18,7 @@ public class HP : MonoBehaviour
     [SerializeField]
     float maxHP = 100;
     [SerializeField]
-    float playerHP = 100;
+    public float playerHP = 100;
 
     [Header("단추")]
     [SerializeField]
@@ -27,6 +27,8 @@ public class HP : MonoBehaviour
     int danchuIndex = 4;
 
     bool isDead = false;
+    //죽었을 때 호출
+    EventParam eventParam = new EventParam();
 
     //float fadeTime = 1f;
 
@@ -58,15 +60,11 @@ public class HP : MonoBehaviour
     void Update()
     {
         // 데미지 입히기
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            DamageSlider(20);
-        }
         UpdateSlider();
     }
 
     // 플레이어가 데미지 입었을 때 피 마이너스
-    void DamageSlider(int minusHP)
+    public void DamageSlider(int minusHP)
     {
         if (playerHP > 0f)
         {
@@ -90,11 +88,15 @@ public class HP : MonoBehaviour
     void Dead()
     {
         playerHP = 0;
-        danchuIndex--; //가진 단추 수 -1
+        ClothesIndexCheck();
         Invoke("ResetHP", 2f);
         isDead = false;
     }
-
+    void ClothesIndexCheck()
+    {
+        danchuIndex--; //가진 단추 수 -1
+        clothesButtonImage[danchuIndex].gameObject.SetActive(false);
+    }
     //reset으로 함수
     void ResetHP()
     {
