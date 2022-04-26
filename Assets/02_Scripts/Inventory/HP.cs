@@ -12,7 +12,7 @@ public class HP : MonoSingleton<HP>
     [SerializeField]
     Slider whiteSlider;
     [SerializeField]
-    float sliderSpeed = 3f;
+    float sliderSpeed = 5f;
 
     [Header("HP")]
     [SerializeField]
@@ -66,11 +66,8 @@ public class HP : MonoSingleton<HP>
     // 플레이어가 데미지 입었을 때 피 마이너스
     public void DamageSlider(int minusHP)
     {
-        if (playerHP > 0f)
-        {
-            playerHP -= minusHP;
-        }
-        else
+        playerHP -= minusHP;
+        if (playerHP <= 0f)
         {
             isDead = true;
             Dead();
@@ -100,9 +97,8 @@ public class HP : MonoSingleton<HP>
     //reset으로 함수
     void ResetHP()
     {
-        sliderSpeed = 3f; // 슬라이더 스피드 원래대로
         whiteSlider.value = playerHP / maxHP; // 흰색 슬라이더 다시 채우기
-        hpSlider.value = Mathf.Lerp(hpSlider.value, 1, Time.deltaTime * sliderSpeed); //서서히 참
+        hpSlider.value = Mathf.Lerp(hpSlider.value, 1, Time.deltaTime * sliderSpeed+2); //서서히 참
         playerHP = 100; // HP도 초기화
     }
 
