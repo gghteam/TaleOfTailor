@@ -106,16 +106,4 @@ public class HP : MonoSingleton<HP>
         playerHP = 100; // HP도 초기화
     }
 
-    void ClothesButtonImageReset()
-    {
-        //단추가 할당된게 다 떨어졌을 떄
-        if (danchuIndex < 1)
-        {
-            for (int i = 0; i < clothesButtonImage.Length; i++)
-            {
-                danchuIndex = 4;
-            }
-            return;
-        }
-    }
 }

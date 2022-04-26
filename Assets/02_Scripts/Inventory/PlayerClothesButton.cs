@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PlayerClothesButton : MonoBehaviour
 {
+    [Header("단추")]
     [SerializeField]
     GameObject clothesButton;
+    [SerializeField]
+    float buttonDistance = 5f;
 
     //단추 위치 지정을 위한 이벤트
-    EventParam eventParam = new EventParam();
-
     Vector3 enemyVector = Vector3.zero;
 
     private void OnCollisionEnter(Collision collision)
@@ -18,29 +19,28 @@ public class PlayerClothesButton : MonoBehaviour
         if (collision.collider.CompareTag("ENEMY"))
         {
             HP.Instance.DamageSlider(20);
+            //단추 떨어뜨리기
             if (HP.Instance.playerHP <= 0)
             {
                 enemyVector = collision.transform.position;
                 DropClothesButton();
             }
-
         }
     }
 
-    //단추 떨어뜨리기 실행
+    //단추 떨어뜨리기 실행 (나중 이펙트를 위해 함수 추가)
     void DropClothesButton()
     {
-        clothesButton.transform.localPosition = new Vector3(0, 0.5f, 0);
-        //단추 생성
-        clothesButton.SetActive(true);
-        //방향 구해주기
+        //방향 구해주고 세팅
         SetClothesTransform();
     }
 
-    //떨어질 방향 구하기
+    //떨어질 방향 구하고 세팅
     void SetClothesTransform()
     {
-        eventParam.vectorThreeParam = (transform.position - enemyVector).normalized;
-        EventManager.TriggerEvent("Clothes_Direction", eventParam);
+        //단추 생성
+        Vector3 buttonPos = (transform.position - enemyVector).normalized;
+        clothesButton.transform.localPosition = new Vector3(buttonPos.x*buttonDistance, 0.5f, buttonPos.z*buttonDistance);
+        clothesButton.SetActive(true);
     }
 }
