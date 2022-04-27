@@ -24,6 +24,7 @@ public class InputHandler : MonoBehaviour
     private void Update()
     {
         MoveInput();
+        AttackInput();
     }
 
     /// <summary>
@@ -51,5 +52,15 @@ public class InputHandler : MonoBehaviour
         //움직임을 위한 신호 전송
         EventManager.TriggerEvent("INPUT", eventParam);
         EventManager.TriggerEvent("PLAYER_MOVEMENT", eventParam);
+    }
+
+    private void AttackInput()
+    {
+        eventParam.boolParam = Input.GetMouseButtonDown(0);
+
+        if(eventParam.boolParam)
+        {
+            EventManager.TriggerEvent("InputAttack", eventParam);
+        }
     }
 }

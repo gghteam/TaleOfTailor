@@ -7,12 +7,15 @@ using UnityEngine;
 /// 플레이어의 공통적인 부분을 추출
 /// </summary>
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
 public class Character : MonoBehaviour
 {
     protected Rigidbody rigidbody = null;
+    protected Collider col = null;
 
     protected virtual void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
     }
 }
