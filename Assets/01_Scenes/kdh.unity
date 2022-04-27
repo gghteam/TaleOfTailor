@@ -569,6 +569,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b84286d6fbe92498101ac0a43f00b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDamage: 1
+  attackObject: {fileID: 2034621807}
 --- !u!114 &1005429752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,7 +583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f075570f80935f49a5e7a56a81533f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothTime: 0.1
+  smoothTime: 10
   DashObjectDistance: 5
   DashObjet: {fileID: 480591175}
 --- !u!114 &1005429753
@@ -749,7 +751,7 @@ GameObject:
   - component: {fileID: 2034621811}
   - component: {fileID: 2034621810}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -794,6 +796,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8862791a0c6e34d41835f69487fa6258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAttack: {fileID: 1005429751}
+  isfirst: 0
 --- !u!54 &2034621811
 Rigidbody:
   m_ObjectHideFlags: 0

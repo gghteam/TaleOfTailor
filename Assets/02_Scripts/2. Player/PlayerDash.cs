@@ -49,14 +49,14 @@ public class PlayerDash : Character
             DashObjet.transform.position = new Vector3(input.x * DashObjectDistance + transform.position.x, 0, input.y * DashObjectDistance + transform.position.z);
         }
 
-        Vector3 smoothPosition = Vector3.SmoothDamp(
-            transform.position,
-            DashObjet.transform.position,
-            ref lastMoveSpd,
-            smoothTime
-            );
+        //Vector3 smoothPosition = Vector3.SmoothDamp(
+        //    transform.position,
+        //    DashObjet.transform.position,
+        //    ref lastMoveSpd,
+        //    smoothTime
+        //    );
 
-        //Vector3 smoothPosition = Vector3.Lerp(transform.position, DashObjet.transform.position, smoothTime * Time.deltaTime);
+        Vector3 smoothPosition = Vector3.Lerp(transform.position, DashObjet.transform.position, smoothTime * Time.deltaTime);
 
         Vector3 dirction = transform.position - DashObjet.transform.position;
 

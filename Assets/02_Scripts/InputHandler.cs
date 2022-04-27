@@ -58,9 +58,7 @@ public class InputHandler : MonoBehaviour
     {
         eventParam.boolParam = Input.GetMouseButtonDown(0);
 
-        if(eventParam.boolParam)
-        {
+        if (eventParam.boolParam)
             EventManager.TriggerEvent("InputAttack", eventParam);
-        }
     }
 }
