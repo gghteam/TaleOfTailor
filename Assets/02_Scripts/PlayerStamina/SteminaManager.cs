@@ -16,9 +16,22 @@ public class SteminaManager : MonoBehaviour
     public Image floatImage = null;
 
     public GameObject steminaBar = null;
-    [Header("Shake관련 변수 : 시간, 강도, 떨림의 랜덤성")]
-    [SerializeField] private float duration = 1f, strength = 1f,randomness = 90f;
-    [SerializeField, Header("진동 정도")] int vibrato = 10;
+
+    [Serializable]
+    public struct DoShakeField
+    {
+        [Header("시간")]
+        public float duration;
+        [Header("강도")]
+        public float strength;
+        [Header("떨림의 랜덤성")]
+        public float randomness;
+        [Header("진동 정도")]
+        public int vibrato;
+    }
+
+    [Header("DoShake함수에 쓰는 매개변수 구조체")]
+    public DoShakeField shakeField;
 
     private float stemina = 5f;
     private const float MAX_STEMINA = 5f;
@@ -27,18 +40,18 @@ public class SteminaManager : MonoBehaviour
         get { return stemina; }
     }
 
-    [Header("스테미나 재생 속도 조절 값, 높을 수록 느려짐")]
-    public float steminaRecoveringDelay = 3f;
+    [SerializeField, Header("스테미나 재생 속도 조절 값, 높을 수록 느려짐")]
+    private float steminaRecoveringDelay = 3f;
 
-    [Header("스테미나 더하는 값")]
-    public float plusSteminaValue = 2f;
-    [Header("스테미나 빼는 값")]
-    public float minusSteminaValue = 1f;
+    [SerializeField, Header("스테미나 더하는 값")]
+    private float plusSteminaValue = 2f;
+    [SerializeField, Header("스테미나 빼는 값")]
+    private float minusSteminaValue = 1f;
 
-    [Header("더하는 키")]
-    public KeyCode plusKeyCode = KeyCode.F;
-    [Header("빼는 키")]
-    public KeyCode minusKeyCode = KeyCode.D;
+    [SerializeField, Header("더하는 키")]
+    private KeyCode plusKeyCode = KeyCode.F;
+    [SerializeField, Header("빼는 키")]
+    private KeyCode minusKeyCode = KeyCode.D;
 
     // 있을 필요가 있나?
     private bool recovering = true;
@@ -85,7 +98,7 @@ public class SteminaManager : MonoBehaviour
     private void MinusStemianFailedEffect()
     {
         // TODO : 스테미나바 흔들기
-        steminaBar.transform.DOShakePosition(duration, strength, vibrato, randomness);
+        steminaBar.transform.DOShakePosition(shakeField.duration, shakeField.strength, shakeField.vibrato, shakeField.randomness);
     }
 
     /// <summary>
@@ -104,6 +117,7 @@ public class SteminaManager : MonoBehaviour
     public void MinusStemina(float value)
     {
         stemina -= value;
+        StartCoroutine(SteminaRecoveringDelayCoroutine());
         //StartCoroutine(MinusSteminaCoroutine(value));
     }
 
@@ -166,5 +180,16 @@ public class SteminaManager : MonoBehaviour
 
         if (stemina > MAX_STEMINA)
             stemina = MAX_STEMINA;
+    }
+
+    /// <summary>
+    /// 스테미나 사용시 약간의 텀을 준후 스테미나 재생시키는 코루틴
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator SteminaRecoveringDelayCoroutine()
+    {
+        recovering = false;
+        yield return new WaitForSecondsRealtime(.5f);
+        recovering = true;
     }
 }
