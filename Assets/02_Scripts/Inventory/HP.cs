@@ -24,7 +24,7 @@ public class HP : MonoSingleton<HP>
     [SerializeField]
     Image[] clothesButtonImage;
     [SerializeField]
-    int danchuIndex = 4;
+    int danchuIndex;
 
     bool isDead = false;
     //죽었을 때 호출
@@ -52,11 +52,18 @@ public class HP : MonoSingleton<HP>
 
     //다트윈으로
 
+    private void Awake()
+    {
+        EventManager.StartListening("PLUSCLOTHESBUTTON", PlusClothesButton);
+    }
     private void Start()
     {
         hpSlider.value = whiteSlider.value = playerHP / maxHP;
     }
-
+    private void OnDestroy()
+    {
+        EventManager.StopListening("PLUSCLOTHESBUTTON", PlusClothesButton);
+    }
     void Update()
     {
         // 데미지 입히기
@@ -85,21 +92,27 @@ public class HP : MonoSingleton<HP>
     void Dead()
     {
         playerHP = 0;
-        ClothesIndexCheck();
+        MinusClothesButton();
         Invoke("ResetHP", 2f);
         isDead = false;
     }
-    void ClothesIndexCheck()
+    void MinusClothesButton()
     {
         danchuIndex--; //가진 단추 수 -1
         clothesButtonImage[danchuIndex].gameObject.SetActive(false);
+    }
+    
+    void PlusClothesButton(EventParam eventParam)
+    {
+        danchuIndex++; //가진 단추 수 +1
+        clothesButtonImage[danchuIndex-1].gameObject.SetActive(true);
     }
     //reset으로 함수
     void ResetHP()
     {
         whiteSlider.value = playerHP / maxHP; // 흰색 슬라이더 다시 채우기
         hpSlider.value = Mathf.Lerp(hpSlider.value, 1, Time.deltaTime * sliderSpeed+2); //서서히 참
-        playerHP = 100; // HP도 초기화
+        playerHP = maxHP; // HP도 초기화
     }
 
 }
