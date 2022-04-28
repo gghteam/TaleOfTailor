@@ -1,5 +1,9 @@
 sceneSetups:
-- path: Assets/01_Scenes/kdh.unity
+<<<<<<< HEAD
+- path: Assets/01_Scenes/Stemina.unity
+=======
+- path: Assets/01_Scenes/MoveTestScene.unity
+>>>>>>> Khj
   isLoaded: 1
   isActive: 1
   isSubScene: 0
