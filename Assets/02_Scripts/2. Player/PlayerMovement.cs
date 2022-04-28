@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : Character
 {
-
     // EventParam한테 받은 값들
     private int inputX;
     private int inputZ;
@@ -27,6 +26,9 @@ public class PlayerMovement : Character
     private float rotationSpeed = 10;
 
     private bool isDash = false;
+    private float DashSpeed = 1;
+    private bool isFirst = false;
+    private Vector3 dashDirection;
 
     private void Start()
     {
@@ -40,15 +42,13 @@ public class PlayerMovement : Character
 
     public void Update()
     {
-        if (isDash)
-            return;
         //캐릭터 앞(inputZ = 1) 또는 뒤(inputZ = -1)를 vector에 저장
         moveDirection = cameraObject.forward * inputZ;
         //캐릭터 오른쪽(inputZ = 1) 또는 왼쪽(inputZ = -1)를 vector에 더함
         moveDirection += cameraObject.right * inputX;
         //vector를 정규화함(길이를 1로 만들어 방향만 남김)
         moveDirection.Normalize();
-        if(moveDirection.sqrMagnitude > 0)
+        if (moveDirection.sqrMagnitude > 0)
         {
             transform.rotation = Quaternion.Euler(transform.rotation.x, cameraObject.eulerAngles.y, transform.rotation.z);
         }
@@ -57,6 +57,16 @@ public class PlayerMovement : Character
         if (Input.GetKey(KeyCode.LeftShift))
             //방향에 Run_Speed를 곱함
             moveDirection *= runMovementSpeed;
+        else if (isDash)
+        {
+            if (!isFirst)
+            {
+                dashDirection = new Vector3(inputX, moveDirection.y, inputZ);
+                isFirst = true;
+            }
+
+            moveDirection =  dashDirection* DashSpeed;
+        }
         else
             //방향에 Speed를 곱함
             moveDirection *= movementSpeed;
@@ -113,6 +123,8 @@ public class PlayerMovement : Character
 
     private void IsDash(EventParam eventParam)
     {
+        isFirst = eventParam.boolParam2;
         isDash = eventParam.boolParam;
+        DashSpeed = eventParam.intParam;
     }
 }

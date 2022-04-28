@@ -48,6 +48,7 @@ public struct EventParam
     public Vector2 vectorParam;
     public Vector3 vectorThreeParam;
     public bool boolParam;
+    public bool boolParam2;
     public int intParam;
 }
 

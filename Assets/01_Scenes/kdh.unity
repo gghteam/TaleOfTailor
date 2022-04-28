@@ -316,7 +316,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &480591176
 Transform:
   m_ObjectHideFlags: 0
@@ -550,8 +550,9 @@ GameObject:
   - component: {fileID: 1005429747}
   - component: {fileID: 1005429746}
   - component: {fileID: 1005429753}
-  - component: {fileID: 1005429752}
   - component: {fileID: 1005429751}
+  - component: {fileID: 1005429754}
+  - component: {fileID: 1005429752}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Player
@@ -675,12 +676,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1005429745}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f075570f80935f49a5e7a56a81533f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 098ec145f8e58684e949b135db28e417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothTime: 10
-  DashObjectDistance: 5
-  DashObjet: {fileID: 480591175}
+  smoothTime: 50
+  dashtime: 0.5
 --- !u!114 &1005429753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -697,6 +697,21 @@ MonoBehaviour:
   movementSpeed: 5
   runMovementSpeed: 100
   rotationSpeed: 10
+--- !u!114 &1005429754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005429745}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f075570f80935f49a5e7a56a81533f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothTime: 0.2
+  DashObjectDistance: 0
+  DashObjet: {fileID: 480591175}
 --- !u!1 &1772316177
 GameObject:
   m_ObjectHideFlags: 0
