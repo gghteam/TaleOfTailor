@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\02_Scripts\2. Player\PlayerStamina\SteminaManager.cs" />
+    <Compile Include="Assets\02_Scripts\2. Player\PlayerAttackCheck.cs" />
     <Compile Include="Assets\02_Scripts\Inventory\PlayerClothesButton.cs" />
     <Compile Include="Assets\02_Scripts\1. Manager\UIManager.cs" />
     <Compile Include="Assets\02_Scripts\2. Player\PlayerParrying.cs" />
@@ -71,9 +72,8 @@
     <Compile Include="Assets\02_Scripts\CameraMove.cs" />
     <Compile Include="Assets\02_Scripts\2. Player\PlayerMovement.cs" />
     <Compile Include="Assets\02_Scripts\2. Player\PlayerAttack.cs" />
-    <Compile Include="Assets\02_Scripts\2. Player\PlayerAttackCheck.cs" />
-    <Compile Include="Assets\02_Scripts\3. Enemy\Enemy.cs" />
     <Compile Include="Assets\02_Scripts\2. Player\PlayerDash2.cs" />
+    <Compile Include="Assets\02_Scripts\3. Enemy\Enemy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\civilian\readme.txt" />
