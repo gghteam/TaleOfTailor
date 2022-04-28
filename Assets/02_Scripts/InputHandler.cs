@@ -20,6 +20,11 @@ public class InputHandler : MonoBehaviour
     // X, Z의 움직임을 전달해주기 위한 구조체
     EventParam eventParam = new EventParam();
 
+    private void Awake()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 
     private void Update()
     {
