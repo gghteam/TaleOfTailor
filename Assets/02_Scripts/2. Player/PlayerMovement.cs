@@ -71,15 +71,21 @@ public class PlayerMovement : Character
         }
         else
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d983d2a5454d85a92fde9a70c0db02ef3a001ce4
         {
             ani.SetBool("IsMove", false);
             ani.SetBool("IsRun", false);
         }
 
+<<<<<<< HEAD
 =======
             //방향에 Speed를 곱함
             moveDirection *= movementSpeed;
 >>>>>>> kdh
+=======
+>>>>>>> d983d2a5454d85a92fde9a70c0db02ef3a001ce4
 
         //normalVector의 법선 평면으로부터 플레이어가 움직이려는 방향벡터로 투영
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
