@@ -23,15 +23,13 @@ public class PlayerAttack : Character
     }
     private void Update()
     {
-        Debug.Log(eventParam.boolParam);
-        Debug.Log(attacking);
         if (eventParam.boolParam && !attacking)
         {
             Debug.Log("&");
             attacking = true;
             eventParam.boolParam = false;
             //애니메이션 실행
-            StartCoroutine(testPlayerAnimation());
+            StartCoroutine(TestPlayerAnimation());
             //야메 방법
             //attackObject.SetActive(true);
             //eventParam.boolParam = false;
@@ -47,7 +45,7 @@ public class PlayerAttack : Character
         eventParam.boolParam = ep.boolParam;
     }
 
-    private IEnumerator testPlayerAnimation()
+    private IEnumerator TestPlayerAnimation()
     {
         //만약에 애니메이션이 끝났다면
         yield return new WaitForSeconds(1f);

@@ -61,8 +61,6 @@ public class PlayerMovement : Character
             //방향에 Speed를 곱함
             moveDirection *= movementSpeed;
 
-
-
         //normalVector의 법선 평면으로부터 플레이어가 움직이려는 방향벡터로 투영
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
         //이동

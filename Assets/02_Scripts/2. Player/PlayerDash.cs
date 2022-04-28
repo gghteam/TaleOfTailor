@@ -16,9 +16,11 @@ public class PlayerDash : Character
     private GameObject DashObjet;
 
     private Vector3 input;
-    private Vector3 lastMoveSpd;
+    //private Vector3 lastMoveSpd;
     private bool firstbool = false;
     private bool dashbool = false;
+    private bool stopbool = false;
+    private Vector3 minusvec;
     private EventParam eventParam;
 
     private void Start()
@@ -60,9 +62,17 @@ public class PlayerDash : Character
 
         Vector3 dirction = transform.position - DashObjet.transform.position;
 
-        if (Mathf.RoundToInt(dirction.magnitude) > 0)
+        if (Mathf.RoundToInt(dirction.magnitude) > 0 && !stopbool)
         {
             transform.position = smoothPosition;
+        }
+        else if (stopbool)
+        {
+            dashbool = false;
+            eventParam.boolParam = false;
+            EventManager.TriggerEvent("ISDASH", eventParam);
+            stopbool = false;
+            return;
         }
         else
         {
@@ -76,5 +86,23 @@ public class PlayerDash : Character
     private void getInput(EventParam eventParam)
     {
         input = eventParam.vectorParam;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        minusvec = Mathf.Abs(transform.position.x) > Mathf.Abs(transform.position.z) ? new Vector3(1, 0, 0) : new Vector3(0, 0, 1);
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.collider.tag != "Floor")
+        {
+            stopbool = true;
+            transform.position -= minusvec;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        stopbool = false;
     }
 }
