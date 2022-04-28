@@ -76,11 +76,14 @@
     <Compile Include="Assets\02_Scripts\3. Enemy\Enemy.cs" />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <Compile Include="Assets\02_Scripts\2. Player\PlayerDashCheck.cs" />
 >>>>>>> kdh
 =======
 >>>>>>> d983d2a5454d85a92fde9a70c0db02ef3a001ce4
+=======
+>>>>>>> kdh
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\civilian\readme.txt" />
