@@ -585,8 +585,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myTransform: {fileID: 0}
-  movementSpeed: 5
-  runMovementSpeed: 10
+  movementSpeed: 2
+  runMovementSpeed: 5
   rotationSpeed: 10
 --- !u!54 &1748304517
 Rigidbody:

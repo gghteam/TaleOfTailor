@@ -65,6 +65,7 @@
     <Compile Include="Assets\02_Scripts\1. Manager\MonoSingleton.cs" />
     <Compile Include="Assets\02_Scripts\Inventory\ClothesButton.cs" />
     <Compile Include="Assets\02_Scripts\Character.cs" />
+    <Compile Include="Assets\02_Scripts\2. Player\PlayerDashCheck.cs" />
     <Compile Include="Assets\02_Scripts\Tool\EventManager.cs" />
     <Compile Include="Assets\02_Scripts\InputHandler.cs" />
     <Compile Include="Assets\02_Scripts\Inventory\Inventory.cs" />
@@ -74,13 +75,13 @@
     <Compile Include="Assets\02_Scripts\2. Player\PlayerAttack.cs" />
     <Compile Include="Assets\02_Scripts\2. Player\PlayerDash2.cs" />
     <Compile Include="Assets\02_Scripts\3. Enemy\Enemy.cs" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    <Compile Include="Assets\02_Scripts\2. Player\PlayerDashCheck.cs" />
->>>>>>> kdh
-=======
->>>>>>> d983d2a5454d85a92fde9a70c0db02ef3a001ce4
+    <Compile Include="Assets\02_Scripts\Fsms\FsmStateEmpty.cs" />
+    <Compile Include="Assets\02_Scripts\Fsms\FsmState.cs" />
+    <Compile Include="Assets\02_Scripts\Fsms\FsmCondFalse.cs" />
+    <Compile Include="Assets\02_Scripts\Fsms\FsmCondition.cs" />
+    <Compile Include="Assets\02_Scripts\Fsms\FsmCore.cs" />
+    <Compile Include="Assets\02_Scripts\Fsms\FsmCondRandom.cs" />
+    <Compile Include="Assets\02_Scripts\Fsms\FsmCondPolled.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\civilian\readme.txt" />
