@@ -9,7 +9,7 @@ enum ItemContirion
     BANDAGE
 }
 
-public class Inventory : MonoSingleton<Inventory>
+public class Inventory : MonoBehaviour
 {
     [Header("인벤토리 창")]
     // 전체적인 인벤토리 창
@@ -27,9 +27,17 @@ public class Inventory : MonoSingleton<Inventory>
 
     Image beforeItem;
 
+    EventParam eventParam = new EventParam();
+
     Dictionary<string, GameObject> itemImages = new Dictionary<string, GameObject>();
     bool isOpen = false;
 
+
+    private void Start()
+    {
+        EventManager.StartListening("ITEMHAVE", ItemHave);
+    }
+    
     private void Update()
     {
         SettingTabOnOff();
@@ -78,13 +86,12 @@ public class Inventory : MonoSingleton<Inventory>
     }
 
     // 아이템 창 아이템이미지 키고 끄기
-    public void ItemImageOn(int item, bool isOpen)
+    private void ItemImageOn(int item, bool isOpen)
     {
-            Image obj = itemImage[item];
-           // itemImages.TryGetValue(item, out obj);
+        Image obj = itemImage[item];
         if (isOpen)
         {
-           obj.gameObject.SetActive(true);
+            obj.gameObject.SetActive(true);
             beforeItem = obj;
         }
         else
@@ -93,4 +100,9 @@ public class Inventory : MonoSingleton<Inventory>
         }
     }
 
+    // 아이템 창 끄고 키기 함수 실행
+    void ItemHave(EventParam eventParam)
+    {
+        ItemImageOn(eventParam.intParam, eventParam.boolParam);
+    }
 }

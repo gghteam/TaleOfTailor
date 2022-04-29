@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 
-public class HP : MonoSingleton<HP>
+public class HP : MonoBehaviour
 {
     [Header("HP 슬라이더")]
     [SerializeField]
@@ -24,45 +24,31 @@ public class HP : MonoSingleton<HP>
     [SerializeField]
     Image[] clothesButtonImage;
     [SerializeField]
+    Image halfButtonImage;
+    [SerializeField]
     int danchuIndex;
+    [SerializeField]
+    int maxDanchuIndex;
 
     bool isDead = false;
-    //죽었을 때 호출
+    bool isHalf = false;
+
     EventParam eventParam = new EventParam();
-
-    //float fadeTime = 1f;
-
-    // 단추 페이드 효과
-
-    //IEnumerator Fade(float start, int end, int i)
-    //{
-    //    float currentTime = 0f;
-    //    float percent = 0f;
-
-    //    while (percent < 1)
-    //    {
-    //        currentTime += Time.deltaTime;
-    //        percent = currentTime / fadeTime;
-    //        Color color = clothesButton[i].color;
-    //        color.a = Mathf.Lerp(start, end, percent);
-    //        clothesButton[i].color = color;
-    //        yield return null;
-    //    }
-    //}
-
-    //다트윈으로
 
     private void Awake()
     {
         EventManager.StartListening("PLUSCLOTHESBUTTON", PlusClothesButton);
+        EventManager.StartListening("DAMAGE", DamageSlider);
     }
     private void Start()
     {
+        ResetClothesButton();
         hpSlider.value = whiteSlider.value = playerHP / maxHP;
     }
     private void OnDestroy()
     {
         EventManager.StopListening("PLUSCLOTHESBUTTON", PlusClothesButton);
+        EventManager.StopListening("DAMAGE", DamageSlider);
     }
     void Update()
     {
@@ -70,13 +56,21 @@ public class HP : MonoSingleton<HP>
         UpdateSlider();
     }
 
-    // 플레이어가 데미지 입었을 때 피 마이너스
-    public void DamageSlider(int minusHP)
+    // 단추 리셋
+    void ResetClothesButton()
     {
-        playerHP -= minusHP;
-        if (playerHP <= 0f)
+        ClothesButtonOnOff(maxDanchuIndex);
+    }
+
+    // 플레이어가 데미지 입었을 때 피 마이너스
+    public void DamageSlider(EventParam eventParam)
+    {
+        if (isDead) return;
+        playerHP -= eventParam.intParam;
+        if (playerHP <= 0) isDead = true;
+        else isDead = false;
+        if (isDead)
         {
-            isDead = true;
             Dead();
         }
     }
@@ -84,6 +78,7 @@ public class HP : MonoSingleton<HP>
     // HP 게이지 UI Update
     void UpdateSlider()
     {
+        if (isDead) return;
         hpSlider.value = playerHP / maxHP;
         whiteSlider.value = Mathf.Lerp(whiteSlider.value, playerHP / maxHP, Time.deltaTime * sliderSpeed);
     }
@@ -91,27 +86,58 @@ public class HP : MonoSingleton<HP>
     // 죽었을 때 실행
     void Dead()
     {
-        playerHP = 0;
-        MinusClothesButton();
+        isDead = true;
+        if (!isHalf)
+        {
+            eventParam.intParam = danchuIndex;
+            EventManager.TriggerEvent("DEAD", eventParam);
+        }
+        MinusClothesButton(isHalf ? 1 : 2);
         Invoke("ResetHP", 2f);
         isDead = false;
     }
-    void MinusClothesButton()
+
+    // 단추 추가와 마이너슨
+    void MinusClothesButton(int minus)
     {
-        danchuIndex--; //가진 단추 수 -1
-        clothesButtonImage[danchuIndex].gameObject.SetActive(false);
+        danchuIndex -= minus; // 단추 수 빼기
+        ClothesButtonOnOff(danchuIndex);
     }
-    
     void PlusClothesButton(EventParam eventParam)
     {
         danchuIndex++; //가진 단추 수 +1
-        clothesButtonImage[danchuIndex-1].gameObject.SetActive(true);
+        ClothesButtonOnOff(danchuIndex);
     }
-    //reset으로 함수
+
+    //UI 단추 끄고 키기
+    void ClothesButtonOnOff(int index)
+    {
+        int cIndex = 0;
+        isHalf = index % 2 == 0 ? false : true;
+        if (index % 2 != 0) cIndex = index - 1;
+        cIndex = index / 2 - 1;
+
+        //전부 끄기
+        for (int i = 0; i < 4; i++)
+            clothesButtonImage[i].gameObject.SetActive(false);
+        //인덱스까지만 키기
+        for (int i = 0; i < cIndex + 1; i++)
+            clothesButtonImage[i].gameObject.SetActive(true);
+
+        Vector3 pos = clothesButtonImage[cIndex].rectTransform.anchoredPosition;
+
+        if (isHalf) pos.x += 21f;
+        else pos.x -= 21f;
+        halfButtonImage.gameObject.SetActive(isHalf);
+        halfButtonImage.rectTransform.anchoredPosition = pos;
+
+    }
+
+    // HP 리셋 함수
     void ResetHP()
     {
         whiteSlider.value = playerHP / maxHP; // 흰색 슬라이더 다시 채우기
-        hpSlider.value = Mathf.Lerp(hpSlider.value, 1, Time.deltaTime * sliderSpeed+2); //서서히 참
+        hpSlider.value = Mathf.Lerp(hpSlider.value, 1, Time.deltaTime * sliderSpeed + 2); //서서히 참
         playerHP = maxHP; // HP도 초기화
     }
 
