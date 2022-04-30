@@ -9,8 +9,8 @@ public class InputHandler : MonoBehaviour
     // 움직임의 양
     private float moveAmount;
 
-    private float moveX;
-    private float moveY;
+    private float mouseX;
+    private float MouseY;
 
     //PlayerControls inputActions;
 
@@ -19,9 +19,12 @@ public class InputHandler : MonoBehaviour
 
     // X, Z의 움직임을 전달해주기 위한 구조체
     EventParam eventParam = new EventParam();
+    EventParam cameraParam = new EventParam();
 
     private void Awake()
     {
+
+        //커서 숨기기 및 위치 고정
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -38,6 +41,7 @@ public class InputHandler : MonoBehaviour
     private void MoveInput()
     {
         movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        cameraInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         // X, Z 입력
         horizontal = movementInput.x;
         vertical = movementInput.y;
@@ -47,16 +51,18 @@ public class InputHandler : MonoBehaviour
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
 
         // TO DO 추후 카메라에 사용
-        moveX = cameraInput.x;
-        moveY = cameraInput.y;
+        mouseX = cameraInput.x;
+        MouseY = cameraInput.y;
 
         //EventManager를 위한 Setting
         eventParam.vectorParam = new Vector2(horizontal, vertical);
         eventParam.intParam = (int)moveAmount;
+        cameraParam.vectorParam = new Vector2(mouseX, MouseY);
 
         //움직임을 위한 신호 전송
         EventManager.TriggerEvent("INPUT", eventParam);
         EventManager.TriggerEvent("PLAYER_MOVEMENT", eventParam);
+        EventManager.TriggerEvent("CAMERA_MOVE", cameraParam);
     }
 
     private void AttackInput()
