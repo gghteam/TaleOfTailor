@@ -6,29 +6,32 @@ using UnityEngine.UI;
 
 public class HP : MonoBehaviour
 {
+
+    [Header("HP")]
+    [SerializeField]
+    float maxHP = 3000;
+    [SerializeField]
+    public float playerHP = 3000;
+    [SerializeField, Header("HP 슬라이더 속도")]
+    float sliderSpeed = 5f;
+
+    [Header("단추 갯수")]
+    [SerializeField]
+    int danchuCount;
+    [SerializeField]
+    int maxDanchuCount;
+
     [Header("HP 슬라이더")]
     [SerializeField]
     Slider hpSlider;
     [SerializeField]
     Slider whiteSlider;
-    [SerializeField]
-    float sliderSpeed = 5f;
 
-    [Header("HP")]
-    [SerializeField]
-    float maxHP = 100;
-    [SerializeField]
-    public float playerHP = 100;
-
-    [Header("단추")]
+    [Header("단추 UI")]
     [SerializeField]
     Image[] clothesButtonImage;
     [SerializeField]
     Image halfButtonImage;
-    [SerializeField]
-    int danchuIndex;
-    [SerializeField]
-    int maxDanchuIndex;
 
     bool isDead = false;
     bool isHalf = false;
@@ -50,6 +53,7 @@ public class HP : MonoBehaviour
         EventManager.StopListening("PLUSCLOTHESBUTTON", PlusClothesButton);
         EventManager.StopListening("DAMAGE", DamageSlider);
     }
+
     void Update()
     {
         // 데미지 입히기
@@ -59,7 +63,7 @@ public class HP : MonoBehaviour
     // 단추 리셋
     void ResetClothesButton()
     {
-        ClothesButtonOnOff(maxDanchuIndex);
+        ClothesButtonOnOff(maxDanchuCount);
     }
 
     // 플레이어가 데미지 입었을 때 피 마이너스
@@ -89,24 +93,24 @@ public class HP : MonoBehaviour
         isDead = true;
         if (!isHalf)
         {
-            eventParam.intParam = danchuIndex;
+            eventParam.intParam = danchuCount;
             EventManager.TriggerEvent("DEAD", eventParam);
         }
         MinusClothesButton(isHalf ? 1 : 2);
-        Invoke("ResetHP", 2f);
+        Invoke("ResetPlayerHP", 2f);
         isDead = false;
     }
 
     // 단추 추가와 마이너슨
     void MinusClothesButton(int minus)
     {
-        danchuIndex -= minus; // 단추 수 빼기
-        ClothesButtonOnOff(danchuIndex);
+        danchuCount -= minus; // 단추 수 빼기
+        ClothesButtonOnOff(danchuCount);
     }
     void PlusClothesButton(EventParam eventParam)
     {
-        danchuIndex++; //가진 단추 수 +1
-        ClothesButtonOnOff(danchuIndex);
+        danchuCount++; //가진 단추 수 +1
+        ClothesButtonOnOff(danchuCount);
     }
 
     //UI 단추 끄고 키기
@@ -134,7 +138,7 @@ public class HP : MonoBehaviour
     }
 
     // HP 리셋 함수
-    void ResetHP()
+    void ResetPlayerHP()
     {
         whiteSlider.value = playerHP / maxHP; // 흰색 슬라이더 다시 채우기
         hpSlider.value = Mathf.Lerp(hpSlider.value, 1, Time.deltaTime * sliderSpeed + 2); //서서히 참

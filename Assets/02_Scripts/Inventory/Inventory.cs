@@ -2,56 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-enum ItemContirion
-{
-    CLOTHES_BUTTON,
-    NEEDLE,
-    BANDAGE
-}
+
 
 public class Inventory : MonoBehaviour
 {
     [Header("인벤토리 창")]
-    // 전체적인 인벤토리 창
     [SerializeField]
-    GameObject inventoryPanel;
-    // 세부적인 인벤토리 내에 나뉜 창
+    GameObject inventoryPanel;    // 전체적인 인벤토리 창
     [SerializeField]
-    GameObject[] invenTab;
-    // 선택 창 버튼 위에 표시
-    [SerializeField]
+    GameObject[] invenTab;    // 세부적인 인벤토리 내에 나뉜 창 
+
+    [SerializeField, Header("선택된 창 표시 이미지")]
     Image selectImage;
-    // 아이템 창 아이템이미지
+
+    [Header("인게임 아이템 표시 UI")]
     [SerializeField]
-    Image[] itemImage;
+    Image[] itemImage;    // 아이템 창 아이템이미지
+    [SerializeField]
+    Text[] itemText;    // 아이템 갯수 표시 TEXT
 
     Image beforeItem;
+    bool isOpen = false;
 
     EventParam eventParam = new EventParam();
 
-    Dictionary<string, GameObject> itemImages = new Dictionary<string, GameObject>();
-    bool isOpen = false;
-
-
     private void Start()
     {
-        EventManager.StartListening("ITEMHAVE", ItemHave);
+        EventManager.StartListening("ITEMHAVE", ItemHave);      // 아이템 가졌는지 판단 후 아이템 인벤 끄고 키기
+        EventManager.StartListening("ITEMTEXT", ItemTextIndex);    // 아이템 갯수 텍스트 표시
+    }
+
+    // 아이템 갯수 텍스트로 표시
+    void ItemTextIndex(EventParam eventParam)
+    {
+        itemText[(int)eventParam.itemParam].text = string.Format($"{eventParam.intParam}");
     }
     
     private void Update()
     {
-        SettingTabOnOff();
+        SettingTabOnOff();  // ESC로 인벤창 끄고 키기
     }
 
-    //처음 시작시 딕셔너리에 아이템 넣기
-    private void StartItemSet()
-    {
-        itemImages.Add("NEEDLE", itemImage[0].gameObject);
-        itemImages.Add("BANDAGE", itemImage[1].gameObject);
-        itemImages.Add("CLOTHESBUTTON", itemImage[2].gameObject);
-    }
-
-    // 인벤토리 내에 창 끄고 키기
+    // 인벤토리 내에 창 바꾸기
     public void InvenOpen(int tab)
     {
         for (int i = 0; i < 4; i++)
@@ -68,7 +60,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // 인벤토리 끄고 키기
+    //  ESC로 인벤토리 끄고 키기
     private void SettingTabOnOff()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -85,24 +77,23 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // 아이템 창 아이템이미지 키고 끄기
-    private void ItemImageOn(int item, bool isOpen)
+    // 인게임 아이템 창 아이템이미지 키고 끄기
+    private void ItemImageOn(Item item, bool isOpen)
     {
-        Image obj = itemImage[item];
+        Image obj = itemImage[(int)item];
         if (isOpen)
         {
             obj.gameObject.SetActive(true);
-            beforeItem = obj;
         }
         else
         {
-            beforeItem.gameObject.SetActive(false);
+            obj.gameObject.SetActive(false);
         }
     }
 
-    // 아이템 창 끄고 키기 함수 실행
+    // 아이템 창 끄고 키기 함수 실행 + 갯수 띄우기
     void ItemHave(EventParam eventParam)
     {
-        ItemImageOn(eventParam.intParam, eventParam.boolParam);
+        ItemImageOn(eventParam.itemParam, eventParam.boolParam);
     }
 }
