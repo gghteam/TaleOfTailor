@@ -21,6 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Title: Project
   m_RootView: {fileID: 6}
 =======
@@ -49,6 +50,9 @@ MonoBehaviour:
   m_MinSize: {x: 875, y: 542}
 =======
   m_Title: Game
+=======
+  m_Title: Hierarchy
+>>>>>>> NSJ
   m_RootView: {fileID: 4}
   m_MinSize: {x: 875, y: 492}
 >>>>>>> NSJ
@@ -153,7 +157,7 @@ MonoBehaviour:
   m_MinSize: {x: 276, y: 192}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 83
+  controlID: 82
 --- !u!114 &4
 >>>>>>> NSJ
 MonoBehaviour:
@@ -347,7 +351,7 @@ MonoBehaviour:
   m_MinSize: {x: 911, y: 442}
   m_MaxSize: {x: 22006, y: 10021}
   vertical: 0
-  controlID: 166
+  controlID: 81
 --- !u!114 &7
 >>>>>>> NSJ
 MonoBehaviour:
@@ -488,7 +492,7 @@ MonoBehaviour:
   m_MinSize: {x: 201, y: 442}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 167
+  controlID: 132
 --- !u!114 &9
 >>>>>>> NSJ
 MonoBehaviour:
@@ -1148,6 +1152,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: a6ecffff96f8ffff70f9ffff
@@ -1182,6 +1187,11 @@ MonoBehaviour:
       m_SelectedIDs: a03e0000
       m_LastClickedID: 16032
       m_ExpandedIDs: 6efbffff2e3e0000
+>>>>>>> NSJ
+=======
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 6cfbffff883d0000903d0000023e0000d23e0000
 >>>>>>> NSJ
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -1468,7 +1478,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 76
   m_GlobalObjectId: 
   m_LockTracker:
     m_IsLocked: 0
@@ -1567,6 +1577,7 @@ MonoBehaviour:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> d983d2a5454d85a92fde9a70c0db02ef3a001ce4
     m_SelectedIDs: fa3d0000
@@ -1599,6 +1610,11 @@ MonoBehaviour:
     m_SelectedIDs: 62400000
     m_LastClickedID: 16482
     m_ExpandedIDs: 000000005a4000005c40000000ca9a3b
+>>>>>>> NSJ
+=======
+    m_SelectedIDs: 66400000
+    m_LastClickedID: 16486
+    m_ExpandedIDs: 000000005a4000005c4000007471000000ca9a3b
 >>>>>>> NSJ
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1949,9 +1965,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 789.84534, y: 918.864, z: -41.253597}
+    m_Target: {x: 420.12686, y: 129.73944, z: -100.340004}
     speed: 2
-    m_Value: {x: 789.84534, y: 918.864, z: -41.253597}
+    m_Value: {x: 420.12686, y: 129.73944, z: -100.340004}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -2002,9 +2018,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 388.2721
+    m_Target: 296.17355
     speed: 2
-    m_Value: 388.2721
+    m_Value: 296.17355
   m_Ortho:
     m_Target: 1
     speed: 2
