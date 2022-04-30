@@ -67,22 +67,16 @@ public class PlayerMovement : Character
                 ani.SetBool("IsMove", true);
                 ani.SetBool("IsRun", false);
             }
-
-<<<<<<< HEAD
-=======
-        if (Input.GetKey(KeyCode.LeftShift))
-            //방향에 Run_Speed를 곱함
-            moveDirection *= runMovementSpeed;
-        else if (isDash)
-        {
-            if (!isFirst)
+            if (isDash)
             {
-                dashDirection = new Vector3(inputX, moveDirection.y, inputZ);
-                isFirst = true;
-            }
+                if (!isFirst)
+                {
+                    dashDirection = new Vector3(inputX, moveDirection.y, inputZ);
+                    isFirst = true;
+                }
 
-            moveDirection =  dashDirection* DashSpeed;
->>>>>>> kdh
+                moveDirection = dashDirection * DashSpeed;
+            }
         }
         else
         {
@@ -90,8 +84,8 @@ public class PlayerMovement : Character
             ani.SetBool("IsRun", false);
         }
 
-            //방향에 Speed를 곱함
-            moveDirection *= movementSpeed;
+        //방향에 Speed를 곱함
+        //moveDirection *= movementSpeed;
 
 
         //normalVector의 법선 평면으로부터 플레이어가 움직이려는 방향벡터로 투영
