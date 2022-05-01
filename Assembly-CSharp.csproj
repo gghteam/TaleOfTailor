@@ -82,8 +82,8 @@
     <Compile Include="Assets\02_Scripts\2. Player\PlayerMovement.cs" />
     <Compile Include="Assets\02_Scripts\2. Player\PlayerAttack.cs" />
     <Compile Include="Assets\02_Scripts\2. Player\PlayerDash2.cs" />
-    <Compile Include="Assets\02_Scripts\3. Enemy\Enemy.cs" />
     <Compile Include="Assets\02_Scripts\CameraHandler.cs" />
+    <Compile Include="Assets\02_Scripts\3. Enemy\Enemy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\civilian\readme.txt" />

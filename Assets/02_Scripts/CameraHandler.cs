@@ -8,6 +8,7 @@ public class CameraHandler : MonoBehaviour
     public Transform cameraTransform;
     public Transform cameraPivotTransform;
     private Transform myTransform;
+    private Vector3 cameraFollowVelocity = Vector3.zero;
     private Vector3 cameraTransformPos;
     private LayerMask ignoreLayers;
 
@@ -23,6 +24,8 @@ public class CameraHandler : MonoBehaviour
     [Tooltip("최대 X축")]
     public float maxPivot = 35;
 
+
+    private float targetPos;
     private float defaultPos;
     private float lookAngle;
     private float pivotAngle;
@@ -44,7 +47,7 @@ public class CameraHandler : MonoBehaviour
     public void FollowTarget(float delta)
     {
         //설정할 스피드에 따라 목표 위치로 이동
-        Vector3 targetPos = Vector3.Lerp(myTransform.position, targetTransform.position, delta / followSpeed);
+        Vector3 targetPos = Vector3.SmoothDamp(myTransform.position, targetTransform.position, ref cameraFollowVelocity, delta / followSpeed);
         myTransform.position = targetPos;
     }
 
