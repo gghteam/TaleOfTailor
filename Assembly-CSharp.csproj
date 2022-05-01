@@ -73,12 +73,12 @@
     <Compile Include="Assets\02_Scripts\InputHandler.cs" />
     <Compile Include="Assets\02_Scripts\Inventory\Inventory.cs" />
     <Compile Include="Assets\02_Scripts\Player\PlayerDashKDH1.cs" />
+    <Compile Include="Assets\02_Scripts\Item\ItemKind\PlayerAnim.cs" />
     <Compile Include="Assets\02_Scripts\CameraMove.cs" />
     <Compile Include="Assets\02_Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\02_Scripts\Player\PlayerAttack.cs" />
-    <Compile Include="Assets\02_Scripts\Player\PlayerKDH.cs" />
-    <Compile Include="Assets\02_Scripts\Item\ItemKind\PlayerAnim.cs" />
     <Compile Include="Assets\02_Scripts\AI\Chase.cs" />
+    <Compile Include="Assets\02_Scripts\Player\PlayerKDH.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\civilian\readme.txt" />
