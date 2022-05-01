@@ -32,9 +32,10 @@ public class BandageItem : ItemManager
         {
             ItemZero();
         }
-        eventParam.intParam = bandageCount;
         eventParam.itemParam = Item.BANDAGE;
+        eventParam.intParam = bandageCount;
         EventManager.TriggerEvent("ITEMTEXT", eventParam);
+        BandageUseAnim();
     }
 
     protected override void ItemZero()
@@ -43,4 +44,10 @@ public class BandageItem : ItemManager
         eventParam.itemParam = Item.BANDAGE;
         EventManager.TriggerEvent("ITEMHAVE", eventParam);
     }
+    void BandageUseAnim()
+    {
+        eventParam.itemParam = Item.BANDAGE;
+        EventManager.TriggerEvent("ITEMANIMPLAY", eventParam);
+    }
+
 }

@@ -57,7 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\02_Scripts\PlayerStamina\SteminaManager.cs" />
+    <Compile Include="Assets\02_Scripts\Item\ItemKind\NeedleItem.cs" />
+    <Compile Include="Assets\02_Scripts\Item\ItemManager.cs" />
     <Compile Include="Assets\02_Scripts\Item\ItemKind\PlayerClothesButton.cs" />
+    <Compile Include="Assets\02_Scripts\Item\Item.cs" />
     <Compile Include="Assets\02_Scripts\Manager\UIManager.cs" />
     <Compile Include="Assets\02_Scripts\PlayerParrying.cs" />
     <Compile Include="Assets\02_Scripts\Inventory\HP.cs" />
@@ -74,9 +77,8 @@
     <Compile Include="Assets\02_Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\02_Scripts\Player\PlayerAttack.cs" />
     <Compile Include="Assets\02_Scripts\Player\PlayerKDH.cs" />
-    <Compile Include="Assets\02_Scripts\Item\Item.cs" />
-    <Compile Include="Assets\02_Scripts\Item\ItemManager.cs" />
-    <Compile Include="Assets\02_Scripts\Item\ItemKind\NeedleItem.cs" />
+    <Compile Include="Assets\02_Scripts\Item\ItemKind\PlayerAnim.cs" />
+    <Compile Include="Assets\02_Scripts\AI\Chase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\civilian\readme.txt" />
