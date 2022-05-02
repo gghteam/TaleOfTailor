@@ -105,7 +105,8 @@ public class HP : MonoBehaviour
     void MinusClothesButton(int minus)
     {
         danchuCount -= minus; // ´ÜÃß ¼ö »©±â
-        ClothesButtonOnOff(danchuCount);
+        if (danchuCount <= 0) Debug.Log("Á×À½");
+        else ClothesButtonOnOff(danchuCount);
     }
     void PlusClothesButton(EventParam eventParam)
     {

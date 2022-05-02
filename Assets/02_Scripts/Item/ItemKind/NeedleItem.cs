@@ -39,8 +39,15 @@ public class NeedleItem : ItemManager
         {
             ItemZero();
         }
-        eventParam.intParam = needleCount;
         eventParam.itemParam = Item.NEEDLE;
+        eventParam.intParam = needleCount;
         EventManager.TriggerEvent("ITEMTEXT", eventParam);
+        NeedleUseAnim();
+    }
+
+    void NeedleUseAnim()
+    {
+        eventParam.itemParam = Item.NEEDLE;
+        EventManager.TriggerEvent("ITEMANIMPLAY", eventParam);
     }
 }
