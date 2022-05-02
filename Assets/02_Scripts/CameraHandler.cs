@@ -77,7 +77,6 @@ public class CameraHandler : MonoBehaviour
     private void SetMousePos(EventParam eventParam)
     {
         mouseX = eventParam.vectorParam.x;
-        Debug.Log(mouseX);
         mouseY = eventParam.vectorParam.y;
     }
 
