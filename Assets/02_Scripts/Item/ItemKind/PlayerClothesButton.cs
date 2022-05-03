@@ -55,6 +55,7 @@ public class PlayerClothesButton : ItemManager
         if (collision.collider.CompareTag("ENEMY"))
         {
             eventParam.intParam = 20; // 원하는 정도의 데미지 받기
+            eventParam.stringParam = "PLAYER";
             EventManager.TriggerEvent("DAMAGE", eventParam); // 데미지 입었다는 이벤트 신호 보내기
             enemyVector = collision.transform.position; // 적의 위치 받기
         }
@@ -64,7 +65,6 @@ public class PlayerClothesButton : ItemManager
             GetItem();
         }
     }
-
     void ClothesButtonCount()
     {
         eventParam.intParam = clothesButtonItemCount;

@@ -8,10 +8,16 @@ public class HP : MonoBehaviour
 {
 
     [Header("HP")]
+    [Header("플레이어")]
     [SerializeField]
-    float maxHP = 3000;
+    float maxPlayerHP = 3000;
     [SerializeField]
     public float playerHP = 3000;
+    [Header("보스")]
+    [SerializeField]
+    float maxBossHP = 3000;
+    [SerializeField]
+    public float bossHP = 3000;
     [SerializeField, Header("HP 슬라이더 속도")]
     float sliderSpeed = 5f;
 
@@ -23,9 +29,11 @@ public class HP : MonoBehaviour
 
     [Header("HP 슬라이더")]
     [SerializeField]
-    Slider hpSlider;
+    Slider playerHpSlider;
     [SerializeField]
     Slider whiteSlider;
+    [SerializeField]
+    Slider bossHpSlider;
 
     [Header("단추 UI")]
     [SerializeField]
@@ -46,7 +54,7 @@ public class HP : MonoBehaviour
     private void Start()
     {
         ResetClothesButton();
-        hpSlider.value = whiteSlider.value = playerHP / maxHP;
+        playerHpSlider.value = whiteSlider.value = playerHP / maxPlayerHP;
     }
     private void OnDestroy()
     {
@@ -69,22 +77,33 @@ public class HP : MonoBehaviour
     // 플레이어가 데미지 입었을 때 피 마이너스
     public void DamageSlider(EventParam eventParam)
     {
-        if (isDead) return;
-        playerHP -= eventParam.intParam;
-        if (playerHP <= 0) isDead = true;
-        else isDead = false;
-        if (isDead)
+        if(eventParam.stringParam=="PLAYER")
         {
-            Dead();
+            if (isDead) return;
+            playerHP -= eventParam.intParam;
+
+            if (playerHP <= 0) isDead = true;
+            else isDead = false;
+            if (isDead) Dead();
         }
+        else if(eventParam.stringParam=="BOSS")
+        {
+            bossHP-=eventParam.intParam;
+            if(bossHP <= 0)
+            {
+                bossHpSlider.gameObject.SetActive(false);
+            }
+        }
+       
     }
 
     // HP 게이지 UI Update
     void UpdateSlider()
     {
+        bossHpSlider.value = bossHP / maxBossHP;
         if (isDead) return;
-        hpSlider.value = playerHP / maxHP;
-        whiteSlider.value = Mathf.Lerp(whiteSlider.value, playerHP / maxHP, Time.deltaTime * sliderSpeed);
+        playerHpSlider.value = playerHP / maxPlayerHP;
+        whiteSlider.value = Mathf.Lerp(whiteSlider.value, playerHP / maxPlayerHP, Time.deltaTime * sliderSpeed);
     }
 
     // 죽었을 때 실행
@@ -97,11 +116,11 @@ public class HP : MonoBehaviour
             EventManager.TriggerEvent("DEAD", eventParam);
         }
         MinusClothesButton(isHalf ? 1 : 2);
-        Invoke("ResetPlayerHP", 2f);
+        Invoke("ResetHP", 2f);
         isDead = false;
     }
 
-    // 단추 추가와 마이너슨
+    // 단추 추가와 마이너스
     void MinusClothesButton(int minus)
     {
         danchuCount -= minus; // 단추 수 빼기
@@ -139,11 +158,12 @@ public class HP : MonoBehaviour
     }
 
     // HP 리셋 함수
-    void ResetPlayerHP()
+    void ResetHP()
     {
-        whiteSlider.value = playerHP / maxHP; // 흰색 슬라이더 다시 채우기
-        hpSlider.value = Mathf.Lerp(hpSlider.value, 1, Time.deltaTime * sliderSpeed + 2); //서서히 참
-        playerHP = maxHP; // HP도 초기화
+        whiteSlider.value = playerHP / maxPlayerHP; // 흰색 슬라이더 다시 채우기
+        bossHpSlider.value = bossHP/maxBossHP;
+        playerHpSlider.value = Mathf.Lerp(playerHpSlider.value, 1, Time.deltaTime * sliderSpeed + 2); //서서히 참
+        playerHP = maxPlayerHP; // HP도 초기화
     }
 
 }
