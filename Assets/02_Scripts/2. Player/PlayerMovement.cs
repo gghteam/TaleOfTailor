@@ -48,11 +48,23 @@ public class PlayerMovement : Character
         moveDirection += cameraObject.right * inputX;
         //vector를 정규화함(길이를 1로 만들어 방향만 남김)
         moveDirection.Normalize();
-        if (moveDirection.sqrMagnitude > 0)
+        if (isDash)
+        {
+            if (!isFirst)
+            {
+                dashDirection = new Vector3(inputX, moveDirection.y, inputZ);
+                isFirst = true;
+            }
+
+            moveDirection = dashDirection * DashSpeed;
+            ani.SetBool("IsMove", false);
+            ani.SetBool("IsRun", false);
+            Debug.Log(isDash);
+        }
+        else if (moveDirection.sqrMagnitude > 0)
         {
             transform.rotation = Quaternion.Euler(transform.rotation.x, cameraObject.eulerAngles.y, transform.rotation.z);
             moveDirection.y = 0;
-
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 //방향에 Run_Speed를 곱함
@@ -67,16 +79,6 @@ public class PlayerMovement : Character
                 ani.SetBool("IsMove", true);
                 ani.SetBool("IsRun", false);
             }
-            if (isDash)
-            {
-                if (!isFirst)
-                {
-                    dashDirection = new Vector3(inputX, moveDirection.y, inputZ);
-                    isFirst = true;
-                }
-
-                moveDirection = dashDirection * DashSpeed;
-            }
         }
         else
         {
@@ -87,7 +89,7 @@ public class PlayerMovement : Character
         //방향에 Speed를 곱함
         //moveDirection *= movementSpeed;
 
-
+        ani.SetBool("IsDash", isDash);
         //normalVector의 법선 평면으로부터 플레이어가 움직이려는 방향벡터로 투영
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
         //이동

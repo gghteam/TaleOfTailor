@@ -25,19 +25,16 @@ public class PlayerAttack : Character
     {
         if (eventParam.boolParam && !attacking)
         {
-            Debug.Log("&");
             attacking = true;
             eventParam.boolParam = false;
             //애니메이션 실행
-            StartCoroutine(TestPlayerAnimation());
-            //야메 방법
-            //attackObject.SetActive(true);
-            //eventParam.boolParam = false;
+            ani.SetBool("IsAttack", attacking);
         }
-        else if(eventParam.boolParam && attacking)
+        else if (eventParam.boolParam && attacking)
         {
             //애니메이션 여러개로 바꿔주기
         }
+        AniEnd();
     }
 
     private void IsInputAttack(EventParam ep)
@@ -45,11 +42,13 @@ public class PlayerAttack : Character
         eventParam.boolParam = ep.boolParam;
     }
 
-    private IEnumerator TestPlayerAnimation()
+    private void AniEnd()
     {
-        //만약에 애니메이션이 끝났다면
-        yield return new WaitForSeconds(1f);
-        attackObject.GetComponent<PlayerAttackCheck>().isfirst = false;
-        attacking = false;
+        if (ani.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8897059f)
+        {
+            attackObject.GetComponent<PlayerAttackCheck>().isfirst = false;
+            attacking = false;
+            ani.SetBool("IsAttack", attacking);
+        }
     }
 }
