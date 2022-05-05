@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class HP : MonoBehaviour
 {
-
     [Header("HP")]
     [Header("플레이어")]
     [SerializeField]
@@ -43,6 +42,7 @@ public class HP : MonoBehaviour
 
     bool isDead = false;
     bool isHalf = false;
+    bool isDamage = false;
 
     EventParam eventParam = new EventParam();
 
@@ -77,9 +77,9 @@ public class HP : MonoBehaviour
     // 플레이어가 데미지 입었을 때 피 마이너스
     public void DamageSlider(EventParam eventParam)
     {
+            if (isDead) return;
         if(eventParam.stringParam=="PLAYER")
         {
-            if (isDead) return;
             playerHP -= eventParam.intParam;
 
             if (playerHP <= 0) isDead = true;
@@ -117,7 +117,7 @@ public class HP : MonoBehaviour
         }
         MinusClothesButton(isHalf ? 1 : 2);
         Invoke("ResetHP", 2f);
-        isDead = false;
+
     }
 
     // 단추 추가와 마이너스
@@ -138,9 +138,8 @@ public class HP : MonoBehaviour
     {
         int cIndex = 0;
         isHalf = index % 2 == 0 ? false : true;
-        if (index % 2 != 0) cIndex = index - 1;
-        cIndex = index / 2 - 1;
-
+        if (index % 2 != 0) cIndex = (index-1)/2 - 1;
+        else  cIndex = index / 2 - 1;
         //전부 끄기
         for (int i = 0; i < 4; i++)
             clothesButtonImage[i].gameObject.SetActive(false);
@@ -164,6 +163,7 @@ public class HP : MonoBehaviour
         bossHpSlider.value = bossHP/maxBossHP;
         playerHpSlider.value = Mathf.Lerp(playerHpSlider.value, 1, Time.deltaTime * sliderSpeed + 2); //서서히 참
         playerHP = maxPlayerHP; // HP도 초기화
+        isDead = false;
     }
 
 }

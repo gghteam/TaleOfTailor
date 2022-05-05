@@ -45,8 +45,11 @@ public class PlayerClothesButton : ItemManager
             eventParam.itemParam = Item.CLOTHES_BUTTON;
             EventManager.TriggerEvent("ITEMANIMPLAY", eventParam);
             // 아이템이 이제 없다면 이미지 끄기
-            if (clothesButtonItemCount <= 0) ItemZero();
-            else EventManager.TriggerEvent("PLUSCLOTHESBUTTON", eventParam); // 단추 회복
+            if (clothesButtonItemCount >= 0)
+            {
+                ItemZero();
+                EventManager.TriggerEvent("PLUSCLOTHESBUTTON", eventParam); // 단추 회복
+            }
         }
     }
 
@@ -54,7 +57,7 @@ public class PlayerClothesButton : ItemManager
     {
         if (collision.collider.CompareTag("ENEMY"))
         {
-            eventParam.intParam = 20; // 원하는 정도의 데미지 받기
+            eventParam.intParam = 200; // 원하는 정도의 데미지 받기
             eventParam.stringParam = "PLAYER";
             EventManager.TriggerEvent("DAMAGE", eventParam); // 데미지 입었다는 이벤트 신호 보내기
             enemyVector = collision.transform.position; // 적의 위치 받기
@@ -93,13 +96,13 @@ public class PlayerClothesButton : ItemManager
     {
         //단추 생성
         Vector3 buttonPos = (transform.position - enemyVector).normalized;
-        if (danchuIndex % 2 == 0)
+        if (danchuIndex % 2 == 0) // 단추가 반쪼가리가 없다
         {
             danchuIndex = danchuIndex / 2 - 1;
         }
-        else
+        else // 단추가 반쪼가리가 있다
         {
-            danchuIndex = (danchuIndex - 1) / 2 - 1;
+            danchuIndex = (danchuIndex - 1) / 2 - 1; 
         }
         clothesButton[danchuIndex].transform.localPosition = new Vector3(buttonPos.x * buttonDistance, 0.5f, buttonPos.z * buttonDistance);
         clothesButton[danchuIndex].gameObject.SetActive(true);
@@ -110,11 +113,18 @@ public class PlayerClothesButton : ItemManager
         clothesButtonItemCount++;
         ClothesButtonCount();
         ClothesButtonOnOff(true); // 단추 아이템 창 이미지 키기
-       
     }
 
     protected override void ItemZero()
     {
         ClothesButtonOnOff(false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("BOSS"))
+        {
+            GetItem();
+        }
     }
 }
