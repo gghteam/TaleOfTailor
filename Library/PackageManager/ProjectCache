@@ -10,8 +10,13 @@ m_ProjectFiles:
     m_ModificationDate:
       serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
       ticks: 637869327047068659
     m_Hash: 3529745186
+=======
+      ticks: 637873528484542852
+    m_Hash: 2579487231
+>>>>>>> Khj
   m_LockFileStatus:
     m_FilePath: D:/Soul/Tale/Packages/packages-lock.json
 =======
@@ -25,16 +30,72 @@ m_ProjectFiles:
     m_ModificationDate:
       serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
       ticks: 637869327047088588
 =======
       ticks: 637866472993910742
 >>>>>>> NSJ
     m_Hash: 173850735
+=======
+      ticks: 637873528484891918
+    m_Hash: 155030858
+>>>>>>> Khj
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
   m_Packages:
     m_ResolvedPackages:
+    - packageId: com.unity.2d.sprite@1.0.0
+      testable: 0
+      isDirectDependency: 1
+      version: 1.0.0
+      source: 2
+      resolvedPath: D:\GitHubs\TaleOfTailor\Library\PackageCache\com.unity.2d.sprite@1.0.0
+      assetPath: Packages/com.unity.2d.sprite
+      name: com.unity.2d.sprite
+      displayName: 2D Sprite
+      author:
+        name: 
+        email: 
+        url: 
+      category: 2D
+      type: 
+      description: Use Unity Sprite Editor Window to create and edit Sprite asset
+        properties like pivot, borders and Physics shape
+      status: 4
+      errors: []
+      versions:
+        all:
+        - 1.0.0
+        compatible:
+        - 1.0.0
+        verified: 1.0.0
+      dependencies: []
+      resolvedDependencies: []
+      keywords:
+      - 2d
+      - sprite
+      - sprite editor window
+      registry:
+        id: 
+        name: 
+        url: 
+        scopes: []
+        isDefault: 0
+        capabilities: 0
+      hasRegistry: 0
+      hideInEditor: 1
+      entitlements:
+        isAllowed: 1
+      isAssetStorePackage: 0
+      datePublishedTicks: 0
+      documentationUrl: 
+      hasRepository: 0
+      repository:
+        type: 
+        url: 
+        revision: 
+        path: 
     - packageId: com.unity.collab-proxy@1.15.13
       testable: 0
       isDirectDependency: 1
@@ -2966,6 +3027,7 @@ m_PackageAssets:
         - 1.2.0
         - 1.3.1
         - 1.3.2
+        - 1.4.0
         compatible:
         - 1.0.1
         - 1.1.0-pre.7
@@ -2978,6 +3040,7 @@ m_PackageAssets:
         - 1.2.0
         - 1.3.1
         - 1.3.2
+        - 1.4.0
         verified: 1.0.1
       dependencies:
       - name: com.unity.modules.unitywebrequest

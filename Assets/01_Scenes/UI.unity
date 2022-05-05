@@ -233,10 +233,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b422408ea9d4d246802c5e5ca94b4fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   myTransform: {fileID: 0}
   movementSpeed: 2
   runMovementSpeed: 5
   rotationSpeed: 10
+=======
+>>>>>>> Khj
 --- !u!136 &71561855
 CapsuleCollider:
   m_ObjectHideFlags: 0

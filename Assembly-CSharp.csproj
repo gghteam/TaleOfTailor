@@ -54,10 +54,14 @@
   </PropertyGroup>
   <ItemGroup>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
 =======
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
 >>>>>>> NSJ
+=======
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+>>>>>>> Khj
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\02_Scripts\2. Player\PlayerStamina\SteminaManager.cs" />
@@ -69,6 +73,7 @@
     <Compile Include="Assets\02_Scripts\Item\Item.cs" />
     <Compile Include="Assets\02_Scripts\FSMs\FsmStateEmpty.cs" />
     <Compile Include="Assets\02_Scripts\1. Manager\UIManager.cs" />
+    <Compile Include="Assets\02_Scripts\Action\MathParabola.cs" />
     <Compile Include="Assets\02_Scripts\FSMs\FsmState.cs" />
     <Compile Include="Assets\02_Scripts\FSMs\FsmCondFalse.cs" />
     <Compile Include="Assets\02_Scripts\2. Player\PlayerParrying.cs" />
@@ -94,6 +99,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Compile Include="Assets\02_Scripts\Action\MathParabola.cs" />
 =======
 >>>>>>> main
@@ -102,6 +108,8 @@
 >>>>>>> kdh
 =======
 >>>>>>> NSJ
+=======
+>>>>>>> Khj
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\civilian\readme.txt" />

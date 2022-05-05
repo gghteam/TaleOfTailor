@@ -1,9 +1,13 @@
 sceneSetups:
 <<<<<<< HEAD
+<<<<<<< HEAD
 - path: Assets/01_Scenes/kdh.unity
 =======
 - path: Assets/01_Scenes/UI.unity
 >>>>>>> NSJ
+=======
+- path: Assets/01_Scenes/Player_Scene.unity
+>>>>>>> Khj
   isLoaded: 1
   isActive: 1
   isSubScene: 0
