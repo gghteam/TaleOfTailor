@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Base path: 'C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
 
@@ -11,3 +12,8 @@ Cmd: compileSnippet
 Cmd: shutdown
 =======
 >>>>>>> kdh
+=======
+Base path: 'C:/Unity/2020.3.25f1/Editor/Data', plugins path 'C:/Unity/2020.3.25f1/Editor/Data/PlaybackEngines'
+Cmd: initializeCompiler
+
+>>>>>>> NSJ
