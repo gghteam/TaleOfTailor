@@ -28,9 +28,11 @@ public class HP : MonoBehaviour
 
     [Header("HP 슬라이더")]
     [SerializeField]
-    Slider playerHpSlider;
+    Image playerHpSlider;
+    //Slider playerHpSlider;
     [SerializeField]
-    Slider whiteSlider;
+    Image whiteSlider;
+    // Slider whiteSlider;
     [SerializeField]
     Slider bossHpSlider;
 
@@ -54,7 +56,8 @@ public class HP : MonoBehaviour
     private void Start()
     {
         ResetClothesButton();
-        playerHpSlider.value = whiteSlider.value = playerHP / maxPlayerHP;
+        //playerHpSlider.value = whiteSlider.value = playerHP / maxPlayerHP;
+        playerHpSlider.fillAmount = whiteSlider.fillAmount = playerHP / maxPlayerHP;
     }
     private void OnDestroy()
     {
@@ -105,14 +108,15 @@ public class HP : MonoBehaviour
         float hp = playerHP / maxPlayerHP;
         bossHpSlider.value = bossHP / maxBossHP;
         if (isDead) return;
-        playerHpSlider.value = hp;
+        //playerHpSlider.value = hp;
+        playerHpSlider.fillAmount = hp;
         if (isDamage)
         {
-            whiteSlider.value = Mathf.Lerp(whiteSlider.value, playerHP / maxPlayerHP, Time.deltaTime * sliderSpeed);
-            if (playerHpSlider.value >= whiteSlider.value - 0.01f)
+            whiteSlider.fillAmount = Mathf.Lerp(whiteSlider.fillAmount, playerHP / maxPlayerHP, Time.deltaTime * sliderSpeed);
+            if (playerHpSlider.fillAmount  >= whiteSlider.fillAmount - 0.01f)
             {
                 isDamage = false;
-                whiteSlider.value = playerHpSlider.value;
+                whiteSlider.fillAmount = playerHpSlider.fillAmount;
             }
         }
 
@@ -177,9 +181,9 @@ public class HP : MonoBehaviour
     // HP 리셋 함수
     void ResetHP()
     {
-        whiteSlider.value = playerHP / maxPlayerHP; // 흰색 슬라이더 다시 채우기
+        whiteSlider.fillAmount = playerHP / maxPlayerHP; // 흰색 슬라이더 다시 채우기
         bossHpSlider.value = bossHP/maxBossHP;
-        playerHpSlider.value = Mathf.Lerp(playerHpSlider.value, 1, Time.deltaTime * sliderSpeed + 2); //서서히 참
+        playerHpSlider.fillAmount = Mathf.Lerp(playerHpSlider.fillAmount, 1, Time.deltaTime * sliderSpeed + 2); //서서히 참
         playerHP = maxPlayerHP; // HP도 초기화
         isDead = false;
     }
