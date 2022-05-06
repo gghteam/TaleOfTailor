@@ -18,7 +18,15 @@ public class PlayerParrying : MonoBehaviour
     private float timer = 0f;
 
     private bool isParrying = false;
+    public bool IsParrying { get => isParrying; }
+
+    // 디버그용 코드 아닐지도...?
     private bool isAttack = false;
+    public bool IsAttack
+    {
+        get => isAttack;
+        set => isAttack = value;
+    }
 
     // 상대 공격 콜라이더에 닿았을 떄
     // 상대가 공격 중일때
@@ -32,10 +40,10 @@ public class PlayerParrying : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(EnemyAttack());
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    StartCoroutine(EnemyAttack());
+        //}
 
         if (timer >= parryingDelay)
         {
@@ -52,6 +60,7 @@ public class PlayerParrying : MonoBehaviour
         }
     }
 
+    // 디버그용 코든
     private IEnumerator EnemyAttack()
     {
         isAttack = true;
@@ -87,7 +96,7 @@ public class PlayerParrying : MonoBehaviour
     private bool CheckParrying()
     {
         // 패링 성공시 true 반환, 실패시 false 반환
-        if (isAttack && isParrying)
+        if (isAttack && isParrying) // isAttack을 떄리니 적에게서 가져오기
             return true;
         else
             return false;

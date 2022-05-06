@@ -42,27 +42,47 @@ public class EnemyAttack : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        //if (isAttack)
-        //{
-        //    // 방법 2
-        //    Physics.Raycast(transform.position + new Vector3(0, 1.5f, 0), transform.forward, out hit, 1, attackLlayer);
+        Physics.Raycast(transform.position + new Vector3(0, 1.5f, 0), transform.forward, out hit, 1, attackLlayer);
 
-        //    if (hit.collider != null)
-        //    {
-        //        if (hit.collider.CompareTag("Player"))
-        //        {
-        //            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
-        //            {
-        //                // 플레이어 데미지 주기
-        //                if (!isPlayerDamage)
-        //                {
-        //                    Debug.Log("Player Damage");
-        //                    isPlayerDamage = true;
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
+        if (hit.collider != null)
+        {
+            if (hit.collider.GetComponent<PlayerParrying>() != null)
+            {
+                animator.SetBool(parrying, hit.collider.GetComponent<PlayerParrying>().IsParrying);
+                hit.collider.GetComponent<PlayerParrying>().IsAttack = isAttack;
+            }
+            else
+            {
+                animator.SetBool(parrying, false);
+                hit.collider.GetComponent<PlayerParrying>().IsAttack = false;
+            }
+        }
+        else
+        {
+            animator.SetBool(parrying, false);
+            hit.collider.GetComponent<PlayerParrying>().IsAttack = false;
+        }
+
+        if (isAttack)
+        {
+            // 방법 2
+
+            if (hit.collider != null)
+            {
+                if (hit.collider.CompareTag("Player"))
+                {
+                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
+                    {
+                        // 플레이어 데미지 주기
+                        if (!isPlayerDamage)
+                        {
+                            Debug.Log("Player Damage");
+                            isPlayerDamage = true;
+                        }
+                    }
+                }
+            }
+        }
 
         Debug.DrawRay(transform.position + new Vector3(0, 1.5f, 0), transform.forward, Color.green);
 
