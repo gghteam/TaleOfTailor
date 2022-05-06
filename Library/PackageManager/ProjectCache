@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637866472993890686
+      ticks: 637874101031128369
     m_Hash: 3529745186
   m_LockFileStatus:
     m_FilePath: C:/Github/Tale/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637866472993910742
+      ticks: 637874101031138332
     m_Hash: 173850735
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}

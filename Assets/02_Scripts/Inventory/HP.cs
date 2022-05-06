@@ -80,7 +80,9 @@ public class HP : MonoBehaviour
             if (isDead) return;
         if(eventParam.stringParam=="PLAYER")
         {
+
             playerHP -= eventParam.intParam;
+            Invoke("SliderHit", 0.5f);
 
             if (playerHP <= 0) isDead = true;
             else isDead = false;
@@ -100,10 +102,26 @@ public class HP : MonoBehaviour
     // HP 게이지 UI Update
     void UpdateSlider()
     {
+        float hp = playerHP / maxPlayerHP;
         bossHpSlider.value = bossHP / maxBossHP;
         if (isDead) return;
-        playerHpSlider.value = playerHP / maxPlayerHP;
-        whiteSlider.value = Mathf.Lerp(whiteSlider.value, playerHP / maxPlayerHP, Time.deltaTime * sliderSpeed);
+        playerHpSlider.value = hp;
+        if (isDamage)
+        {
+            whiteSlider.value = Mathf.Lerp(whiteSlider.value, playerHP / maxPlayerHP, Time.deltaTime * sliderSpeed);
+            if (playerHpSlider.value >= whiteSlider.value - 0.01f)
+            {
+                isDamage = false;
+                whiteSlider.value = playerHpSlider.value;
+            }
+        }
+
+        }
+
+        private void SliderHit()
+    {
+        isDamage = true;
+
     }
 
     // 죽었을 때 실행
