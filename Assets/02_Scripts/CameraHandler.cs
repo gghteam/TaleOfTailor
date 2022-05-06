@@ -8,9 +8,9 @@ public class CameraHandler : MonoBehaviour
     public Transform cameraTransform;
     public Transform cameraPivotTransform;
     private Transform myTransform;
-    private Vector3 cameraFollowVelocity = Vector3.zero;
     private Vector3 cameraTransformPos;
     private LayerMask ignoreLayers;
+    private Vector3 cameraFollowVelocity = Vector3.zero;
 
 
     [Tooltip("Y축회전속도")]
@@ -31,6 +31,10 @@ public class CameraHandler : MonoBehaviour
     private float pivotAngle;
     private float setDelta;
 
+    public float cameraSphereRadius = 0.2f;
+    public float cameraCollisionOffset = 0.2f;
+    public float minimumCollisionOffset = 0.2f;
+
     //마우스의 위치
     private float mouseX;
     private float mouseY;
@@ -49,6 +53,8 @@ public class CameraHandler : MonoBehaviour
         //설정할 스피드에 따라 목표 위치로 이동
         Vector3 targetPos = Vector3.SmoothDamp(myTransform.position, targetTransform.position, ref cameraFollowVelocity, delta / followSpeed);
         myTransform.position = targetPos;
+
+        HandleCameraCollision(delta);
     }
 
     public void HandleCameraRotation(float delta, float mouseXInput, float mouseYinput)
@@ -67,6 +73,45 @@ public class CameraHandler : MonoBehaviour
 
         targetRotation = Quaternion.Euler(rotation);
         cameraPivotTransform.localRotation = targetRotation;
+    }
+
+    private void HandleCameraCollision(float delta)
+    {
+        targetPos = defaultPos;
+        RaycastHit hit;
+        Vector3 direction = cameraTransform.position - cameraPivotTransform.position;
+        direction.Normalize();
+
+        if (Physics.SphereCast
+            (cameraPivotTransform.position, cameraSphereRadius, direction, out hit, Mathf.Abs(targetPos), ignoreLayers))
+        {
+            float dis = Vector3.Distance(cameraPivotTransform.position, hit.point);
+            targetPos = -(dis - cameraCollisionOffset);
+        }
+
+        if(Mathf.Abs(targetPos) < minimumCollisionOffset)
+        {
+            targetPos = -minimumCollisionOffset;
+        }
+
+        cameraTransformPos.z = Mathf.Lerp(cameraTransform.localPosition.z, targetPos, delta / 0.2f);
+        
+        /*
+        if(targetTransform.localPosition.z <= cameraTransformPos.z)
+        {
+            return;
+        }
+        */
+
+        cameraTransform.localPosition = cameraTransformPos;
+
+    }
+
+    private void OverCollisionCamra(float delta)
+    {
+        Debug.Log("접근");
+        cameraTransformPos.z = Mathf.Lerp(cameraTransform.localPosition.z, targetTransform.localPosition.z, delta / 0.2f);
+        cameraTransform.localPosition = cameraTransformPos;
     }
 
     /// <summary>
