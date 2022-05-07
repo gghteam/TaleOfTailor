@@ -31,14 +31,22 @@ public class PlayerParrying : MonoBehaviour
     // 상대 공격 콜라이더에 닿았을 떄
     // 상대가 공격 중일때
     // 내가 패링 중인가?
+
+    private Animator animator;
+
+    private readonly int parrying = Animator.StringToHash("isParrying");
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         timer = 0f;
     }
 
     void Update()
     {
         timer += Time.deltaTime;
+
+        animator.SetBool(parrying, IsParrying);
 
         //if (Input.GetKeyDown(KeyCode.Space))
         //{

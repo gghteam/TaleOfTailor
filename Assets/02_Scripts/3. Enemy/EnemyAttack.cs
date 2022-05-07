@@ -60,7 +60,6 @@ public class EnemyAttack : MonoBehaviour
         else
         {
             animator.SetBool(parrying, false);
-            hit.collider.GetComponent<PlayerParrying>().IsAttack = false;
         }
 
         if (isAttack)
@@ -118,7 +117,7 @@ public class EnemyAttack : MonoBehaviour
         /*
         방법 1. 적 손에 Collider를 달고 공격 시 Collider의 엑티브를 키는 방식
          그 콜라이더에 닿으면 Damage주기
-        방법 2. 공격 중에는 적에 앞 방향으로 레이케스트를 쏜다
+        방법 2. 공격 중에는 적에 앞 방향으로 레이케스트를 쏜다 -> 애를 쓰자
          그 레이에 닿으면 Damage주기
          */
 
@@ -159,16 +158,16 @@ public class EnemyAttack : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (collider.CompareTag("Player"))
-        {
-            if (!isPlayerDamage)
-            {
-                // 플레이어 데미지 주기
-                Debug.Log("Player Damage");
-                PlayerDamageChanged(1);
-            }
-        }
-    }
+    //private void OnTriggerEnter(Collider collider)
+    //{
+    //    if (collider.CompareTag("Player"))
+    //    {
+    //        if (!isPlayerDamage)
+    //        {
+    //            // 플레이어 데미지 주기
+    //            Debug.Log("Player Damage");
+    //            PlayerDamageChanged(1);
+    //        }
+    //    }
+    //}
 }
