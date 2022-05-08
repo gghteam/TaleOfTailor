@@ -27,7 +27,7 @@ public class Jump_Attack : MonoBehaviour
 
     private void Update()
     {
-       Debug.Log(Vector3.Distance(transform.position, targetPos.position));
+       //Debug.Log(Vector3.Distance(transform.position, targetPos.position));
         if (Vector3.Distance(transform.position, targetPos.position) >= 10 && !isStart)
         {
             temp = transform.position;
@@ -36,7 +36,9 @@ public class Jump_Attack : MonoBehaviour
 
             isStart = true;
             isPlay = true;
-            animator.Play("Jump_Attack");
+            animator.SetTrigger("JumpAttack");
+
+            Debug.Log("Á» °¡¶ó");
         }
 
         if (isPlay)
