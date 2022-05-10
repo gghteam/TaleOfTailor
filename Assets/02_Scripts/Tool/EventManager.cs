@@ -50,5 +50,6 @@ public struct EventParam
     public bool boolParam;
     public bool boolParam2;
     public int intParam;
+    public string stringParam;
 }
 

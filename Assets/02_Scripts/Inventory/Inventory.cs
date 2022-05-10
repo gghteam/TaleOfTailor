@@ -63,15 +63,20 @@ public class Inventory : MonoBehaviour
     //  ESC로 인벤토리 끄고 키기
     private void SettingTabOnOff()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (isOpen)
             {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
                 UIManager.Instance.UiClose(inventoryPanel);
             }
             else
             {
                 UIManager.Instance.UiOpen(inventoryPanel);
+                //커서 숨기기 및 위치 해제
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
             }
             isOpen = !isOpen;
         }

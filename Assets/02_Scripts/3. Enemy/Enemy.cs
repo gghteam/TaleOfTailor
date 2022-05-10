@@ -10,9 +10,12 @@ public class Enemy : MonoBehaviour
     {
         EventManager.StartListening("ENEMYDAMAGE", Damaged);
     }
+    private void Update()
+    {
+        Debug.Log(hp);
+    }
     private void Damaged(EventParam eventParam)
     {
-        Debug.Log("?");
         hp -= eventParam.intParam;
     }
 }

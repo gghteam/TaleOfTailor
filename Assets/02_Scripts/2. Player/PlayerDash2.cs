@@ -16,7 +16,7 @@ public class PlayerDash2 : Character
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !eventParam.boolParam)
         {
             eventParam.intParam = (int)smoothTime;
             eventParam.boolParam = true;
