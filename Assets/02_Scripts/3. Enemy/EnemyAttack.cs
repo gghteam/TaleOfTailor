@@ -48,13 +48,13 @@ public class EnemyAttack : MonoBehaviour
         {
             if (hit.collider.GetComponent<PlayerParrying>() != null)
             {
-                animator.SetBool(parrying, hit.collider.GetComponent<PlayerParrying>().IsParrying);
+                animator.SetBool(parrying, hit.collider.GetComponent<PlayerParrying>().CheckParrying());
                 hit.collider.GetComponent<PlayerParrying>().IsAttack = isAttack;
+                hit.collider.GetComponent<PlayerParrying>().Enemy = this.gameObject;
             }
             else
             {
                 animator.SetBool(parrying, false);
-                hit.collider.GetComponent<PlayerParrying>().IsAttack = false;
             }
         }
         else

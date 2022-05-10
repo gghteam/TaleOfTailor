@@ -27,6 +27,22 @@ public class PlayerParrying : MonoBehaviour
         get => isAttack;
         set => isAttack = value;
     }
+    private GameObject enemy = null;
+    public GameObject Enemy
+    {
+        get => enemy;
+        set
+        {
+            if (!IsAttack)
+            {
+                enemy = null;
+            }
+            else
+            {
+                enemy = value;
+            }
+        }
+    }
 
     // 상대 공격 콜라이더에 닿았을 떄
     // 상대가 공격 중일때
@@ -68,14 +84,6 @@ public class PlayerParrying : MonoBehaviour
         }
     }
 
-    // 디버그용 코든
-    private IEnumerator EnemyAttack()
-    {
-        isAttack = true;
-        yield return new WaitForSeconds(.5f);
-        isAttack = false;
-    }
-
     private IEnumerator ParryingCoroutine()
     {
         isParrying = true;
@@ -101,11 +109,22 @@ public class PlayerParrying : MonoBehaviour
     /// 패링이 성공했는지 체크하는 함수
     /// </summary>
     /// <returns></returns>
-    private bool CheckParrying()
+    public bool CheckParrying()
     {
-        // 패링 성공시 true 반환, 실패시 false 반환
-        if (isAttack && isParrying) // isAttack을 떄리니 적에게서 가져오기
-            return true;
+        if (enemy == null) return false;
+        Vector3 targetDir = (enemy.transform.position - transform.position);
+        float dot = Vector3.Dot(transform.forward, targetDir);
+
+        float theta = Mathf.Acos(dot) * Mathf.Rad2Deg;
+
+        if (theta <= 60)// 내 시야각 안에 있을 때
+        {
+            // 패링 성공시 true 반환, 실패시 false 반환
+            if (isAttack && isParrying) // isAttack을 떄리는 적에게서 가져오기
+                return true;
+            else
+                return false;
+        }
         else
             return false;
     }

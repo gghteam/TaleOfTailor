@@ -56,23 +56,12 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <Compile Include="Assets\02_Scripts\2. Player\PlayerStamina\SteminaManager.cs" />
-    <Compile Include="Assets\02_Scripts\Item\ItemKind\NeedleItem.cs" />
-    <Compile Include="Assets\02_Scripts\2. Player\PlayerAttackCheck.cs" />
-=======
->>>>>>> origin/main
     <Compile Include="Assets\02_Scripts\FSMs\FsmCondRandom.cs" />
     <Compile Include="Assets\02_Scripts\Item\ItemKind\PlayerClothesButton.cs" />
     <Compile Include="Assets\02_Scripts\Item\Item.cs" />
     <Compile Include="Assets\02_Scripts\FSMs\FsmStateEmpty.cs" />
     <Compile Include="Assets\02_Scripts\FSMs\FsmState.cs" />
     <Compile Include="Assets\02_Scripts\FSMs\FsmCondFalse.cs" />
-<<<<<<< HEAD
-    <Compile Include="Assets\02_Scripts\2. Player\PlayerParrying.cs" />
-    <Compile Include="Assets\02_Scripts\Inventory\HP.cs" />
-=======
->>>>>>> origin/main
     <Compile Include="Assets\02_Scripts\1. Manager\MonoSingleton.cs" />
     <Compile Include="Assets\02_Scripts\Item\ItemKind\BandageItem.cs" />
     <Compile Include="Assets\MouseSetUp.cs" />
@@ -82,23 +71,12 @@
     <Compile Include="Assets\Slam\EarthSlam\Crack\CrackControll.cs" />
     <Compile Include="Assets\Slam\EarthSlam\Character\CharacterController.cs" />
     <Compile Include="Assets\02_Scripts\InputHandler.cs" />
-<<<<<<< HEAD
-    <Compile Include="Assets\02_Scripts\Inventory\Inventory.cs" />
     <Compile Include="Assets\02_Scripts\2. Player\PlayerDash.cs" />
     <Compile Include="Assets\02_Scripts\Item\ItemKind\PlayerAnim.cs" />
     <Compile Include="Assets\02_Scripts\2. Player\PlayerMovement.cs" />
-    <Compile Include="Assets\02_Scripts\2. Player\PlayerAttack.cs" />
-=======
-    <Compile Include="Assets\02_Scripts\2. Player\PlayerDash.cs" />
-    <Compile Include="Assets\02_Scripts\Item\ItemKind\PlayerAnim.cs" />
-    <Compile Include="Assets\02_Scripts\2. Player\PlayerMovement.cs" />
->>>>>>> origin/main
     <Compile Include="Assets\02_Scripts\AI\Chase.cs" />
     <Compile Include="Assets\02_Scripts\2. Player\PlayerDash2.cs" />
     <Compile Include="Assets\02_Scripts\3. Enemy\Enemy.cs" />
-<<<<<<< HEAD
-    <Compile Include="Assets\02_Scripts\3. Enemy\EnemyAttack.cs" />
-=======
     <Compile Include="Assets\02_Scripts\2. Player\PlayerStamina\SteminaManager.cs" />
     <Compile Include="Assets\02_Scripts\Item\ItemKind\NeedleItem.cs" />
     <Compile Include="Assets\Slam\EarthSlam\Crack\Crack.cs" />
@@ -115,7 +93,7 @@
     <Compile Include="Assets\02_Scripts\2. Player\PlayerAttack.cs" />
     <Compile Include="Assets\Slam\EarthSlam\Rock\DeactivateObj.cs" />
     <Compile Include="Assets\02_Scripts\CameraHandler.cs" />
->>>>>>> origin/main
+    <Compile Include="Assets\02_Scripts\3. Enemy\EnemyAttack.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\civilian\readme.txt" />

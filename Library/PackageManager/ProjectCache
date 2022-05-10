@@ -5,26 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-<<<<<<< HEAD
-      ticks: 637874273395372109
-    m_Hash: 3529745186
-=======
-      ticks: 637876178452869890
+      ticks: 637877622182757325
     m_Hash: 260642209
->>>>>>> origin/main
   m_LockFileStatus:
     m_FilePath: D:/Unity Projects/TaleOfTailor/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-<<<<<<< HEAD
-      ticks: 637874273395392085
-    m_Hash: 173850735
-=======
-      ticks: 637876178452889874
+      ticks: 637877622182767303
     m_Hash: 1943955877
->>>>>>> origin/main
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
@@ -35,7 +25,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: D:\GitHubs\TaleOfTailor\Library\PackageCache\com.unity.2d.sprite@1.0.0
+      resolvedPath: D:\Unity Projects\TaleOfTailor\Library\PackageCache\com.unity.2d.sprite@1.0.0
       assetPath: Packages/com.unity.2d.sprite
       name: com.unity.2d.sprite
       displayName: 2D Sprite
@@ -86,7 +76,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 2.6.11
       source: 1
-      resolvedPath: D:\GitHubs\TaleOfTailor\Library\PackageCache\com.unity.cinemachine@2.6.11
+      resolvedPath: D:\Unity Projects\TaleOfTailor\Library\PackageCache\com.unity.cinemachine@2.6.11
       assetPath: Packages/com.unity.cinemachine
       name: com.unity.cinemachine
       displayName: Cinemachine
@@ -668,7 +658,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 10.7.0
       source: 1
-      resolvedPath: D:\GitHubs\TaleOfTailor\Library\PackageCache\com.unity.render-pipelines.universal@10.7.0
+      resolvedPath: D:\Unity Projects\TaleOfTailor\Library\PackageCache\com.unity.render-pipelines.universal@10.7.0
       assetPath: Packages/com.unity.render-pipelines.universal
       name: com.unity.render-pipelines.universal
       displayName: Universal RP
@@ -3094,7 +3084,7 @@ m_PackageAssets:
       isDirectDependency: 0
       version: 1.1.0
       source: 1
-      resolvedPath: D:\GitHubs\TaleOfTailor\Library\PackageCache\com.unity.mathematics@1.1.0
+      resolvedPath: D:\Unity Projects\TaleOfTailor\Library\PackageCache\com.unity.mathematics@1.1.0
       assetPath: Packages/com.unity.mathematics
       name: com.unity.mathematics
       displayName: Mathematics
@@ -3175,7 +3165,7 @@ m_PackageAssets:
       isDirectDependency: 0
       version: 10.7.0
       source: 1
-      resolvedPath: D:\GitHubs\TaleOfTailor\Library\PackageCache\com.unity.render-pipelines.core@10.7.0
+      resolvedPath: D:\Unity Projects\TaleOfTailor\Library\PackageCache\com.unity.render-pipelines.core@10.7.0
       assetPath: Packages/com.unity.render-pipelines.core
       name: com.unity.render-pipelines.core
       displayName: Core RP Library
@@ -3342,7 +3332,7 @@ m_PackageAssets:
       isDirectDependency: 0
       version: 10.7.0
       source: 1
-      resolvedPath: D:\GitHubs\TaleOfTailor\Library\PackageCache\com.unity.shadergraph@10.7.0
+      resolvedPath: D:\Unity Projects\TaleOfTailor\Library\PackageCache\com.unity.shadergraph@10.7.0
       assetPath: Packages/com.unity.shadergraph
       name: com.unity.shadergraph
       displayName: Shader Graph
@@ -3585,7 +3575,7 @@ m_PackageAssets:
       isDirectDependency: 0
       version: 4.3.2
       source: 1
-      resolvedPath: D:\GitHubs\TaleOfTailor\Library\PackageCache\com.unity.searcher@4.3.2
+      resolvedPath: D:\Unity Projects\TaleOfTailor\Library\PackageCache\com.unity.searcher@4.3.2
       assetPath: Packages/com.unity.searcher
       name: com.unity.searcher
       displayName: Searcher
