@@ -2502,7 +2502,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f9276b0edb14bbf4ca1d6f3420d34f22, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2609,8 +2609,8 @@ MonoBehaviour:
   sliderSpeed: 3
   danchuCount: 8
   maxDanchuCount: 8
-  playerHpSlider: {fileID: 2291972227598591223}
-  whiteSlider: {fileID: 1733906654}
+  playerHpSlider: {fileID: 0}
+  whiteSlider: {fileID: 0}
   bossHpSlider: {fileID: 509132162}
   clothesButtonImage:
   - {fileID: 2291972226831009038}
