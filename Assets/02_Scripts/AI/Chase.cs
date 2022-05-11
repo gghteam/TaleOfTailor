@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Chase : MonoBehaviour
 {
-    [SerializeField, Header("Ãß°Ý ¼Óµµ")]
+    [SerializeField, Header("ï¿½ß°ï¿½ ï¿½Óµï¿½")]
     float chaseSpeed;
     
-    [SerializeField, Header("±ÙÁ¢ °Å¸®")]
+    [SerializeField, Header("ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½")]
     float contactDistance;
 
     Rigidbody rb;
@@ -22,7 +22,7 @@ public class Chase : MonoBehaviour
 
     private void Update()
     {
-        //°è¼Ó ÇØ¼­ °Å¸® Ã¼Å©
+        //ï¿½ï¿½ï¿½ ï¿½Ø¼ï¿½ ï¿½Å¸ï¿½ Ã¼Å©
        FollowTarget();
     }
 
@@ -30,7 +30,7 @@ public class Chase : MonoBehaviour
     {
         float distance = GetDistance();
 
-        // ÀÏÁ¤ °Å¸® ¾È¿¡ µé¾î¿Ô³ª Ã¼Å©
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½Ô³ï¿½ Ã¼Å©
         if (distance <= contactDistance)
         {
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, chaseSpeed*Time.deltaTime);
@@ -41,8 +41,8 @@ public class Chase : MonoBehaviour
         }
     }
 
-    // °Å¸® ±¸ÇÏ±â
-    float GetDistance()
+    // ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
+    protected virtual float GetDistance()
     {
         return Vector3.Distance(player.transform.position, transform.position);
     }

@@ -76,6 +76,7 @@
      <Compile Include="Assets\Slam\EarthSlam\Rock\DeactivateObj.cs" />
      <Compile Include="Assets\02_Scripts\CameraHandler.cs" />
      <Compile Include="Assets\02_Scripts\3. Enemy\EnemyAttack.cs" />
+     <Compile Include="Assets\02_Scripts\AI\Enemy_Hug.cs" />
      <None Include="Assets\civilian\readme.txt" />
      <None Include="Assets\Slam\EarthSlam\Crack\DepthMask.shader" />
      <None Include="Assets\Combat scissors\readme.txt" />
