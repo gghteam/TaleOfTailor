@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttack : MonoBehaviour
+public class EnemyAttack : Character
 {
     // 이렇게 변수로 할까 SO로 할까?
     [SerializeField]
@@ -10,27 +10,28 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField]
     private float attackDelay = 0.5f;
 
-    [SerializeField]
-    private Collider[] hitColloders;
-    public int attackLlayer = 1 << 2;
+    private int attackLlayer = 1 << 6;
 
     private bool isAttack = false;
+    public bool IsAttack { get => isAttack; }
+
+    private bool isPlayerParrying = false;
+    public bool IsPlayerParrying { get => isPlayerParrying; set => isPlayerParrying = value; }
     private bool isPlayerDamage = false;
+
+    private int attackCount = 0;
 
     private float timer = 0f;
 
     RaycastHit hit;
 
-    private Animator animator;
     private readonly int attack = Animator.StringToHash("attack");
     private readonly int parrying = Animator.StringToHash("parrying");
+    private readonly int attackCnt = Animator.StringToHash("AttackCount");
 
     void Start()
     {
-        animator = GetComponent<Animator>();
-
         timer = attackDelay;
-        ColliderEnabledChanged(0);
     }
 
     void OnEnable()
@@ -43,24 +44,28 @@ public class EnemyAttack : MonoBehaviour
         timer += Time.deltaTime;
 
         Physics.Raycast(transform.position + new Vector3(0, 1.5f, 0), transform.forward, out hit, 1, attackLlayer);
+        ani.SetInteger(attackCnt, attackCount % 2);
 
-        if (hit.collider != null)
-        {
-            if (hit.collider.GetComponent<PlayerParrying>() != null)
-            {
-                animator.SetBool(parrying, hit.collider.GetComponent<PlayerParrying>().CheckParrying());
-                hit.collider.GetComponent<PlayerParrying>().IsAttack = isAttack;
-                hit.collider.GetComponent<PlayerParrying>().Enemy = this.gameObject;
-            }
-            else
-            {
-                animator.SetBool(parrying, false);
-            }
-        }
-        else
-        {
-            animator.SetBool(parrying, false);
-        }
+        //if (hit.collider != null)
+        //{
+        //    if (hit.collider.GetComponent<PlayerParrying>() != null)
+        //    {
+        //        ani.SetBool(parrying, hit.collider.GetComponent<PlayerParrying>().CheckParrying()); // 수정 예정
+        //        //hit.collider.GetComponent<PlayerParrying>().IsAttack = isAttack;
+        //        //hit.collider.GetComponent<PlayerParrying>().Enemy = this.gameObject;
+        //    }
+        //    else
+        //    {
+        //        ani.SetBool(parrying, false);
+        //    }
+        //}
+        //else
+        //{
+        //    ani.SetBool(parrying, false);
+        //}
+
+        // 만약 내가 공격 중인데 플레이어가 패링 중이면 패링 성공
+        //  패링 중 이 아니명 플레이어 데미지 받기
 
         if (isAttack)
         {
@@ -70,7 +75,7 @@ public class EnemyAttack : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Player"))
                 {
-                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
+                    if (ani.GetCurrentAnimatorStateInfo(0).IsName("Attack") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
                     {
                         // 플레이어 데미지 주기
                         if (!isPlayerDamage)
@@ -112,11 +117,10 @@ public class EnemyAttack : MonoBehaviour
     /// </summary>
     private void Attack()
     {
+        attackCount++;
         AttackChanged(1);
-        animator.SetTrigger(attack);
+        ani.SetTrigger(attack);
         /*
-        방법 1. 적 손에 Collider를 달고 공격 시 Collider의 엑티브를 키는 방식
-         그 콜라이더에 닿으면 Damage주기
         방법 2. 공격 중에는 적에 앞 방향으로 레이케스트를 쏜다 -> 애를 쓰자
          그 레이에 닿으면 Damage주기
          */
@@ -145,29 +149,4 @@ public class EnemyAttack : MonoBehaviour
     {
         isPlayerDamage = value == 0 ? false : true;
     }
-
-    /// <summary>
-    /// 공격 콜라이더의 Enabled를 변경시키는 함수
-    /// </summary>
-    /// <param name="value"></param>
-    private void ColliderEnabledChanged(int value)
-    {
-        foreach (Collider collider in hitColloders)
-        {
-            collider.enabled = value == 0 ? false : true;
-        }
-    }
-
-    //private void OnTriggerEnter(Collider collider)
-    //{
-    //    if (collider.CompareTag("Player"))
-    //    {
-    //        if (!isPlayerDamage)
-    //        {
-    //            // 플레이어 데미지 주기
-    //            Debug.Log("Player Damage");
-    //            PlayerDamageChanged(1);
-    //        }
-    //    }
-    //}
 }
