@@ -175,7 +175,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f9276b0edb14bbf4ca1d6f3420d34f22, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -380,6 +380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDamage: 5
   attackObject: {fileID: 1919915136}
+  attackState: 0
 --- !u!114 &406719085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,7 +407,7 @@ Animator:
   m_GameObject: {fileID: 406719079}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
-  m_Controller: {fileID: 9100000, guid: 320d1ebb56fbfed4a8d4c07a153d6034, type: 2}
+  m_Controller: {fileID: 9100000, guid: bb0c665904df8d447a240d46b8cd2768, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -540,7 +541,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f9276b0edb14bbf4ca1d6f3420d34f22, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -641,7 +642,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f9276b0edb14bbf4ca1d6f3420d34f22, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -816,6 +817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDamage: 1
   attackObject: {fileID: 2034621807}
+  attackState: 0
 --- !u!114 &1005429752
 MonoBehaviour:
   m_ObjectHideFlags: 0
