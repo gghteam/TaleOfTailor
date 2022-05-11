@@ -56,44 +56,57 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\02_Scripts\2. Player\PlayerStamina\SteminaManager.cs" />
-    <Compile Include="Assets\02_Scripts\Item\ItemKind\NeedleItem.cs" />
-    <Compile Include="Assets\02_Scripts\2. Player\PlayerAttackCheck.cs" />
     <Compile Include="Assets\02_Scripts\FSMs\FsmCondRandom.cs" />
-    <Compile Include="Assets\02_Scripts\Item\ItemManager.cs" />
     <Compile Include="Assets\02_Scripts\Item\ItemKind\PlayerClothesButton.cs" />
     <Compile Include="Assets\02_Scripts\Item\Item.cs" />
     <Compile Include="Assets\02_Scripts\FSMs\FsmStateEmpty.cs" />
-    <Compile Include="Assets\02_Scripts\1. Manager\UIManager.cs" />
-    <Compile Include="Assets\02_Scripts\Action\MathParabola.cs" />
     <Compile Include="Assets\02_Scripts\FSMs\FsmState.cs" />
     <Compile Include="Assets\02_Scripts\FSMs\FsmCondFalse.cs" />
-    <Compile Include="Assets\02_Scripts\2. Player\PlayerParrying.cs" />
-    <Compile Include="Assets\02_Scripts\Inventory\HP.cs" />
     <Compile Include="Assets\02_Scripts\1. Manager\MonoSingleton.cs" />
-    <Compile Include="Assets\02_Scripts\Action\Jump_Attack.cs" />
     <Compile Include="Assets\02_Scripts\Item\ItemKind\BandageItem.cs" />
     <Compile Include="Assets\MouseSetUp.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\02_Scripts\FSMs\FsmCondPolled.cs" />
+=======
+>>>>>>> main
     <Compile Include="Assets\02_Scripts\Character.cs" />
     <Compile Include="Assets\02_Scripts\FSMs\FsmCore.cs" />
     <Compile Include="Assets\02_Scripts\FSMs\FsmCondition.cs" />
-    <Compile Include="Assets\02_Scripts\Tool\EventManager.cs" />
+    <Compile Include="Assets\Slam\EarthSlam\Crack\CrackControll.cs" />
+    <Compile Include="Assets\Slam\EarthSlam\Character\CharacterController.cs" />
     <Compile Include="Assets\02_Scripts\InputHandler.cs" />
-    <Compile Include="Assets\02_Scripts\Inventory\Inventory.cs" />
     <Compile Include="Assets\02_Scripts\2. Player\PlayerDash.cs" />
     <Compile Include="Assets\02_Scripts\Item\ItemKind\PlayerAnim.cs" />
     <Compile Include="Assets\02_Scripts\3. Enemy\Enemy_hug.cs" />
     <Compile Include="Assets\02_Scripts\2. Player\PlayerMovement.cs" />
-    <Compile Include="Assets\02_Scripts\2. Player\PlayerAttack.cs" />
     <Compile Include="Assets\02_Scripts\AI\Chase.cs" />
     <Compile Include="Assets\02_Scripts\2. Player\PlayerDash2.cs" />
-    <Compile Include="Assets\02_Scripts\CameraHandler.cs" />
     <Compile Include="Assets\02_Scripts\3. Enemy\Enemy.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\02_Scripts\2. Player\Base\PlayerAttackState.cs" />
+=======
+    <Compile Include="Assets\02_Scripts\2. Player\PlayerStamina\SteminaManager.cs" />
+    <Compile Include="Assets\02_Scripts\Item\ItemKind\NeedleItem.cs" />
+    <Compile Include="Assets\Slam\EarthSlam\Crack\Crack.cs" />
+    <Compile Include="Assets\02_Scripts\2. Player\PlayerAttackCheck.cs" />
+    <Compile Include="Assets\02_Scripts\Item\ItemManager.cs" />
+    <Compile Include="Assets\02_Scripts\1. Manager\UIManager.cs" />
+    <Compile Include="Assets\02_Scripts\Action\MathParabola.cs" />
+    <Compile Include="Assets\02_Scripts\2. Player\PlayerParrying.cs" />
+    <Compile Include="Assets\02_Scripts\Inventory\HP.cs" />
+    <Compile Include="Assets\02_Scripts\Action\Jump_Attack.cs" />
+    <Compile Include="Assets\02_Scripts\FSMs\FsmCondPolled.cs" />
+    <Compile Include="Assets\02_Scripts\Tool\EventManager.cs" />
+    <Compile Include="Assets\02_Scripts\Inventory\Inventory.cs" />
+    <Compile Include="Assets\02_Scripts\2. Player\PlayerAttack.cs" />
+    <Compile Include="Assets\Slam\EarthSlam\Rock\DeactivateObj.cs" />
+    <Compile Include="Assets\02_Scripts\CameraHandler.cs" />
+    <Compile Include="Assets\02_Scripts\3. Enemy\EnemyAttack.cs" />
+>>>>>>> main
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\civilian\readme.txt" />
+    <None Include="Assets\Slam\EarthSlam\Crack\DepthMask.shader" />
     <None Include="Assets\Combat scissors\readme.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -670,14 +683,17 @@
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
@@ -685,8 +701,14 @@
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Searcher.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
@@ -697,8 +719,41 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ShaderGraph.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>Library\ScriptAssemblies\Cinemachine.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

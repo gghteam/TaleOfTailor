@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/01_Scenes/kdh.unity
+=======
+- path: Assets/01_Scenes/Stemina.unity
+>>>>>>> main
   isLoaded: 1
   isActive: 1
   isSubScene: 0

@@ -11,9 +11,11 @@ public class SteminaManager : MonoBehaviour
     public static SteminaManager Instance = null;
 
     // 디버깅용. 삭제 예정
-    public Text text = null;
+    //public Text text = null;
+
     public Image intImage = null;
     public Image floatImage = null;
+
 
     public GameObject steminaBar = null;
 
@@ -75,7 +77,8 @@ public class SteminaManager : MonoBehaviour
         SteminaRecovering();
 
         // 디버깅 용. 삭제 예정
-        text.text = string.Format("{0:F2}", stemina);
+        //text.text = string.Format("{0:F2}", stemina);
+
         intImage.fillAmount = (int)stemina / MAX_STEMINA;
         floatImage.fillAmount = (float)stemina / MAX_STEMINA;
 

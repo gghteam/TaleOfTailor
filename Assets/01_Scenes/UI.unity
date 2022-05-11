@@ -1912,6 +1912,7 @@ GameObject:
   - component: {fileID: 1189983292}
   - component: {fileID: 1189983291}
   - component: {fileID: 1189983290}
+  - component: {fileID: 1189983289}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: ENEMY
@@ -1919,6 +1920,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1189983289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189983288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bed9f98af3443c84787f002d48004ea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseSpeed: 2
+  contactDistance: 10
+  player: {fileID: 71561851}
 --- !u!54 &1189983290
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1933,7 +1949,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &1189983291
 BoxCollider:
@@ -2486,7 +2502,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f9276b0edb14bbf4ca1d6f3420d34f22, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2593,8 +2609,8 @@ MonoBehaviour:
   sliderSpeed: 3
   danchuCount: 8
   maxDanchuCount: 8
-  playerHpSlider: {fileID: 2291972227598591223}
-  whiteSlider: {fileID: 1733906654}
+  playerHpSlider: {fileID: 0}
+  whiteSlider: {fileID: 0}
   bossHpSlider: {fileID: 509132162}
   clothesButtonImage:
   - {fileID: 2291972226831009038}
@@ -2659,7 +2675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7
+      value: 0.36
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2692,6 +2708,10 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
       propertyPath: m_Name
       value: player
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
