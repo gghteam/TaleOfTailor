@@ -62,13 +62,11 @@
     <Compile Include="Assets\02_Scripts\FSMs\FsmStateEmpty.cs" />
     <Compile Include="Assets\02_Scripts\FSMs\FsmState.cs" />
     <Compile Include="Assets\02_Scripts\FSMs\FsmCondFalse.cs" />
+    <Compile Include="Assets\02_Scripts\2. Player\Base\PlayerAttackState.cs" />
     <Compile Include="Assets\02_Scripts\1. Manager\MonoSingleton.cs" />
     <Compile Include="Assets\02_Scripts\Item\ItemKind\BandageItem.cs" />
     <Compile Include="Assets\MouseSetUp.cs" />
-<<<<<<< HEAD
     <Compile Include="Assets\02_Scripts\FSMs\FsmCondPolled.cs" />
-=======
->>>>>>> main
     <Compile Include="Assets\02_Scripts\Character.cs" />
     <Compile Include="Assets\02_Scripts\FSMs\FsmCore.cs" />
     <Compile Include="Assets\02_Scripts\FSMs\FsmCondition.cs" />
@@ -82,9 +80,7 @@
     <Compile Include="Assets\02_Scripts\AI\Chase.cs" />
     <Compile Include="Assets\02_Scripts\2. Player\PlayerDash2.cs" />
     <Compile Include="Assets\02_Scripts\3. Enemy\Enemy.cs" />
-<<<<<<< HEAD
     <Compile Include="Assets\02_Scripts\2. Player\Base\PlayerAttackState.cs" />
-=======
     <Compile Include="Assets\02_Scripts\2. Player\PlayerStamina\SteminaManager.cs" />
     <Compile Include="Assets\02_Scripts\Item\ItemKind\NeedleItem.cs" />
     <Compile Include="Assets\Slam\EarthSlam\Crack\Crack.cs" />
@@ -102,7 +98,6 @@
     <Compile Include="Assets\Slam\EarthSlam\Rock\DeactivateObj.cs" />
     <Compile Include="Assets\02_Scripts\CameraHandler.cs" />
     <Compile Include="Assets\02_Scripts\3. Enemy\EnemyAttack.cs" />
->>>>>>> main
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\civilian\readme.txt" />
