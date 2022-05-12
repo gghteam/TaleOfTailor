@@ -80,8 +80,8 @@ public class HP : MonoBehaviour
     // 플레이어가 데미지 입었을 때 피 마이너스
     public void DamageSlider(EventParam eventParam)
     {
-            if (isDead) return;
-        if(eventParam.stringParam=="PLAYER")
+        if (isDead) return;
+        if (eventParam.stringParam == "PLAYER")
         {
 
             playerHP -= eventParam.intParam;
@@ -91,15 +91,15 @@ public class HP : MonoBehaviour
             else isDead = false;
             if (isDead) Dead();
         }
-        else if(eventParam.stringParam=="BOSS")
+        else if (eventParam.stringParam == "BOSS")
         {
-            bossHP-=eventParam.intParam;
-            if(bossHP <= 0)
+            bossHP -= eventParam.intParam;
+            if (bossHP <= 0)
             {
                 bossHpSlider.gameObject.SetActive(false);
             }
         }
-       
+
     }
 
     // HP 게이지 UI Update
@@ -113,16 +113,16 @@ public class HP : MonoBehaviour
         if (isDamage)
         {
             whiteSlider.fillAmount = Mathf.Lerp(whiteSlider.fillAmount, playerHP / maxPlayerHP, Time.deltaTime * sliderSpeed);
-            if (playerHpSlider.fillAmount  >= whiteSlider.fillAmount - 0.01f)
+            if (playerHpSlider.fillAmount >= whiteSlider.fillAmount - 0.01f)
             {
                 isDamage = false;
                 whiteSlider.fillAmount = playerHpSlider.fillAmount;
             }
         }
 
-        }
+    }
 
-        private void SliderHit()
+    private void SliderHit()
     {
         isDamage = true;
 
@@ -160,8 +160,8 @@ public class HP : MonoBehaviour
     {
         int cIndex = 0;
         isHalf = index % 2 == 0 ? false : true;
-        if (index % 2 != 0) cIndex = (index-1)/2 - 1;
-        else  cIndex = index / 2 - 1;
+        if (index % 2 != 0) cIndex = (index - 1) / 2 - 1;
+        else cIndex = index / 2 - 1;
         //전부 끄기
         for (int i = 0; i < 4; i++)
             clothesButtonImage[i].gameObject.SetActive(false);
@@ -182,7 +182,7 @@ public class HP : MonoBehaviour
     void ResetHP()
     {
         whiteSlider.fillAmount = playerHP / maxPlayerHP; // 흰색 슬라이더 다시 채우기
-        bossHpSlider.value = bossHP/maxBossHP;
+        bossHpSlider.value = bossHP / maxBossHP;
         playerHpSlider.fillAmount = Mathf.Lerp(playerHpSlider.fillAmount, 1, Time.deltaTime * sliderSpeed + 2); //서서히 참
         playerHP = maxPlayerHP; // HP도 초기화
         isDead = false;

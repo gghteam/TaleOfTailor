@@ -6,6 +6,8 @@ public class BandageItem : ItemManager
 {
     [SerializeField, Header("붕대 아이템 갯수")]
     int bandageCount;
+    [SerializeField, Header("붕대 아이템의 스테미나 증가량")]
+    int plusStemina = 1;
 
     EventParam eventParam = new EventParam();
 
@@ -34,6 +36,7 @@ public class BandageItem : ItemManager
         }
         eventParam.itemParam = Item.BANDAGE;
         eventParam.intParam = bandageCount;
+        //SteminaManager.Instance.PlusStemina(plusStemina);
         EventManager.TriggerEvent("ITEMTEXT", eventParam);
         BandageUseAnim();
     }

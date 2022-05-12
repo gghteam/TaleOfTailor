@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAttack : Character
 {
     [SerializeField]
-    private float playerDamage;
+    private float playerDamage=70;
     [SerializeField]
     private GameObject attackObject;
 
@@ -25,6 +25,7 @@ public class PlayerAttack : Character
     private void Start()
     {
         EventManager.StartListening("InputAttack", IsInputAttack);
+        EventManager.StartListening("PLUS_ATTACKPOWER",PlusAttackPower);
     }
     private void Update()
     {
@@ -87,5 +88,10 @@ public class PlayerAttack : Character
     bool EndAnimationDone(string animationname,float exittime)
     {
         return ani.GetCurrentAnimatorStateInfo(0).IsName(animationname) && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= exittime;
+    }
+
+    void PlusAttackPower(EventParam ep)
+    {
+        playerDamage += ep.intParam;
     }
 }

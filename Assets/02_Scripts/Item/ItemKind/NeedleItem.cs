@@ -6,6 +6,8 @@ public class NeedleItem : ItemManager
 {
     [SerializeField, Header("바늘 아이템 갯수")]
     int needleCount;
+    [SerializeField, Header("바늘 아이템 공격력 증가량")]
+    int attackPower = 30;
 
     EventParam eventParam = new EventParam();
 
@@ -42,6 +44,8 @@ public class NeedleItem : ItemManager
         eventParam.itemParam = Item.NEEDLE;
         eventParam.intParam = needleCount;
         EventManager.TriggerEvent("ITEMTEXT", eventParam);
+        eventParam.intParam = attackPower;
+        //EventManager.TriggerEvent("PLUS_ATTACKPOWER", eventParam);
         NeedleUseAnim();
     }
 
@@ -50,4 +54,6 @@ public class NeedleItem : ItemManager
         eventParam.itemParam = Item.NEEDLE;
         EventManager.TriggerEvent("ITEMANIMPLAY", eventParam);
     }
+
+
 }

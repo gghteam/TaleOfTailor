@@ -1,50 +1,70 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Chase : MonoBehaviour
+public class Chase : FsmState
 {
     [SerializeField, Header("추격 속도")]
     float chaseSpeed;
-    
+
     [SerializeField, Header("근접 거리")]
     float contactDistance;
 
-    Rigidbody rb;
 
     [SerializeField]
-    GameObject player;
+    Transform target;
 
-    private void Awake()
+    private NavMeshAgent agent;
+    private Vector3 lastKnownLoc;
+
+    void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        agent = GetComponent<NavMeshAgent>();
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
-        //계속 해서 거리 체크
-       FollowTarget();
+        agent.destination = lastKnownLoc = target.position;
     }
 
-    void FollowTarget() 
+    public override void OnStateLeave()
     {
-        float distance = GetDistance();
-
-        // 일정 거리 안에 들어왔나 체크
-        if (distance <= contactDistance)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, chaseSpeed*Time.deltaTime);
-        }
-        else
-        {
-            rb.velocity = Vector3.zero;
-        }
+        agent.ResetPath();
     }
 
-    // 거리 구하기
-    float GetDistance()
+    public Vector3 GetLastKnownPlayerLocation()
     {
-        return Vector3.Distance(player.transform.position, transform.position);
+        return lastKnownLoc;
     }
+
+    //NavMeshAgent agent;
+
+    //private void Start()
+    //{
+    //    agent = GetComponent<NavMeshAgent>();
+    //}
+
+    //private void Update()
+    //{
+    //    //계속 해서 거리 체크
+    //    FollowTarget();
+    //}
+
+    //void FollowTarget()
+    //{
+    //    float distance = agent.velocity.sqrMagnitude;
+
+    //    // 일정 거리 안에 들어왔나 체크
+    //    if (distance > contactDistance && distance>0.1f)
+    //    {
+    //        agent.velocity = Vector3.zero;
+    //    }
+    //    else
+    //    {
+    //        agent.SetDestination(target.position);
+    //    }
+    //}
 
 }

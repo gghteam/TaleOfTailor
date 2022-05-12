@@ -378,8 +378,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b84286d6fbe92498101ac0a43f00b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDamage: 5
+  playerDamage: 70
   attackObject: {fileID: 1919915136}
+  attackState: 0
 --- !u!114 &406719085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -816,6 +817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDamage: 1
   attackObject: {fileID: 2034621807}
+  attackState: 0
 --- !u!114 &1005429752
 MonoBehaviour:
   m_ObjectHideFlags: 0
