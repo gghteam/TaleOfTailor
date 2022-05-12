@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098ec145f8e58684e949b135db28e417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothTime: 1
+  smoothTime: 7
   dashtime: 1
 --- !u!114 &406719084
 MonoBehaviour:
@@ -827,7 +827,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseSpeed: 1.5
   contactDistance: 10
-  player: {fileID: 406719079}
+  target: {fileID: 0}
 --- !u!1 &1005429745
 GameObject:
   m_ObjectHideFlags: 0

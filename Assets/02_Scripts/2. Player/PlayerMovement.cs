@@ -48,42 +48,45 @@ public class PlayerMovement : Character
         moveDirection += cameraObject.right * inputX;
         //vector를 정규화함(길이를 1로 만들어 방향만 남김)
         moveDirection.Normalize();
-        if (isDash)
+        if (!ani.GetBool("IsAttack"))
         {
-            if (!isFirst)
+            if (isDash)
             {
-                dashDirection = new Vector3(inputX, moveDirection.y, inputZ);
-                isFirst = true;
-            }
+                if (!isFirst)
+                {
+                    dashDirection = new Vector3(inputX, moveDirection.y, inputZ);
+                    isFirst = true;
+                }
 
-            moveDirection = dashDirection * DashSpeed;
-            ani.SetBool("IsMove", false);
-            ani.SetBool("IsRun", false);
-            Debug.Log(isDash);
-        }
-        else if (moveDirection.sqrMagnitude > 0)
-        {
-            transform.rotation = Quaternion.Euler(transform.rotation.x, cameraObject.eulerAngles.y, transform.rotation.z);
-            moveDirection.y = 0;
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                //방향에 Run_Speed를 곱함
-                moveDirection *= runMovementSpeed;
+                moveDirection = dashDirection * DashSpeed;
                 ani.SetBool("IsMove", false);
-                ani.SetBool("IsRun", true);
+                ani.SetBool("IsRun", false);
+                Debug.Log(isDash);
+            }
+            else if (moveDirection.sqrMagnitude > 0)
+            {
+                transform.rotation = Quaternion.Euler(transform.rotation.x, cameraObject.eulerAngles.y, transform.rotation.z);
+                moveDirection.y = 0;
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    //방향에 Run_Speed를 곱함
+                    moveDirection *= runMovementSpeed;
+                    ani.SetBool("IsMove", false);
+                    ani.SetBool("IsRun", true);
+                }
+                else
+                {
+                    //방향에 Speed를 곱함
+                    moveDirection *= movementSpeed;
+                    ani.SetBool("IsMove", true);
+                    ani.SetBool("IsRun", false);
+                }
             }
             else
             {
-                //방향에 Speed를 곱함
-                moveDirection *= movementSpeed;
-                ani.SetBool("IsMove", true);
+                ani.SetBool("IsMove", false);
                 ani.SetBool("IsRun", false);
             }
-        }
-        else
-        {
-            ani.SetBool("IsMove", false);
-            ani.SetBool("IsRun", false);
         }
 
         //방향에 Speed를 곱함
