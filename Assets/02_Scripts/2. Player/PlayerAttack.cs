@@ -31,7 +31,6 @@ public class PlayerAttack : Character
     {
         if (eventParam.boolParam && !attacking)
         {
-            Debug.Log("1");
             attacking = true;
             eventParam.boolParam = false;
             ani.SetBool("IsAttack", attacking);
@@ -85,7 +84,6 @@ public class PlayerAttack : Character
 
         if (ani.GetCurrentAnimatorStateInfo(0).IsName("Idle") && attacking)
         {
-            Debug.Log("?");
             attacking = false;
             ani.SetBool("IsAttack", attacking);
         }
