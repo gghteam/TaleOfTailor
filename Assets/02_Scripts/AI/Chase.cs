@@ -32,7 +32,7 @@ public class Chase : FsmState
         agent.ResetPath();
     }
 
-    public Vector3 GetLastKnownPlayerLocation()
+    protected Vector3 GetLastKnownPlayerLocation()
     {
         return lastKnownLoc;
     }

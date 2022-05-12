@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(hp);
+
     }
     private void Damaged(EventParam eventParam)
     {
