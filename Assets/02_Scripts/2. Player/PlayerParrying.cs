@@ -70,7 +70,6 @@ public class PlayerParrying : Character
         //Physics.Raycast(transform.position, transform.forward, out hit, 1, parryingLayer);
 
         hitColl = Physics.OverlapCapsule(transform.position, transform.position + new Vector3(0, 2.2f, 0), 1, parryingLayer);
-
         ani.SetBool(parrying, IsParrying);
 
         //if (Input.GetKeyDown(KeyCode.Space))
@@ -104,45 +103,59 @@ public class PlayerParrying : Character
     {
         // TODO : Parring 행동하기
         Debug.Log("패링");
-        if (CheckParrying())
-        {
-            SuccessParyring();
-        }
-        else
+
+        if(hitColl == null)
         {
             FailedParrying();
         }
-    }
-
-    /// <summary>
-    /// 패링이 성공했는지 체크하는 함수
-    /// </summary>
-    /// <returns></returns>
-    public bool CheckParrying()
-    {
-        if (hit.collider == null) return false;
         else
         {
-            //Vector3 targetDir = (hit.collider.transform.position - transform.position);
-            //float dot = Vector3.Dot(transform.forward, targetDir);
-
-            //float theta = Mathf.Acos(dot) * Mathf.Rad2Deg;
-
-            //if (theta <= 60)// 내 시야각 안에 있을 때
-            //{
-            //    bool isAttack = hit.collider.GetComponent<EnemyAttack>().IsAttack;
-
-            //    // 패링 성공시 true 반환, 실패시 false 반환
-            //    if (isAttack && isParrying) // isAttack을 떄리는 적에게서 가져오기
-            //        return true;
-            //    else
-            //        return false;
-            //}
-            //else
-            //    return false;
+            
+            ReturnParryingData();
         }
+
+        //if (CheckParrying())
+        //{
+        //    SuccessParyring();
+        //}
+        //else
+        //{
+        //    FailedParrying();
+        //}
     }
 
+    ///// <summary>
+    ///// 패링이 성공했는지 체크하는 함수
+    ///// </summary>
+    ///// <returns></returns>
+    //public bool CheckParrying()
+    //{
+    //    if (hit.collider == null) return false;
+    //    else
+    //    {
+    //        //Vector3 targetDir = (hit.collider.transform.position - transform.position);
+    //        //float dot = Vector3.Dot(transform.forward, targetDir);
+
+    //        //float theta = Mathf.Acos(dot) * Mathf.Rad2Deg;
+
+    //        //if (theta <= 60)// 내 시야각 안에 있을 때
+    //        //{
+    //        //    bool isAttack = hit.collider.GetComponent<EnemyAttack>().IsAttack;
+
+    //        //    // 패링 성공시 true 반환, 실패시 false 반환
+    //        //    if (isAttack && isParrying) // isAttack을 떄리는 적에게서 가져오기
+    //        //        return true;
+    //        //    else
+    //        //        return false;
+    //        //}
+    //        //else
+    //        //    return false;
+    //    }
+    //}
+
+    /// <summary>
+    /// 가져온 콜라이어 각각에게 자신의 패링 정보를 넘겨주는 함수
+    /// </summary>
     private void ReturnParryingData()
     {
         foreach(var item in hitColl)
@@ -166,20 +179,16 @@ public class PlayerParrying : Character
     /// <summary>
     /// 패링 실패시에 행동 함수
     /// </summary>
-    private void FailedParrying()
+    public void FailedParrying()
     {
-        bool isAttack = hit.collider.GetComponent<EnemyAttack>().IsAttack;
-
         // TODO : Failed Parring
         Debug.Log("패링 실패!");
-        if(isAttack)
-            Debug.Log("데미지를 받았습니다.");
     }
 
     /// <summary>
     /// 패링 성공시에 행동 함수
     /// </summary>
-    private void SuccessParyring()
+    public void SuccessParyring()
     {
         // TODO : Success Parring
         Debug.Log("패링 성공!");

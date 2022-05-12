@@ -44,7 +44,7 @@ public class EnemyAttack : Character
         timer += Time.deltaTime;
 
         Physics.Raycast(transform.position + new Vector3(0, 1.5f, 0), transform.forward, out hit, 1, attackLlayer);
-        ani.SetInteger(attackCnt, attackCount % 2);
+        ani.SetFloat(attackCnt, attackCount % 2);
 
         //if (hit.collider != null)
         //{
@@ -77,11 +77,21 @@ public class EnemyAttack : Character
                 {
                     if (ani.GetCurrentAnimatorStateInfo(0).IsName("Attack") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
                     {
-                        // 플레이어 데미지 주기
-                        if (!isPlayerDamage)
+                        if (isPlayerParrying)
                         {
-                            Debug.Log("Player Damage");
-                            isPlayerDamage = true;
+                            Debug.Log("패링 성공");
+                            hit.collider.GetComponent<PlayerParrying>().SuccessParyring();
+                            ParryingAction();
+                        }
+                        else
+                        {
+                            // 플레이어 데미지 주기
+                            if (!isPlayerDamage)
+                            {
+                                hit.collider.GetComponent<PlayerParrying>().FailedParrying();
+                                Debug.Log("Player Damage");
+                                isPlayerDamage = true;
+                            }
                         }
                     }
                 }
