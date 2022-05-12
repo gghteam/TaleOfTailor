@@ -15,6 +15,9 @@ public class PlayerParrying : Character
     [SerializeField, Header("패링 딜레이")]
     private float parryingDelay = .5f;
 
+    [SerializeField, Tooltip("시야각 범위")]
+    private float viewAngle = 60f;
+
     private int parryingLayer = 1 << 7;
 
     private float timer = 0f;
@@ -25,33 +28,6 @@ public class PlayerParrying : Character
     private Collider[] hitColl;
 
     // 디버그용 코드 삭제 예정...? // 적이 여러명 있을 경우를 생각안함. 현재는 한명만 있을 경우로 가장하여 실행되는 거임.
-    [System.Obsolete]
-    private bool isAttack = false; // 플레이어 내에 변수로 하지 말고 적 오브젝트의 isAttack 변수를 가져오기
-    [System.Obsolete]
-    public bool IsAttack
-    {
-        get => isAttack;
-        set => isAttack = value;
-    }
-
-    [System.Obsolete]
-    private GameObject enemy = null;
-    [System.Obsolete]
-    public GameObject Enemy
-    {
-        get => enemy;
-        set
-        {
-            if (!IsAttack)
-            {
-                enemy = null;
-            }
-            else
-            {
-                enemy = value;
-            }
-        }
-    }
 
     // 상대 공격 콜라이더에 닿았을 떄
     // 상대가 공격 중일때
@@ -104,16 +80,17 @@ public class PlayerParrying : Character
         // TODO : Parring 행동하기
         Debug.Log("패링");
 
-        if(hitColl == null)
+        // Action 만들기 성공, 실패
+        // Enemy쪽에서 Action을 실행시키기
+
+        if (hitColl == null)
         {
             FailedParrying();
         }
         else
         {
-            
             ReturnParryingData();
         }
-
         //if (CheckParrying())
         //{
         //    SuccessParyring();
@@ -165,13 +142,14 @@ public class PlayerParrying : Character
 
             float theta = Mathf.Acos(dot) * Mathf.Rad2Deg;
 
-            if (theta <= 60)
+            if (theta <= viewAngle)
             {
-                item.GetComponent<EnemyAttack>().IsPlayerParrying = true;
+                //item.GetComponent<EnemyAttack>().IsPlayerParrying = true;
+                item.GetComponent<EnemyAttack>().IsParrying(IsParrying);
             }
             else
             {
-                item.GetComponent<EnemyAttack>().IsPlayerParrying = false;
+                //item.GetComponent<EnemyAttack>().IsPlayerParrying = false;
             }
         }
     }
@@ -188,7 +166,7 @@ public class PlayerParrying : Character
     /// <summary>
     /// 패링 성공시에 행동 함수
     /// </summary>
-    public void SuccessParyring()
+    public void SuccessParrying()
     {
         // TODO : Success Parring
         Debug.Log("패링 성공!");

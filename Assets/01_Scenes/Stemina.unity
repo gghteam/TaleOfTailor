@@ -306,8 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e195febcd50e24fb566c69312314ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 1
-  attackDelay: 0.5
+  enemyData: {fileID: 11400000, guid: 1320243fc61d50948997fcc6dc4bd54a, type: 2}
 --- !u!54 &338289250
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1694,6 +1693,7 @@ MonoBehaviour:
   parringSuccessStemina: 2
   parryingKeyCode: 115
   parryingDelay: 0.5
+  viewAngle: 60
 --- !u!1 &1798293110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,13 +1794,17 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 320d1ebb56fbfed4a8d4c07a153d6034, type: 2}
+    - target: {fileID: -6057140222963153312, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.11
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1808,7 +1812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.42
+      value: 2.53
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1907,6 +1911,7 @@ MonoBehaviour:
   parringSuccessStemina: 2
   parryingKeyCode: 32
   parryingDelay: 0.5
+  viewAngle: 60
 --- !u!114 &1816004497
 MonoBehaviour:
   m_ObjectHideFlags: 0
