@@ -5,10 +5,15 @@ using UnityEngine.AI;
 
 public class Chase : FsmState
 {
-    [SerializeField, Header("Ãß°Ý ¼Óµµ")]
+    [SerializeField, Header("ï¿½ß°ï¿½ ï¿½Óµï¿½")]
     float chaseSpeed;
+<<<<<<< HEAD
 
     [SerializeField, Header("±ÙÁ¢ °Å¸®")]
+=======
+    
+    [SerializeField, Header("ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½")]
+>>>>>>> origin/kdh
     float contactDistance;
 
 
@@ -26,15 +31,38 @@ public class Chase : FsmState
     // Update is called once per frame
     void Update()
     {
+<<<<<<< HEAD
         agent.destination = lastKnownLoc = target.position;
+=======
+        //ï¿½ï¿½ï¿½ ï¿½Ø¼ï¿½ ï¿½Å¸ï¿½ Ã¼Å©
+       FollowTarget();
+>>>>>>> origin/kdh
     }
 
     public override void OnStateLeave()
     {
+<<<<<<< HEAD
         agent.ResetPath();
     }
 
     public Vector3 GetLastKnownPlayerLocation()
+=======
+        float distance = GetDistance();
+
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½Ô³ï¿½ Ã¼Å©
+        if (distance <= contactDistance)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, chaseSpeed*Time.deltaTime);
+        }
+        else
+        {
+            rb.velocity = Vector3.zero;
+        }
+    }
+
+    // ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
+    protected virtual float GetDistance()
+>>>>>>> origin/kdh
     {
         return lastKnownLoc;
     }

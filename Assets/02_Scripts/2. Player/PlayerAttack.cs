@@ -40,7 +40,7 @@ public class PlayerAttack : Character
         {
             Debug.Log("2");
             attack = true;
-            switch(attackState)
+            switch (attackState)
             {
                 case PlayerAttackState.Attack1:
                     attackState = PlayerAttackState.Attack2;
@@ -53,7 +53,11 @@ public class PlayerAttack : Character
             }
             eventParam.boolParam = false;
         }
-        AniEnd();
+        else
+        {
+            AniEnd();
+            AniStart();
+        }
     }
 
     private void IsInputAttack(EventParam ep)
@@ -63,21 +67,23 @@ public class PlayerAttack : Character
 
     private void AniEnd()
     {
-        if(attack)
+        if (attack)
         {
             if (EndAnimationDone("Attack1", 0.8897059f))
             {
                 attack = false;
                 ani.SetBool("NextAttack", attack);
+                ani.SetBool("IsAttack", true);
             }
             else if (EndAnimationDone("Attack2", 0.8897059f))
             {
                 attack = false;
                 ani.SetBool("NextAttack", attack);
+                ani.SetBool("IsAttack", true);
             }
         }
 
-        if(ani.GetCurrentAnimatorStateInfo(0).IsName("Idle") && attacking)
+        if (ani.GetCurrentAnimatorStateInfo(0).IsName("Idle") && attacking)
         {
             Debug.Log("?");
             attacking = false;
@@ -85,13 +91,28 @@ public class PlayerAttack : Character
         }
     }
 
-    bool EndAnimationDone(string animationname,float exittime)
+    private void AniStart()
+    {
+        if(StartAnimationDone("Attack1", 0.8897059f))
+        {
+            attacking = true;
+            ani.SetBool("IsAttack", attacking);
+        }
+    }
+
+    bool EndAnimationDone(string animationname, float exittime)
     {
         return ani.GetCurrentAnimatorStateInfo(0).IsName(animationname) && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= exittime;
     }
+<<<<<<< HEAD
 
     void PlusAttackPower(EventParam ep)
     {
         playerDamage += ep.intParam;
+=======
+    bool StartAnimationDone(string animationname, float exittime)
+    {
+        return ani.GetCurrentAnimatorStateInfo(0).IsName(animationname) && ani.GetCurrentAnimatorStateInfo(0).normalizedTime > 0 && exittime > ani.GetCurrentAnimatorStateInfo(0).normalizedTime;
+>>>>>>> origin/kdh
     }
 }
