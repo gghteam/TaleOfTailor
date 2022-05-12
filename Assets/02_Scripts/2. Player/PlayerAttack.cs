@@ -104,15 +104,13 @@ public class PlayerAttack : Character
     {
         return ani.GetCurrentAnimatorStateInfo(0).IsName(animationname) && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= exittime;
     }
-<<<<<<< HEAD
 
     void PlusAttackPower(EventParam ep)
     {
         playerDamage += ep.intParam;
-=======
+    }
     bool StartAnimationDone(string animationname, float exittime)
     {
         return ani.GetCurrentAnimatorStateInfo(0).IsName(animationname) && ani.GetCurrentAnimatorStateInfo(0).normalizedTime > 0 && exittime > ani.GetCurrentAnimatorStateInfo(0).normalizedTime;
->>>>>>> origin/kdh
     }
 }

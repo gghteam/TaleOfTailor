@@ -1,9 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
 - path: Assets/01_Scenes/UI.unity
-=======
-- path: Assets/01_Scenes/kdh.unity
->>>>>>> origin/kdh
   isLoaded: 1
   isActive: 1
   isSubScene: 0
