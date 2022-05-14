@@ -4,6 +4,11 @@ using UnityEngine;
 
 public abstract class ItemManager : MonoBehaviour
 {
+    [SerializeField, Header("아이템")]
+    protected GameObject item;
+    [SerializeField, Header("사용 시간")]
+    protected int useTime;
+
     // 아이템 사용 시
     protected abstract void UseItem();
 

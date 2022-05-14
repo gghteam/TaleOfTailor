@@ -55,7 +55,7 @@ public class PlayerClothesButton : ItemManager
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("ENEMY"))
+        if (collision.collider.CompareTag("BOSS"))
         {
             eventParam.intParam = 200; // 원하는 정도의 데미지 받기
             eventParam.stringParam = "PLAYER";
@@ -102,7 +102,7 @@ public class PlayerClothesButton : ItemManager
         }
         else // 단추가 반쪼가리가 있다
         {
-            danchuIndex = (danchuIndex - 1) / 2 - 1; 
+            danchuIndex = (danchuIndex - 1) / 2 - 1;
         }
         clothesButton[danchuIndex].transform.localPosition = new Vector3(buttonPos.x * buttonDistance, 0.5f, buttonPos.z * buttonDistance);
         clothesButton[danchuIndex].gameObject.SetActive(true);
@@ -122,8 +122,9 @@ public class PlayerClothesButton : ItemManager
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("BOSS"))
+        if (other.CompareTag("CLOTHES_BUTTON"))
         {
+            other.gameObject.SetActive(false);
             GetItem();
         }
     }

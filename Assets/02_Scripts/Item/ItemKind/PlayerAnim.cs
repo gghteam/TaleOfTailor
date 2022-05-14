@@ -4,29 +4,67 @@ using UnityEngine;
 /// <summary>
 /// 플레이어 스크립트 대신 만듦
 /// </summary>
-public class PlayerAnim : MonoBehaviour
+public class PlayerAnim : Character
 {
-   private Animator playerAnimator;
-
     EventParam eventParam = new EventParam();
-
+    private void Awake()
+    {
+        ani = GetComponent<Animator>();
+    }
     private void Start()
     {
-        EventManager.StartListening("ITEMANIMPLAY", ItemAnimPlay);
+        EventManager.StartListening("ITEMUSEANIM", ItemUseAnim);
+        EventManager.StartListening("ITEMSTOPANIM", ItemStopAnim);
     }
     private void OnDestroy()
     {
-        EventManager.StopListening("ITEMANIMPLAY", ItemAnimPlay);
-    }
-    private void Awake()
-    {
-        playerAnimator = GetComponent<Animator>();
+        EventManager.StopListening("ITEMSTOPANIM", ItemUseAnim);
+        EventManager.StopListening("ITEMUSEANIM", ItemStopAnim);
     }
 
     // 일단 HoldItem 하나로 대체
-    void ItemAnimPlay(EventParam eventParam)
+    void ItemUseAnim(EventParam eventParam)
     {
-        playerAnimator.Play("HoldItem");
+        switch (eventParam.itemParam)
+        {
+            case Item.NEEDLE:
+                {
+                    ani.SetBool("IsNeedleUse", true);
+                }
+                break;
+            case Item.BANDAGE:
+                {
+                    ani.SetBool("IsBandageUse", true);
+                }
+                break;
+            case Item.CLOTHES_BUTTON:
+                {
+                    ani.SetBool("IsClothesButtonUse", true);
+                }
+                break;
+        }
+    }
+
+    void ItemStopAnim(EventParam eventParam)
+    {
+        switch (eventParam.itemParam)
+        {
+            case Item.NEEDLE:
+                {
+                    ani.SetBool("IsNeedleUse", false);
+                }
+                break;
+            case Item.BANDAGE:
+                {
+                    ani.SetBool("IsBandageUse", false);
+                }
+                break;
+            case Item.CLOTHES_BUTTON:
+                {
+                    ani.SetBool("IsClothesButtonUse", false);
+                }
+                break;
+        }
     }
 
 

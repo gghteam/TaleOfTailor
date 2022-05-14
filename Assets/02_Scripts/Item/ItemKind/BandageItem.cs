@@ -49,8 +49,15 @@ public class BandageItem : ItemManager
     }
     void BandageUseAnim()
     {
+        item.SetActive(true);
         eventParam.itemParam = Item.BANDAGE;
         EventManager.TriggerEvent("ITEMANIMPLAY", eventParam);
+        Invoke("BandageStop", useTime);
     }
-
+    void BandageStop()
+    {
+        eventParam.itemParam = Item.BANDAGE;
+        EventManager.TriggerEvent("ITEMSTOPANIM", eventParam);
+        item.SetActive(false);
+    }
 }
