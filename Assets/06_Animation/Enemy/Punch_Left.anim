@@ -31354,14 +31354,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 1.4666667
-    functionName: AttackChanged
+    functionName: AttackChange
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.4666667
-    functionName: PlayerDamageChanged
+    functionName: PlayerDamageChange
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
