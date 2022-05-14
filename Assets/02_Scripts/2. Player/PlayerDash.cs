@@ -3,106 +3,94 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PlayerDash : Character
 {
-    [Header("´ë½¬ ½ºÇÇµå")]
-    [SerializeField]
-    private float smoothTime = 0.2f;
+	[Header("ëŒ€ì‰¬ ìŠ¤í”¼ë“œ")]
+	[SerializeField]
+	private float smoothTime = 0.2f;
 
-    [Header("´ë½¬ ¿ÀºêÁ§Æ® °Å¸®")]
-    [SerializeField]
-    private float DashObjectDistance;
+	[Header("ëŒ€ì‰¬ ê±°ë¦¬")]
+	[SerializeField]
+	private float DashObjectDistance;
 
-    [Header("´ë½¬ ¿ÀºêÁ§Æ®")]
-    [SerializeField]
-    private GameObject DashObjet;
+	[Header("ëŒ€ì‰¬ ì˜¤ë¸Œì íŠ¸")]
+	[SerializeField]
+	private GameObject DashObjet;
 
-    private Vector3 input;
-    //private Vector3 lastMoveSpd;
-    private bool firstbool = false;
-    private bool dashbool = false;
-    private bool stopbool = false;
-    private Vector3 minusvec;
-    private EventParam eventParam;
+	[SerializeField]
+	LayerMask layer;
 
-    private void Start()
-    {
-        EventManager.StartListening("INPUT", getInput);
-    }
+	private Vector3 dashVec = Vector3.zero;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && dashbool == false)
-        {
-            dashbool = true;
-            firstbool = true;
-            eventParam.boolParam = true;
-            EventManager.TriggerEvent("ISDASH", eventParam);
-        }
+	private Vector3 input;
+	private bool firstbool = false;
+	private bool dashbool = false;
+	private EventParam eventParam;
 
-        if (dashbool)
-        {
-            Dash();
-        }
-    }
-    private void Dash()
-    {
-        if (firstbool)
-        {
-            firstbool = false;
-            DashObjet.transform.position = new Vector3(input.x * DashObjectDistance + transform.position.x, 0, input.y * DashObjectDistance + transform.position.z);
-        }
+	private void Start()
+	{
+		EventManager.StartListening("INPUT", getInput);
+	}
 
-        //Vector3 smoothPosition = Vector3.SmoothDamp(
-        //    transform.position,
-        //    DashObjet.transform.position,
-        //    ref lastMoveSpd,
-        //    smoothTime
-        //    );
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Space) && dashbool == false)
+		{
+			dashbool = true;
+			firstbool = true;
+			eventParam.boolParam = true;
+			EventManager.TriggerEvent("ISDASH", eventParam);
+			ani.SetBool("IsDash", dashbool);
+		}
 
-        Vector3 smoothPosition = Vector3.Lerp(transform.position, DashObjet.transform.position, smoothTime * Time.deltaTime);
+		if (dashbool)
+		{
+			Dash();
+		}
 
-        Vector3 dirction = transform.position - DashObjet.transform.position;
+		Debug.DrawLine(transform.position, dashVec);
+	}
+	private void Dash()
+	{
+		if (firstbool)
+		{
+			RaycastHit ray;
+			dashVec = new Vector3(input.x * DashObjectDistance + transform.position.x, transform.position.y, input.y * DashObjectDistance + transform.position.z);
+			if (Physics.Raycast(transform.position, dashVec, out ray, DashObjectDistance,layer))
+			{
+				Debug.Log(ray.point);
+				DashObjet.transform.position = ray.point;
+				float vec = (transform.position - ray.point).magnitude;
+				dashVec = new Vector3(input.x * vec + transform.position.x, transform.position.y, input.y * vec + transform.position.z);
+			}
+			firstbool = false;
+		}
 
-        if (Mathf.RoundToInt(dirction.magnitude) > 0 && !stopbool)
-        {
-            transform.position = smoothPosition;
-        }
-        else if (stopbool)
-        {
-            dashbool = false;
-            eventParam.boolParam = false;
-            EventManager.TriggerEvent("ISDASH", eventParam);
-            stopbool = false;
-            return;
-        }
-        else
-        {
-            dashbool = false;
-            eventParam.boolParam = false;
-            EventManager.TriggerEvent("ISDASH", eventParam);
-            return;
-        }
-    }
+		//Vector3 smoothPosition = Vector3.SmoothDamp(
+		//    transform.position,
+		//    DashObjet.transform.position,
+		//    ref lastMoveSpd,
+		//    smoothTime
+		//    );
 
-    private void getInput(EventParam eventParam)
-    {
-        input = eventParam.vectorParam;
-    }
+		Vector3 smoothPosition = Vector3.Lerp(transform.position, dashVec, smoothTime * Time.deltaTime);
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        minusvec = Mathf.Abs(transform.position.x) > Mathf.Abs(transform.position.z) ? new Vector3(1, 0, 0) : new Vector3(0, 0, 1);
-    }
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.collider.tag != "Floor")
-        {
-            stopbool = true;
-            transform.position -= minusvec;
-        }
-    }
+		Vector3 dirction = transform.position - dashVec;
 
-    private void OnCollisionExit(Collision collision)
-    {
-        stopbool = false;
-    }
+		if (Mathf.RoundToInt(dirction.magnitude) > 0)
+		{
+			transform.position = smoothPosition;
+		}
+		else
+		{
+			dashbool = false;
+			firstbool = true;
+			eventParam.boolParam = false;
+			EventManager.TriggerEvent("ISDASH", eventParam);
+			ani.SetBool("IsDash", dashbool);
+		}
+	}
+
+	private void getInput(EventParam eventParam)
+	{
+		input = eventParam.vectorParam;
+	}
 }

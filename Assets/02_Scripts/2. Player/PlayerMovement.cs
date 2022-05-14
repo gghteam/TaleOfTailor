@@ -42,6 +42,9 @@ public class PlayerMovement : Character
 
     public void Update()
     {
+        if (isDash)
+            return;
+
         //캐릭터 앞(inputZ = 1) 또는 뒤(inputZ = -1)를 vector에 저장
         moveDirection = cameraObject.forward * inputZ;
         //캐릭터 오른쪽(inputZ = 1) 또는 왼쪽(inputZ = -1)를 vector에 더함
@@ -50,20 +53,7 @@ public class PlayerMovement : Character
         moveDirection.Normalize();
         if (!ani.GetBool("IsAttack"))
         {
-            if (isDash)
-            {
-                if (!isFirst)
-                {
-                    dashDirection = new Vector3(inputX, moveDirection.y, inputZ);
-                    isFirst = true;
-                }
-
-                moveDirection = dashDirection * DashSpeed;
-                ani.SetBool("IsMove", false);
-                ani.SetBool("IsRun", false);
-                Debug.Log(isDash);
-            }
-            else if (moveDirection.sqrMagnitude > 0)
+            if (moveDirection.sqrMagnitude > 0)
             {
                 transform.rotation = Quaternion.Euler(transform.rotation.x, cameraObject.eulerAngles.y, transform.rotation.z);
                 moveDirection.y = 0;
@@ -92,7 +82,6 @@ public class PlayerMovement : Character
         //방향에 Speed를 곱함
         //moveDirection *= movementSpeed;
 
-        ani.SetBool("IsDash", isDash);
         //normalVector의 법선 평면으로부터 플레이어가 움직이려는 방향벡터로 투영
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
         //이동
@@ -147,8 +136,8 @@ public class PlayerMovement : Character
 
     private void IsDash(EventParam eventParam)
     {
-        isFirst = eventParam.boolParam2;
         isDash = eventParam.boolParam;
-        DashSpeed = eventParam.intParam;
+        //isFirst = eventParam.boolParam2;
+        //DashSpeed = eventParam.intParam;
     }
 }
