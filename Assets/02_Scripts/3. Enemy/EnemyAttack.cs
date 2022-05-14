@@ -117,48 +117,28 @@ public class EnemyAttack : Character
             {
                 if (hit.collider.CompareTag("Player"))
                 {
-                    //if (ani.GetCurrentAnimatorStateInfo(0).IsName("Attack Blend Tree") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
-                    //{
-                    //    Debug.Log("공격!");
-                    //    if (IsPlayerParrying)
-                    //    {
-                    //        Debug.Log("공격 실패");
-                    //    }
-                    //    else
-                    //    {
-                    //        Debug.Log("공격 성공");
-                    //    }
-                    //}
-                    //if (IsPlayerParrying)
-                    //{
-                    //    Debug.Log("공격 실패");
-                    //}
-                    //else
-                    //{
-                    //    Debug.Log("공격 성공");
-                    //}
-
                     // 애니메이션이 일정 시간 재생되었을 때
                     //  isParryingSuccess가 true면 패링 당해버렸!
                     //      아니면 데미지 져버렸!
 
-                    if(ani.GetCurrentAnimatorStateInfo(0).IsName("Attack Blend Tree") &&
-                        ani.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f &&
-                        ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
-                    if (!isPlayerDamage)
-                    {
-                        if (isParryingSuccess)
-                        {
-                            hit.collider.GetComponent<PlayerParrying>().SuccessParrying();
-                            ParryingAction();
-                        }
-                        else
-                        {
-                            hit.collider.GetComponent<PlayerParrying>().FailedParrying();
-                            Debug.Log("플레이어 대미지 주기");
-                            isPlayerDamage = true;
-                        }
-                    }
+                    //if(ani.GetCurrentAnimatorStateInfo(0).IsName("Attack Blend Tree") &&
+                    //    ani.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f &&
+                    //    ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
+                    //if (!isPlayerDamage)
+                    //{
+                    //    if (isParryingSuccess)
+                    //    {
+                    //        hit.collider.GetComponent<PlayerParrying>().SuccessParrying();
+                    //        ParryingAction();
+                    //    }
+                    //    else
+                    //    {
+                    //        hit.collider.GetComponent<PlayerParrying>().FailedParrying();
+                    //        Debug.Log("플레이어 대미지 주기");
+                    //        isPlayerDamage = true;
+                    //    }
+                    //}
+                    StartCoroutine(AttackCoroutine());
                 }
             }
             else
@@ -168,6 +148,42 @@ public class EnemyAttack : Character
         }
     }
 
+    /// <summary>
+    /// 공격 코루틴
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator AttackCoroutine()
+    {
+        yield return new WaitForSeconds(.5f);
+        if (!isPlayerDamage)
+        {
+            PlayerParrying player = hit.collider.GetComponent<PlayerParrying>();
+            bool isParrying = player.IsParrying;
+
+            if (isParrying)
+            {
+                if (player.IsInViewangle(this.transform))
+                {
+                    player.SuccessParrying();
+                    ParryingAction();
+                }
+                else
+                {
+                    player.FailedParrying();
+                    Debug.Log("플레이어 대미지 주기");
+                    isPlayerDamage = true;
+                }
+            }
+            else
+            {
+                player.FailedParrying();
+                Debug.Log("플레이어 대미지 주기");
+                isPlayerDamage = true;
+            }
+        }
+    }
+
+    [System.Obsolete]
     public void IsParrying(bool isParrying)
     {
         if(isParrying && isAttack)

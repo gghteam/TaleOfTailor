@@ -45,7 +45,7 @@ public class PlayerParrying : Character
 
         //Physics.Raycast(transform.position, transform.forward, out hit, 1, parryingLayer);
 
-        hitColl = Physics.OverlapCapsule(transform.position, transform.position + new Vector3(0, 2.2f, 0), 1, parryingLayer);
+        //hitColl = Physics.OverlapCapsule(transform.position, transform.position + new Vector3(0, 2.2f, 0), 1, parryingLayer);
         ani.SetBool(parrying, IsParrying);
 
         //if (Input.GetKeyDown(KeyCode.Space))
@@ -59,7 +59,6 @@ public class PlayerParrying : Character
             {
                 if (SteminaManager.Instance.CheckStemina(parriyngStemina))
                 {
-                    StartCoroutine(ParryingCoroutine());
                     SteminaManager.Instance.MinusStemina(parriyngStemina);
                     Parrying();
                     timer = 0f;
@@ -79,18 +78,16 @@ public class PlayerParrying : Character
     {
         // TODO : Parring 행동하기
         Debug.Log("패링");
+        StartCoroutine(ParryingCoroutine());
 
-        // Action 만들기 성공, 실패
-        // Enemy쪽에서 Action을 실행시키기
-
-        if (hitColl == null)
-        {
-            FailedParrying();
-        }
-        else
-        {
-            ReturnParryingData();
-        }
+        //if (hitColl == null)
+        //{
+        //    FailedParrying();
+        //}
+        //else
+        //{
+        //    ReturnParryingData();
+        //}
         //if (CheckParrying())
         //{
         //    SuccessParyring();
@@ -152,6 +149,19 @@ public class PlayerParrying : Character
                 //item.GetComponent<EnemyAttack>().IsPlayerParrying = false;
             }
         }
+    }
+
+    public bool IsInViewangle(Transform tr)
+    {
+        Vector3 targetDir = (tr.transform.position - transform.position).normalized;
+        float dot = Vector3.Dot(transform.forward, targetDir);
+
+        float theta = Mathf.Acos(dot) * Mathf.Rad2Deg;
+
+        if (theta <= viewAngle)
+            return true;
+        else
+            return false;
     }
 
     /// <summary>
