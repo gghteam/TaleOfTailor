@@ -1,191 +1,104 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 using UnityEngine.UI;
 
-public class HP : MonoBehaviour
+
+public class Inventory : MonoBehaviour
 {
-    [Header("HP")]
-    [Header("플레이어")]
+    [Header("인벤토리 창")]
     [SerializeField]
-    float maxPlayerHP = 3000;
+    GameObject inventoryPanel;    // 전체적인 인벤토리 창
     [SerializeField]
-    public float playerHP = 3000;
-    [Header("보스")]
-    [SerializeField]
-    float maxBossHP = 3000;
-    [SerializeField]
-    public float bossHP = 3000;
-    [SerializeField, Header("HP 슬라이더 속도")]
-    float sliderSpeed = 5f;
+    GameObject[] invenTab;    // 세부적인 인벤토리 내에 나뉜 창 
 
-    [Header("단추 갯수")]
-    [SerializeField]
-    int danchuCount;
-    [SerializeField]
-    int maxDanchuCount;
+    [SerializeField, Header("선택된 창 표시 이미지")]
+    Image selectImage;
 
-    [Header("HP 슬라이더")]
+    [Header("인게임 아이템 표시 UI")]
     [SerializeField]
-    Image playerHpSlider;
-    //Slider playerHpSlider;
+    Image[] itemImage;    // 아이템 창 아이템이미지
     [SerializeField]
-    Image whiteSlider;
-    // Slider whiteSlider;
-    [SerializeField]
-    Slider bossHpSlider;
+    Text[] itemText;    // 아이템 갯수 표시 TEXT
 
-    [Header("단추 UI")]
-    [SerializeField]
-    Image[] clothesButtonImage;
-    [SerializeField]
-    Image halfButtonImage;
-
-    bool isDead = false;
-    bool isHalf = false;
-    bool isDamage = false;
+    Image beforeItem;
+    bool isOpen = false;
 
     EventParam eventParam = new EventParam();
 
-    private void Awake()
-    {
-        EventManager.StartListening("PLUSCLOTHESBUTTON", PlusClothesButton);
-        EventManager.StartListening("DAMAGE", DamageSlider);
-    }
     private void Start()
     {
-        ResetClothesButton();
-        //playerHpSlider.value = whiteSlider.value = playerHP / maxPlayerHP;
-        playerHpSlider.fillAmount = whiteSlider.fillAmount = playerHP / maxPlayerHP;
-    }
-    private void OnDestroy()
-    {
-        EventManager.StopListening("PLUSCLOTHESBUTTON", PlusClothesButton);
-        EventManager.StopListening("DAMAGE", DamageSlider);
+        EventManager.StartListening("ITEMHAVE", ItemHave);      // 아이템 가졌는지 판단 후 아이템 인벤 끄고 키기
+        EventManager.StartListening("ITEMTEXT", ItemTextIndex);    // 아이템 갯수 텍스트 표시
     }
 
-    void Update()
+    // 아이템 갯수 텍스트로 표시
+    void ItemTextIndex(EventParam eventParam)
     {
-        // 데미지 입히기
-        UpdateSlider();
+        itemText[(int)eventParam.itemParam].text = string.Format($"{eventParam.intParam}");
     }
 
-    // 단추 리셋
-    void ResetClothesButton()
+    private void Update()
     {
-        ClothesButtonOnOff(maxDanchuCount);
+        SettingTabOnOff();  // ESC로 인벤창 끄고 키기
     }
 
-    // 플레이어가 데미지 입었을 때 피 마이너스
-    public void DamageSlider(EventParam eventParam)
+    // 인벤토리 내에 창 바꾸기
+    public void InvenOpen(int tab)
     {
-        if (isDead) return;
-        if (eventParam.stringParam == "PLAYER")
-        {
-
-            playerHP -= eventParam.intParam;
-            Invoke("SliderHit", 0.5f);
-
-            if (playerHP <= 0) isDead = true;
-            else isDead = false;
-            if (isDead) Dead();
-        }
-        else if (eventParam.stringParam == "BOSS")
-        {
-            bossHP -= eventParam.intParam;
-            if (bossHP <= 0)
-            {
-                bossHpSlider.gameObject.SetActive(false);
-            }
-        }
-
-    }
-
-    // HP 게이지 UI Update
-    void UpdateSlider()
-    {
-        float hp = playerHP / maxPlayerHP;
-        bossHpSlider.value = bossHP / maxBossHP;
-        if (isDead) return;
-        //playerHpSlider.value = hp;
-        playerHpSlider.fillAmount = hp;
-        if (isDamage)
-        {
-            whiteSlider.fillAmount = Mathf.Lerp(whiteSlider.fillAmount, playerHP / maxPlayerHP, Time.deltaTime * sliderSpeed);
-            if (playerHpSlider.fillAmount >= whiteSlider.fillAmount - 0.01f)
-            {
-                isDamage = false;
-                whiteSlider.fillAmount = playerHpSlider.fillAmount;
-            }
-        }
-
-    }
-
-    private void SliderHit()
-    {
-        isDamage = true;
-
-    }
-
-    // 죽었을 때 실행
-    void Dead()
-    {
-        isDead = true;
-        if (!isHalf)
-        {
-            eventParam.intParam = danchuCount;
-            EventManager.TriggerEvent("DEAD", eventParam);
-        }
-        MinusClothesButton(isHalf ? 1 : 2);
-        Invoke("ResetHP", 2f);
-
-    }
-
-    // 단추 추가와 마이너스
-    void MinusClothesButton(int minus)
-    {
-        danchuCount -= minus; // 단추 수 빼기
-        if (danchuCount <= 0) Debug.Log("죽음");
-        else ClothesButtonOnOff(danchuCount);
-    }
-    void PlusClothesButton(EventParam eventParam)
-    {
-        danchuCount++; //가진 단추 수 +1
-        ClothesButtonOnOff(danchuCount);
-    }
-
-    //UI 단추 끄고 키기
-    void ClothesButtonOnOff(int index)
-    {
-        int cIndex = 0;
-        isHalf = index % 2 == 0 ? false : true;
-        if (index % 2 != 0) cIndex = (index - 1) / 2 - 1;
-        else cIndex = index / 2 - 1;
-        //전부 끄기
         for (int i = 0; i < 4; i++)
-            clothesButtonImage[i].gameObject.SetActive(false);
-        //인덱스까지만 키기
-        for (int i = 0; i < cIndex + 1; i++)
-            clothesButtonImage[i].gameObject.SetActive(true);
+        {
+            if (i == tab)
+            {
+                //선택창 표시
+                selectImage.rectTransform.anchoredPosition = new Vector3(355 * (i + 1), -59f, 0f);
+                UIManager.Instance.UiOpen(invenTab[i]);
 
-        Vector3 pos = clothesButtonImage[cIndex].rectTransform.anchoredPosition;
-
-        if (isHalf) pos.x += 21f;
-        else pos.x -= 21f;
-        halfButtonImage.gameObject.SetActive(isHalf);
-        halfButtonImage.rectTransform.anchoredPosition = pos;
-
+            }
+            else
+                UIManager.Instance.UiClose(invenTab[i]);
+        }
     }
 
-    // HP 리셋 함수
-    void ResetHP()
+    //  ESC로 인벤토리 끄고 키기
+    private void SettingTabOnOff()
     {
-        whiteSlider.fillAmount = playerHP / maxPlayerHP; // 흰색 슬라이더 다시 채우기
-        bossHpSlider.value = bossHP / maxBossHP;
-        playerHpSlider.fillAmount = Mathf.Lerp(playerHpSlider.fillAmount, 1, Time.deltaTime * sliderSpeed + 2); //서서히 참
-        playerHP = maxPlayerHP; // HP도 초기화
-        isDead = false;
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (isOpen)
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                UIManager.Instance.UiClose(inventoryPanel);
+            }
+            else
+            {
+                UIManager.Instance.UiOpen(inventoryPanel);
+                //커서 숨기기 및 위치 해제
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
+            isOpen = !isOpen;
+        }
     }
 
+    // 인게임 아이템 창 아이템이미지 키고 끄기
+    private void ItemImageOn(Item item, bool isOpen)
+    {
+        Image obj = itemImage[(int)item];
+        if (isOpen)
+        {
+            obj.gameObject.SetActive(true);
+        }
+        else
+        {
+            obj.gameObject.SetActive(false);
+        }
+    }
+
+    // 아이템 창 끄고 키기 함수 실행 + 갯수 띄우기
+    void ItemHave(EventParam eventParam)
+    {
+        ItemImageOn(eventParam.itemParam, eventParam.boolParam);
+    }
 }

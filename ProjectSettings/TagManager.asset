@@ -7,6 +7,7 @@ TagManager:
   - CLOTHESBUTTON
   - ENEMY
   - Floor
+  - BOSS
   layers:
   - Default
   - TransparentFX
