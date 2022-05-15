@@ -4275,6 +4275,88 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 8141aa937268cdd469e1347f54370243, type: 3}
   m_PrefabInstance: {fileID: 552683098}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &555768459
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 164013212}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: cc9a4f96c2b6d544cbc26cd5b285187e, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc9a4f96c2b6d544cbc26cd5b285187e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2998
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc9a4f96c2b6d544cbc26cd5b285187e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2998
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc9a4f96c2b6d544cbc26cd5b285187e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2998
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc9a4f96c2b6d544cbc26cd5b285187e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc9a4f96c2b6d544cbc26cd5b285187e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc9a4f96c2b6d544cbc26cd5b285187e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc9a4f96c2b6d544cbc26cd5b285187e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc9a4f96c2b6d544cbc26cd5b285187e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc9a4f96c2b6d544cbc26cd5b285187e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc9a4f96c2b6d544cbc26cd5b285187e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc9a4f96c2b6d544cbc26cd5b285187e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc9a4f96c2b6d544cbc26cd5b285187e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc9a4f96c2b6d544cbc26cd5b285187e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: cc9a4f96c2b6d544cbc26cd5b285187e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e5a9771602ec30e49bf6d8b8404c9279, type: 2}
+    - target: {fileID: 919132149155446097, guid: cc9a4f96c2b6d544cbc26cd5b285187e, type: 3}
+      propertyPath: m_Name
+      value: item_bandage
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc9a4f96c2b6d544cbc26cd5b285187e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cc9a4f96c2b6d544cbc26cd5b285187e, type: 3}
+--- !u!1 &555768460 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cc9a4f96c2b6d544cbc26cd5b285187e, type: 3}
+  m_PrefabInstance: {fileID: 555768459}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &556937930 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100010, guid: 9e37ca7899c16534ca0599e0108a5df9, type: 3}
@@ -9293,7 +9375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c7a10f56c4870479bb7ccd6350ffff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 1729379846}
+  item: {fileID: 555768460}
   useTime: 2
   bandageCount: 5
   plusStemina: 1
