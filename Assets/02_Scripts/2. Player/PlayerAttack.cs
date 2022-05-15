@@ -46,6 +46,10 @@ public class PlayerAttack : Character
                     ani.SetBool("NextAttack", attack);
                     break;
                 case PlayerAttackState.Attack2:
+                    attackState = PlayerAttackState.Attack3;
+                    ani.SetBool("NextAttack", attack);
+                    break;
+                case PlayerAttackState.Attack3:
                     attackState = PlayerAttackState.Attack1;
                     ani.SetBool("NextAttack", attack);
                     break;
@@ -74,8 +78,14 @@ public class PlayerAttack : Character
                 ani.SetBool("NextAttack", attack);
                 ani.SetBool("IsAttack", true);
             }
-            else if (EndAnimationDone("Attack2", 0.8897059f))
+            else if (EndAnimationDone("Attack2", 0.5833334f))
             {
+                attack = false;
+                ani.SetBool("NextAttack", attack);
+                ani.SetBool("IsAttack", true);
+            }
+            else if(EndAnimationDone("Attack3", 0.75f))
+			{
                 attack = false;
                 ani.SetBool("NextAttack", attack);
                 ani.SetBool("IsAttack", true);
