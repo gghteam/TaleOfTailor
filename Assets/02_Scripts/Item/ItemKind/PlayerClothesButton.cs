@@ -122,7 +122,7 @@ public class PlayerClothesButton : ItemManager
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("CLOTHES_BUTTON"))
+        if (other.CompareTag("CLOTHESBUTTON"))
         {
             other.gameObject.SetActive(false);
             GetItem();

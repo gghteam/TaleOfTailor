@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Chase : Character
+public class Chase : FsmState
 {
-    [SerializeField, Header("추격 속도")]
-    float chaseSpeed;
+    //[SerializeField, Header("추격 속도")]
+    //float chaseSpeed;
 
     [SerializeField, Header("근접 거리")]
     float contactDistance;
@@ -14,8 +14,8 @@ public class Chase : Character
     [SerializeField, Header("쫓아가는 타겟(플레이어)")]
     Transform target;
 
-    private NavMeshAgent agent;
     private Vector3 lastKnownLoc;
+    private NavMeshAgent agent;
 
     void Awake()
     {
@@ -27,10 +27,10 @@ public class Chase : Character
     {
         if (isFollow())
         {
-            agent.SetDestination(target.position);
+        agent.destination = lastKnownLoc = target.position;
             //ani.SetBool("chasing", true);
         }
-        else
+        //else
         {
             //ani.SetBool("chasing", false);
         }
@@ -40,9 +40,14 @@ public class Chase : Character
         return Vector3.Distance(transform.position, target.position) < contactDistance;
     }
 
-    protected Vector3 GetLastKnownPlayerLocation()
+
+    public override void OnStateLeave()
+    {
+        agent.ResetPath();
+    }
+
+    public Vector3 GetLastKnownPlayerLocation()
     {
         return lastKnownLoc;
     }
-
 }
