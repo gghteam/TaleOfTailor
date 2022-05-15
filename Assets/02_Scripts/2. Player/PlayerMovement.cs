@@ -83,12 +83,15 @@ public class PlayerMovement : Character
         //moveDirection *= movementSpeed;
 
         //normalVector의 법선 평면으로부터 플레이어가 움직이려는 방향벡터로 투영
-        Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
-        //이동
-        rigidbody.velocity = projectedVelocity;
+        if(!ani.GetBool("IsAttack"))
+		{
+            Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
+            //이동
+            rigidbody.velocity = projectedVelocity;
+        }
 
-        transform.LookAt(transform.position + moveDirection);
-    }
+		transform.LookAt(transform.position + moveDirection);
+	}
 
     /// <summary>
     /// 파괴되면 더 이상 움직임을 듣지 않는다.

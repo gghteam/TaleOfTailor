@@ -6,4 +6,5 @@ public enum PlayerAttackState
 {
     Attack1,
     Attack2,
+    Attack3
 }
