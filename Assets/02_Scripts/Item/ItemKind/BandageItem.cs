@@ -26,6 +26,7 @@ public class BandageItem : ItemManager
 
     protected override void UseItem()
     {
+        if (isUsing) return;
         if (bandageCount > 0)
         {
             bandageCount--;
@@ -49,7 +50,9 @@ public class BandageItem : ItemManager
     }
     void BandageUseAnim()
     {
+        isUsing = true;
         item.SetActive(true);
+        baseWeapon.SetActive(false);
         eventParam.itemParam = Item.BANDAGE;
         EventManager.TriggerEvent("ITEMANIMPLAY", eventParam);
         Invoke("BandageStop", useTime);
@@ -58,6 +61,8 @@ public class BandageItem : ItemManager
     {
         eventParam.itemParam = Item.BANDAGE;
         EventManager.TriggerEvent("ITEMSTOPANIM", eventParam);
+        baseWeapon.SetActive(true);
         item.SetActive(false);
+        isUsing = false;
     }
 }
