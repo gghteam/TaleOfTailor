@@ -12,6 +12,7 @@ public class CutScene : MonoBehaviour
     private Animator player_Controller;
     public GameObject cameraObj;
     public GameObject player;
+    private bool isStart = false;
     private bool isOpen = false;
     private Rigidbody rigidbody;
     [SerializeField]
@@ -39,6 +40,14 @@ public class CutScene : MonoBehaviour
 
     private void Update()
     {
+        if(!isStart)
+        {
+            panel.color -= new Color(0, 0, 0, Time.deltaTime / 2);
+            if (panel.color.a <= 0)
+            {
+                isStart = true;
+            }
+        }
         if (isFade)
         {
             panel.color += new Color(0, 0, 0, Time.deltaTime / 2);

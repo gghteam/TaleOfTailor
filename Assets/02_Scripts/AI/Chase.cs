@@ -19,7 +19,7 @@ public class Chase : Character
 
     void Awake()
     {
-        ani = GetComponent<Animator>();
+        //ani = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -28,11 +28,11 @@ public class Chase : Character
         if (isFollow())
         {
             agent.SetDestination(target.position);
-            ani.SetBool("chasing", true);
+            //ani.SetBool("chasing", true);
         }
         else
         {
-            ani.SetBool("chasing", false);
+            //ani.SetBool("chasing", false);
         }
     }
     bool isFollow()

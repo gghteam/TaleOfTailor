@@ -25,18 +25,12 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
-<<<<<<< HEAD
 --- !u!1101 &-7736745278709254423
 AnimatorStateTransition:
-=======
---- !u!206 &-4364181432132335586
-BlendTree:
->>>>>>> origin/Newkjp
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
@@ -57,34 +51,6 @@ BlendTree:
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1102 &-7634695520699531564
-=======
-  m_Name: Blend Tree
-  m_Childs:
-  - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 09b64a611a55ad64f8fdb5a24f32b832, type: 2}
-    m_Threshold: 0
-    m_Position: {x: 0, y: 0}
-    m_TimeScale: 2
-    m_CycleOffset: 0
-    m_DirectBlendParameter: Blend
-    m_Mirror: 0
-  - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: caff94a5a207cf54c8c93f921aeaf0ae, type: 2}
-    m_Threshold: 1
-    m_Position: {x: 0, y: 0}
-    m_TimeScale: 2
-    m_CycleOffset: 0
-    m_DirectBlendParameter: Blend
-    m_Mirror: 0
-  m_BlendParameter: AttackCount
-  m_BlendParameterY: Blend
-  m_MinThreshold: 0
-  m_MaxThreshold: 1
-  m_UseAutomaticThresholds: 0
-  m_NormalizedBlendValues: 0
-  m_BlendType: 0
---- !u!1102 &-1986664164639017020
->>>>>>> origin/Newkjp
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -123,29 +89,16 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 650343657605072315}
-<<<<<<< HEAD
     m_Position: {x: 270, y: 160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7634695520699531564}
     m_Position: {x: 290, y: 20, z: 0}
-=======
-    m_Position: {x: 280, y: 120, z: 0}
->>>>>>> origin/Newkjp
   - serializedVersion: 1
     m_State: {fileID: 1994348076061304818}
     m_Position: {x: 270, y: -60, z: 0}
   - serializedVersion: 1
-<<<<<<< HEAD
-    m_State: {fileID: 8005383355350251532}
-    m_Position: {x: 270, y: 90, z: 0}
-=======
     m_State: {fileID: -1986664164639017020}
-<<<<<<< HEAD
-    m_Position: {x: 270, y: 40, z: 0}
->>>>>>> origin/Newkjp
-=======
     m_Position: {x: 270, y: 30, z: 0}
->>>>>>> origin/Newkjp
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 375273013673830499}
@@ -153,15 +106,9 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-<<<<<<< HEAD
-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
-  m_EntryPosition: {x: 50, y: 160, z: 0}
-  m_ExitPosition: {x: 570, y: 20, z: 0}
-=======
   m_AnyStatePosition: {x: 60, y: 0, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 530, y: 0, z: 0}
->>>>>>> origin/Newkjp
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 650343657605072315}
 --- !u!1101 &-1657528336393861805
@@ -231,8 +178,6 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-<<<<<<< HEAD
-<<<<<<< HEAD
     m_Controller: {fileID: 0}
   - m_Name: hug
     m_Type: 4
@@ -240,27 +185,17 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-=======
     m_Controller: {fileID: 9100000}
-=======
     m_Controller: {fileID: 0}
-<<<<<<< HEAD
->>>>>>> origin/Newkjp
   - m_Name: AttackCount
     m_Type: 1
-=======
   - m_Name: parrying
     m_Type: 4
->>>>>>> origin/Newkjp
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-<<<<<<< HEAD
     m_Controller: {fileID: 9100000}
->>>>>>> origin/Newkjp
-=======
     m_Controller: {fileID: 0}
->>>>>>> origin/Newkjp
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -322,7 +257,6 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: 9150686684125865913, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
   m_Tag: 
-<<<<<<< HEAD
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -349,12 +283,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
-=======
-  m_SpeedParameter: AttackCount
-  m_MirrorParameter: parrying 1
-  m_CycleOffsetParameter: AttackCount
-  m_TimeParameter: AttackCount
->>>>>>> origin/Newkjp
 --- !u!1102 &1994348076061304818
 AnimatorState:
   serializedVersion: 6
@@ -426,41 +354,12 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
-<<<<<<< HEAD
---- !u!1102 &8005383355350251532
-AnimatorState:
-  serializedVersion: 6
-=======
 --- !u!1101 &8472096063519855565
 AnimatorStateTransition:
->>>>>>> origin/Newkjp
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_Name: Hug
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 1268218106208984716}
-  - {fileID: -7736745278709254423}
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c07412b98facea54abd526ef383777d9, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
-=======
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
@@ -483,4 +382,3 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 0
->>>>>>> origin/Newkjp
