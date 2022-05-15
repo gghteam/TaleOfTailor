@@ -18,13 +18,12 @@ public class EnemyAttack : Character
 
     private bool isAttack = false;
     private bool isPlayerDamage = false;
-    private bool isEnemyParrying = false;
 
     private int attackCount = 0;
 
     private float timer = 0f;
 
-    Collider[] hitColl;
+    private Collider[] hitColl;
 
     private readonly int attack = Animator.StringToHash("attack");
     private readonly int parrying = Animator.StringToHash("parrying");
@@ -42,7 +41,8 @@ public class EnemyAttack : Character
 
     void Update()
     {
-        timer += Time.deltaTime;
+        if(!ani.GetBool(parrying))
+            timer += Time.deltaTime;
 
         hitColl = Physics.OverlapCapsule(transform.position, new Vector3(0, 2.2f, 0), enemyData.attackRange, attackLayer);
 
@@ -87,17 +87,6 @@ public class EnemyAttack : Character
         AttackChange(1);
         ani.SetTrigger(attack);
 
-        //if (isAttack)
-        //{
-        //    if (hit.collider != null)
-        //    {
-        //        if (hit.collider.CompareTag("Player"))
-        //        {
-        //            //StartCoroutine(AttackCoroutine());
-        //        }
-        //    }
-        //}
-
         if (isAttack)
         {
             foreach(var hitObj in hitColl)
@@ -128,30 +117,34 @@ public class EnemyAttack : Character
                 if (player.IsInViewangle(this.transform))
                 {
                     player.SuccessParrying();
-                    ani.SetBool(parrying, true);
+                    ParryingChange(1);
                     ParryingAction();
                 }
                 else
                 {
                     player.FailedParrying();
-                    ani.SetBool(parrying, false);
+                    ParryingChange(0);
                     Debug.Log("플레이어 대미지 주기");
-                    isPlayerDamage = true;
+                    PlayerDamageChange(1);
                 }
             }
             else
             {
                 player.FailedParrying();
-                ani.SetBool(parrying, false);
+                ParryingChange(0);
                 Debug.Log("플레이어 대미지 주기");
-                isPlayerDamage = true;
-            }
+                PlayerDamageChange(1);
+;            }
         }
     }
 
-    private void ParryingChange()
+    /// <summary>
+    /// 애니메이터안에 있는 parrying파라매터를 변화시키는 함수
+    /// </summary>
+    /// <param name="value"></param>
+    private void ParryingChange(int value)
     {
-        ani.SetBool(parrying, false);
+        ani.SetBool(parrying, value == 0 ? false : true);
     }
 
     /// <summary>
