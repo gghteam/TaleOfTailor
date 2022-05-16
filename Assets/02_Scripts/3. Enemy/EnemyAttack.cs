@@ -31,12 +31,20 @@ public class EnemyAttack : Character
 
     void Start()
     {
+        Reset();
+
         timer = enemyData.attackDelay;
     }
 
     void OnEnable()
     {
         timer = enemyData.attackDelay;
+    }
+
+    void OnDisable()
+    {
+        StopAllCoroutines();
+        Reset();
     }
 
     void Update()
@@ -46,7 +54,7 @@ public class EnemyAttack : Character
 
         hitColl = Physics.OverlapCapsule(transform.position, new Vector3(0, 2.2f, 0), enemyData.attackRange, attackLayer);
 
-        ani.SetFloat(attackCnt, attackCount % 2);
+        ani.SetFloat(attackCnt, attackCount);
 
         //if (Input.GetKeyDown(KeyCode.A))
         //{
@@ -83,7 +91,7 @@ public class EnemyAttack : Character
     /// </summary>
     private void Attack()
     {
-        attackCount++;
+        attackCount = (attackCount + 1) % 2;
         AttackChange(1);
         ani.SetTrigger(attack);
 
@@ -163,5 +171,12 @@ public class EnemyAttack : Character
     private void PlayerDamageChange(int value)
     {
         isPlayerDamage = value == 0 ? false : true;
+    }
+
+    public void Reset()
+    {
+        PlayerDamageChange(0);
+        AttackChange(0);
+        ParryingChange(0);
     }
 }
