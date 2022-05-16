@@ -3,20 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PlayerDash : Character
 {
-	//[Header("?Ä???§Ìîº??)]
+	[Header("¥ÎΩ¨ º”µµ")]
 	[SerializeField]
 	private float smoothTime = 0.2f;
 
-	[Header("?Ä??Í±∞Î¶¨")]
+	[Header("¥ÎΩ¨ ∞≈∏Æ")]
 	[SerializeField]
-	private float DashObjectDistance;
+	private float DashDistance;
 
-	[Header("?Ä???§Î∏å?ùÌä∏")]
+	[Header("¥ÎΩ¨ ø¿∫Í¡ß∆Æ")]
 	[SerializeField]
 	private GameObject DashObjet;
 
+	[Header("∑π¿ÃæÓ ø˘∏∏ «œººø‰")]
 	[SerializeField]
 	LayerMask layer;
+
+	[Header("ƒ´∏ﬁ∂Û ø¿∫Í¡ß∆Æ")]
+	[SerializeField]
+	private Transform cameraObject;
 
 	private Vector3 dashVec = Vector3.zero;
 
@@ -53,11 +58,12 @@ public class PlayerDash : Character
 		if (firstbool)
 		{
 			RaycastHit ray;
-			dashVec = new Vector3(input.x * DashObjectDistance + transform.position.x, transform.position.y, input.y * DashObjectDistance + transform.position.z);
-			if (Physics.Raycast(transform.position, dashVec, out ray, DashObjectDistance,layer))
+
+			Vector3 dir = (transform.localRotation * Vector3.forward);
+
+			dashVec = new Vector3(dir.x * DashDistance + transform.position.x, transform.position.y, dir.z * DashDistance + transform.position.z);
+			if (Physics.Raycast(transform.position, dashVec, out ray, DashDistance,layer))
 			{
-				Debug.Log(ray.point);
-				DashObjet.transform.position = ray.point;
 				float vec = (transform.position - ray.point).magnitude;
 				dashVec = new Vector3(input.x * vec + transform.position.x, transform.position.y, input.y * vec + transform.position.z);
 			}
