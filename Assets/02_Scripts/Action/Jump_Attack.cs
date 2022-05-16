@@ -23,6 +23,9 @@ public class Jump_Attack : FsmState
     private FsmCore fsmCore;
     private Chase chaseState;
 
+    [SerializeField] CrackControll _CrackPrefab;
+    Vector3 direction;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -85,7 +88,8 @@ public class Jump_Attack : FsmState
         currentTime = 0;
         isStart = true;
         isPlay = true;
-        //animator.SetTrigger("JumpAttack");
+        animator.SetBool("IsMove", false);
+        animator.SetTrigger("JumpAttack");
     }
 
     public override void OnStateLeave()
@@ -93,5 +97,16 @@ public class Jump_Attack : FsmState
         isStart = false;
         isPlay = false;
         Debug.Log("떠나라!");
+    }
+
+    private void AnimationCallback_SlamEffect()
+    {
+        direction = transform.forward;
+        Debug.Log("접근중");
+        Vector3 pos = transform.position;
+        pos.y = 0;
+        CrackControll crackControll = Instantiate(_CrackPrefab, pos, Quaternion.identity);
+        crackControll.transform.forward = direction;
+        crackControll.Open(15);
     }
 }

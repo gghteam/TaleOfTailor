@@ -95,6 +95,9 @@
      <Compile Include="Assets\Slam\EarthSlam\Rock\DeactivateObj.cs" />
      <Compile Include="Assets\02_Scripts\CameraHandler.cs" />
      <Compile Include="Assets\02_Scripts\3. Enemy\EnemyAttack.cs" />
+     <Compile Include="Assets\TeddyBear1.3\scripts\spring.cs" />
+     <Compile Include="Assets\TeddyBear1.3\scripts\Teddy3d.cs" />
+     <Compile Include="Assets\TeddyBear1.3\scripts\CameraTeddy3d.cs" />
      <None Include="Assets\civilian\readme.txt" />
      <None Include="Assets\Slam\EarthSlam\Crack\DepthMask.shader" />
      <None Include="Assets\Tim&apos;s Assets\Doors\Shader\BloodyDoor.shader" />

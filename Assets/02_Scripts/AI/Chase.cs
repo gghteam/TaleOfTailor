@@ -14,6 +14,9 @@ public class Chase : FsmState
     [SerializeField, Header("ÂÑ¾Æ°¡´Â Å¸°Ù(ÇÃ·¹ÀÌ¾î)")]
     Transform target;
 
+    [SerializeField]
+    private Animator animator;
+
     private Vector3 lastKnownLoc;
     private NavMeshAgent agent;
 
@@ -42,7 +45,7 @@ public class Chase : FsmState
 
     public override void OnStateEnter()
     {
-        Debug.Log("µé¾î¿Ó¤¸³º¾Æ");
+        animator.SetBool("IsMove", true);
     }
 
     public override void OnStateLeave()

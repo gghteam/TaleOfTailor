@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637876178452869890
+      ticks: 637883081959593982
     m_Hash: 260642209
   m_LockFileStatus:
     m_FilePath: D:/GitHubs/TaleOfTailor/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637876178452889874
+      ticks: 637883081959613922
     m_Hash: 1943955877
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
