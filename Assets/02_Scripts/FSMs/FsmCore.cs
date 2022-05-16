@@ -60,6 +60,7 @@ public class FsmCore : MonoBehaviour {
 	/// <param name="Next">변경할 상태</param>
 	public void ChangeState(FsmState Next)
 	{
+		Debug.Log("LEAVE");
 		//현재 스테이지를 떠남
 		leaveCurrentState();
 		current = null;
@@ -110,6 +111,7 @@ public class FsmCore : MonoBehaviour {
 
 	void LateUpdate()
 	{
+		//Debug.Log(current.State.);
 		//선택할 규칙 초기세팅
 		TransitionRule chosenTransition = null;
 
@@ -196,6 +198,7 @@ public class FsmCore : MonoBehaviour {
 	/// </summary>
 	private void leaveCurrentState()
 	{
+		//Debug.Log("LEAVE");
 		if (current != null && current.State != null)
 		{
 			current.State.OnStateLeave();

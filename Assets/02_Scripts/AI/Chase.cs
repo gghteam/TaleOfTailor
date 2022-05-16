@@ -40,6 +40,10 @@ public class Chase : FsmState
         return Vector3.Distance(transform.position, target.position) < contactDistance;
     }
 
+    public override void OnStateEnter()
+    {
+        Debug.Log("µé¾î¿Ó¤¸³º¾Æ");
+    }
 
     public override void OnStateLeave()
     {

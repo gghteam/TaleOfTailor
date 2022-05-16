@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PlayerDash : Character
 {
-	[Header("대쉬 스피드")]
+	//[Header("?�???�피??)]
 	[SerializeField]
 	private float smoothTime = 0.2f;
 
-	[Header("대쉬 거리")]
+	[Header("?�??거리")]
 	[SerializeField]
 	private float DashObjectDistance;
 
-	[Header("대쉬 오브젝트")]
+	[Header("?�???�브?�트")]
 	[SerializeField]
 	private GameObject DashObjet;
 
