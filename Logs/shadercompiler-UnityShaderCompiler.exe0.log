@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 Base path: 'D:/Unity_Version/2020.3.25f1/Editor/Data', plugins path 'D:/Unity_Version/2020.3.25f1/Editor/Data/PlaybackEngines'
-=======
-Base path: 'C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/PlaybackEngines'
->>>>>>> origin/Newkjp
 Cmd: initializeCompiler
 
 Cmd: shutdown
