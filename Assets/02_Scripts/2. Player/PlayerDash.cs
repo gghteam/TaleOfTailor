@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PlayerDash : Character
 {
-	[Header("?€???¤í”¼??)]
+	[Header("?€???¤í”¼??")]
 	[SerializeField]
 	private float smoothTime = 0.2f;
 
