@@ -1064,7 +1064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothTime: 3
-  DashObjectDistance: 10
+  DashDistance: 10
   DashObjet: {fileID: 1297062763}
   layer:
     serializedVersion: 2

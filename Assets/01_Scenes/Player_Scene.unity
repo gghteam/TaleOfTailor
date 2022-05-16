@@ -3910,11 +3910,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothTime: 10
-  DashObjectDistance: 5
+  DashDistance: 5
   DashObjet: {fileID: 0}
   layer:
     serializedVersion: 2
     m_Bits: 1
+  cameraObject: {fileID: 1407897204}
 --- !u!114 &359546425
 MonoBehaviour:
   m_ObjectHideFlags: 0
