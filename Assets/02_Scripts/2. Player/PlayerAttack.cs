@@ -8,6 +8,8 @@ public class PlayerAttack : Character
     private float playerDamage=70;
     [SerializeField]
     private GameObject attackObject;
+    [SerializeField]
+    private ParticleSystem attackParticle;
 
     [SerializeField]
     private PlayerAttackState attackState;
@@ -29,6 +31,7 @@ public class PlayerAttack : Character
     }
     private void Update()
     {
+        OnParticle(attacking);
         if (eventParam.boolParam && !attacking)
         {
             attacking = true;
@@ -37,7 +40,6 @@ public class PlayerAttack : Character
         }
         else if (eventParam.boolParam && attacking && !attack)
         {
-            Debug.Log("2");
             attack = true;
             switch (attackState)
             {
@@ -120,5 +122,11 @@ public class PlayerAttack : Character
     bool StartAnimationDone(string animationname, float exittime)
     {
         return ani.GetCurrentAnimatorStateInfo(0).IsName(animationname) && ani.GetCurrentAnimatorStateInfo(0).normalizedTime > 0 && exittime > ani.GetCurrentAnimatorStateInfo(0).normalizedTime;
+    }
+
+
+    private void OnParticle(bool On)
+	{
+        attackParticle.gameObject.SetActive(On);
     }
 }
