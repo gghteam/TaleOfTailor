@@ -307,6 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 1320243fc61d50948997fcc6dc4bd54a, type: 2}
+  ani: {fileID: 338289252}
 --- !u!54 &338289250
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -337,6 +338,11 @@ CapsuleCollider:
   m_Height: 2.2
   m_Direction: 1
   m_Center: {x: 0, y: 1.1, z: 0}
+--- !u!95 &338289252 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
+  m_PrefabInstance: {fileID: 338289247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &342651635
 GameObject:
   m_ObjectHideFlags: 0

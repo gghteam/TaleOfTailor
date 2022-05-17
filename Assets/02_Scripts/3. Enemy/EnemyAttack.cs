@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttack : Character
+public class EnemyAttack : FsmState
 {
     // 이렇게 변수로 할까 SO로 할까?
     //[SerializeField]
@@ -24,6 +24,11 @@ public class EnemyAttack : Character
     private float timer = 0f;
 
     private Collider[] hitColl;
+    [SerializeField]
+    private Animator ani;
+
+    private FsmCore fsmCore;
+    private EnemyIdle chaseState;
 
     private readonly int attack = Animator.StringToHash("attack");
     private readonly int parrying = Animator.StringToHash("parrying");
@@ -31,30 +36,33 @@ public class EnemyAttack : Character
 
     void Start()
     {
+        fsmCore = GetComponent<FsmCore>();
+        chaseState = GetComponent<EnemyIdle>();
         Reset();
 
         timer = enemyData.attackDelay;
     }
 
-    void OnEnable()
-    {
-        timer = enemyData.attackDelay;
-    }
 
-    void OnDisable()
+    public override void OnStateEnter()
     {
+        ani.SetBool("IsMove", false);
         StopAllCoroutines();
         Reset();
+        timer = enemyData.attackDelay;
     }
 
     void Update()
     {
-        if(!ani.GetBool(parrying))
-            timer += Time.deltaTime;
+        if (!ani.GetBool(parrying))
+        {
 
-        hitColl = Physics.OverlapCapsule(transform.position, new Vector3(0, 2.2f, 0), enemyData.attackRange, attackLayer);
+            hitColl = Physics.OverlapCapsule(transform.position, new Vector3(0, 2.2f, 0), enemyData.attackRange, attackLayer);
 
-        ani.SetFloat(attackCnt, attackCount);
+            ani.SetFloat(attackCnt, attackCount);
+
+            Attack();
+        }
 
         //if (Input.GetKeyDown(KeyCode.A))
         //{
@@ -68,14 +76,17 @@ public class EnemyAttack : Character
         //    }
         //}
 
+        /*
         if (timer >= enemyData.attackDelay)
         {
             if (!isAttack)
             {
                 Attack();
                 timer = 0;
+                fsmCore.ChangeState(chaseState);
             }
         }
+        */
     }
 
     /// <summary>
@@ -93,6 +104,7 @@ public class EnemyAttack : Character
     {
         attackCount = (attackCount + 1) % 2;
         AttackChange(1);
+       // Debug.Log("ENEMY ATTACK");
         ani.SetTrigger(attack);
 
         if (isAttack)
@@ -105,6 +117,8 @@ public class EnemyAttack : Character
                 }
             }
         }
+        fsmCore.ChangeState(chaseState);
+        Debug.Log("SPeed");
     }
 
     /// <summary>
