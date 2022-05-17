@@ -21,7 +21,7 @@ public class Jump_Attack : FsmState
     private Animator animator;
 
     private FsmCore fsmCore;
-    private Chase chaseState;
+    private EnemyIdle chaseState;
 
     [SerializeField] CrackControll _CrackPrefab;
     Vector3 direction;
@@ -30,7 +30,7 @@ public class Jump_Attack : FsmState
     {
         animator = GetComponent<Animator>();
         fsmCore = GetComponent<FsmCore>();
-        chaseState = GetComponent<Chase>();
+        chaseState = GetComponent<EnemyIdle>();
     }
 
     private void Update()
