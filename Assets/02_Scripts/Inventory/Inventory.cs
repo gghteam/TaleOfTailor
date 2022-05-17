@@ -21,8 +21,8 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     Text[] itemText;    // 아이템 갯수 표시 TEXT
 
-    Image beforeItem;
-    bool isOpen = false;
+    //Image beforeItem;
+
 
     EventParam eventParam = new EventParam();
 
@@ -65,7 +65,7 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            if (isOpen)
+            if (UIManager.Instance.isSetting)
             {
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
@@ -78,7 +78,7 @@ public class Inventory : MonoBehaviour
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }
-            isOpen = !isOpen;
+            UIManager.Instance.isSetting = !UIManager.Instance.isSetting;
         }
     }
 

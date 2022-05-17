@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UIManager : MonoSingleton<UIManager>
 {
-    private void Awake()
-    {
-    }
+    public bool isSetting = false;
 
     public void UiOpen(GameObject ui)
     {

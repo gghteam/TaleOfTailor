@@ -130,6 +130,10 @@ public class CameraHandler : MonoBehaviour
     /// </summary>
     private void CameraMove()
     {
+        if(UIManager.Instance.isSetting)
+        {
+            return;
+        }
         FollowTarget(setDelta);
         HandleCameraRotation(setDelta, mouseX, mouseY);
     }
